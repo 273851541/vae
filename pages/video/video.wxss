@@ -1,0 +1,117 @@
+.container {
+  background: #f7f7f7;
+  height: auto;
+}
+
+.videoBox {
+  /* padding:  *//* background:  */
+  border-bottom: 1px solid #eee;
+  margin-bottom: 20rpx;
+  background: #fff;
+}
+
+.videoBox video, .videoMask {
+  width: 100%;
+  height: 200px;
+  /* margin: auto 30rpx; */
+}
+
+.videoMask {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.videoMask image {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.videoTitle {
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100rpx;
+}
+
+.loadingBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 0;
+  margin: 0 -5%;
+  overflow: hidden;
+  background: #fff;
+}
+
+.dot-bricks {
+  position: relative;
+  top: 8px;
+  left: -9999px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #6CA5FE;
+  color: #6CA5FE;
+  box-shadow: 9991px -16px 0 0 #6CA5FE, 9991px 0 0 0 #6CA5FE, 10007px 0 0 0 #6CA5FE;
+  animation: dotBricks 2s infinite ease;
+}
+
+@keyframes dotBricks {
+  0% {
+    box-shadow: 9991px -16px 0 0 #6CA5FE, 9991px 0 0 0 #6CA5FE, 10007px 0 0 0 #6CA5FE;
+  }
+
+  8.333% {
+    box-shadow: 10007px -16px 0 0 #6CA5FE, 9991px 0 0 0 #6CA5FE, 10007px 0 0 0 #6CA5FE;
+  }
+
+  16.667% {
+    box-shadow: 10007px -16px 0 0 #6CA5FE, 9991px -16px 0 0 #6CA5FE, 10007px 0 0 0 #6CA5FE;
+  }
+
+  25% {
+    box-shadow: 10007px -16px 0 0 #6CA5FE, 9991px -16px 0 0 #6CA5FE, 9991px 0 0 0 #6CA5FE;
+  }
+
+  33.333% {
+    box-shadow: 10007px 0 0 0 #6CA5FE, 9991px -16px 0 0 #6CA5FE, 9991px 0 0 0 #6CA5FE;
+  }
+
+  41.667% {
+    box-shadow: 10007px 0 0 0 #6CA5FE, 10007px -16px 0 0 #6CA5FE, 9991px 0 0 0 #6CA5FE;
+  }
+
+  50% {
+    box-shadow: 10007px 0 0 0 #6CA5FE, 10007px -16px 0 0 #6CA5FE, 9991px -16px 0 0 #6CA5FE;
+  }
+
+  58.333% {
+    box-shadow: 9991px 0 0 0 #6CA5FE, 10007px -16px 0 0 #6CA5FE, 9991px -16px 0 0 #6CA5FE;
+  }
+
+  66.666% {
+    box-shadow: 9991px 0 0 0 #6CA5FE, 10007px 0 0 0 #6CA5FE, 9991px -16px 0 0 #6CA5FE;
+  }
+
+  75% {
+    box-shadow: 9991px 0 0 0 #6CA5FE, 10007px 0 0 0 #6CA5FE, 10007px -16px 0 0 #6CA5FE;
+  }
+
+  83.333% {
+    box-shadow: 9991px -16px 0 0 #6CA5FE, 10007px 0 0 0 #6CA5FE, 10007px -16px 0 0 #6CA5FE;
+  }
+
+  91.667% {
+    box-shadow: 9991px -16px 0 0 #6CA5FE, 9991px 0 0 0 #6CA5FE, 10007px -16px 0 0 #6CA5FE;
+  }
+
+  100% {
+    box-shadow: 9991px -16px 0 0 #6CA5FE, 9991px 0 0 0 #6CA5FE, 10007px 0 0 0 #6CA5FE;
+  }
+}

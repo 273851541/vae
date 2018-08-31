@@ -1,0 +1,30 @@
+<!--index.wxml-->
+<view class="container">
+
+
+  <swiper vertical='true' style='height:100%'>
+    <swiper-item>
+      <view class='box One'>
+        <view class='banner'>
+          <image src="{{songInfo.imgUrl}}"></image>
+        </view>
+        <view class='content'>
+          <text class='today_text'>{{content}}</text>
+          <!-- <text class='today_text'>是现在这样的四月</text> -->
+          <text class='today_text' style='font-size:35rpx;text-align:right'>—— {{songInfo.singer}}《{{songInfo.songName}}》</text>
+          <!-- <image ></image> -->
+        </view>
+        <view class="musicPlayer {{playStatus?'musicPlayerAction':''}}" bindtap='musicPlayHandler'>
+          <image class="music_image  {{playStatus?'playRotation':''}}" src="{{songInfo.imgUrl}}"></image>
+          <view class='musicBtn'>
+            <image src='{{playImg}}' wx:if="{{playStatus==='loading'}}" class="musicBtn_img loadingRotation"></image>
+            <image src='{{playImg}}' wx:else class="musicBtn_img"></image>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      465413516185
+    </swiper-item>
+  </swiper>
+</view>

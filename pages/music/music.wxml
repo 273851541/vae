@@ -1,0 +1,26 @@
+<view class="container">
+  <view class='title'>
+    <text class='title_action'>单曲</text>
+    <text>专辑</text>
+  </view>
+  <swiper style='height:100%;overflow:hidden;'>
+    <swiper-item style='overflow-y:scroll'>
+      <view wx:for="{{playList}}" wx:key="*this" class='musicItem' bindtap='itemPlayMusic' data-id='{{item.id}}' >
+        <view class='musicItem_container'>
+          <image src='{{item.al.picUrl}}'></image>
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      这是专辑
+    </swiper-item>
+  </swiper>
+  <view class="musicPlayer {{playStatus?'musicPlayerAction':''}}" bindtap='toPlayerView'>
+    <image class="music_image  {{playStatus?'playRotation':''}}" src="{{imgurl}}"></image>
+    <view class='musicBtn'>
+      <image src='../../utils/src/bars.svg' style='width:40rpx' wx:if='{{playStatus}}'></image>
+      <image src='../../utils/src/music_icon.png' style='width:50rpx;height:50rpx' wx:if='{{!playStatus}}'></image>
+    </view>
+  </view>
+</view>

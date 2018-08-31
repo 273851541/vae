@@ -1,0 +1,17 @@
+<view class="container">
+  <view class='videoBox' wx:for="{{videoList}}" wx:key="*this">
+    <view class='videoMask' wx:if="{{!item.videoPlayStatus}}" data-id="{{item.id}}" style="background:url('{{item.imgurl16v9}}') center center;background-size:100%;" bindtap='getVideoUrl'>
+      <image src='../../utils/src/playVideo.png'></image>
+    </view>
+    <video id='mvVideo-{{item.id}}' poster="{{item.imgurl16v9}}" duration="{{item.duration/1000}}" src='{{item.videoUrl}}' bindplay="bindplay" wx:if="{{item.videoPlayStatus}}"></video>
+    <view class="videoTitle">
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+  <view class='loadingBox' wx:if="{{videoList.length!==0}}">
+    <view wx:if='{{pageIndex<0}}'>
+    没有更多数据了
+    </view>
+    <view wx:else class='dot-bricks'></view>
+  </view>
+</view>

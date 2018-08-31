@@ -1,0 +1,44 @@
+<view class='container'>
+    <view class='bg_color'
+          style='background:url({{songInfo.al.picUrl}})  no-repeat center center;background-size:cover;'></view>
+    <view class='center'>
+        <view class='epIMGView' bindtap="fullScreenLyric" style="display:{{isFullScreenLyric?'none':'flex'}}">
+            <image src='{{songInfo.al.picUrl}}' class='epIMG'></image>
+            <text>{{songInfo.name}}</text>
+        </view>
+        <view class='lrcView' style="height:{{isFullScreenLyric?(autoHeight-50)+'px':'250rpx'}}" bindtap="fullScreenLyric" >
+            <scroll-view scroll-y="true" style="height:100%" scroll-with-animation="true" scroll-top="{{isFullScreenLyric?currentScroll_FullScreen:currentScroll_NoFullScreen}}" id='scrollView'>
+                
+                    <view 
+                          wx:for="{{lyric}}" 
+                          class="lyrics-item {{ current_lyric == item.time ?'lyrics-item_active':''}}"
+                          id="time{{item.time}}" 
+                          data-timeline="{{index}}" 
+                          wx:key="unique"
+                          wx:if="{{lyric.length>1}}">
+
+                        <text wx:if="{{lyric.length>1}}">
+                            {{item.word}}
+                        </text>
+                    </view>
+                
+            </scroll-view>
+        </view>
+        <view class='playerView'>
+            <view class='progressView'>
+                <text>{{currentPosition}}</text>
+                <view style='width:520rpx;'>
+                    <progress percent="{{progress}}" stroke-width="2" activeColor='#6CA5FE'
+                              backgroundColor='rgb(158,152,147)'/>
+                </view>
+                <text>{{duration}}</text>
+            </view>
+            <view class='playerMenu'>
+                <image src='../../utils/src/adp.png' class='prevBtn rotate180' bindtap='playPrev'></image>
+                <image src='../../utils/src/adt.png' class='playBtn' wx:if="{{playStatus}}" bindtap='play'></image>
+                <image src='../../utils/src/adr.png' class='playBtn' wx:else bindtap='pause'></image>
+                <image src='../../utils/src/adp.png' class='nextBtn' bindtap='autoPlayNext'></image>
+            </view>
+        </view>
+    </view>
+</view>

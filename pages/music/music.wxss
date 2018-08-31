@@ -1,0 +1,40 @@
+.container{
+  position: relative;
+}
+.container>.musicItem:last-of-type{
+  margin-bottom: 50rpx;
+}
+.musicItem{
+  justify-content: center;
+  margin: 20rpx 30rpx 0rpx 30rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #f5f5f5;
+}
+.musicItem_container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.musicItem_container image{
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 5rpx;
+  margin-right: 20rpx;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+.title{
+  text-align: center;
+}
+.title text{
+  margin: auto 20rpx;
+  font-size: 20px;
+}
+.title_action{
+  color: #6CA5FE
+}
+
+.musicPlayer{
+  position: fixed;
+  bottom: 50rpx;
+  right: 40rpx;
+}
