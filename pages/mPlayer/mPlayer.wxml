@@ -6,7 +6,7 @@
             <image src='{{songInfo.al.picUrl}}' class='epIMG'></image>
             <text>{{songInfo.name}}</text>
         </view>
-        <view class='lrcView' style="height:{{isFullScreenLyric?(autoHeight-50)+'px':'250rpx'}}" bindtap="fullScreenLyric" >
+        <view class='lrcView' style="height:{{isFullScreenLyric?(autoHeight-50)+'px':'120px'}}" bindtap="fullScreenLyric" >
             <scroll-view scroll-y="true" style="height:100%" scroll-with-animation="true" scroll-top="{{isFullScreenLyric?currentScroll_FullScreen:currentScroll_NoFullScreen}}" id='scrollView'>
                 
                     <view 

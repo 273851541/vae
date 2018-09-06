@@ -103,7 +103,12 @@ Page({
       nextIndex--
     }
     this.backgroundAudioManagerHandler(playList[nextIndex])
-    backgroundAudioManager.src = 'http://music.163.com/song/media/outer/url?id=' + playList[nextIndex].id + '.mp3';
+    backgroundAudioManager.src = 'https://music.163.com/song/media/outer/url?id=' + playList[nextIndex].id + '.mp3';
+
+    this.setData({
+      currentScroll_FullScreen: 0,
+      currentScroll_NoFullScreen:0
+    })
   },
 
 //自动下一曲
@@ -120,7 +125,12 @@ Page({
       nextIndex++
     }
     this.backgroundAudioManagerHandler(playList[nextIndex])
-    backgroundAudioManager.src = 'http://music.163.com/song/media/outer/url?id=' + playList[nextIndex].id + '.mp3';
+    backgroundAudioManager.src = 'https://music.163.com/song/media/outer/url?id=' + playList[nextIndex].id + '.mp3';
+
+    this.setData({
+      currentScroll_FullScreen: 0,
+      currentScroll_NoFullScreen:0
+    })
   },
 
 //背景播放器赋值
@@ -138,7 +148,7 @@ Page({
     backgroundAudioManager.epname = songInfo.al.name;
     backgroundAudioManager.singer = songInfo.ar[0].name;
     backgroundAudioManager.duration = songInfo.dt / 1000;
-    backgroundAudioManager.webUrl = 'http://music.163.com/song/media/outer/url?id=' + songInfo.id + '.mp3';
+    backgroundAudioManager.webUrl = 'https://music.163.com/song/media/outer/url?id=' + songInfo.id + '.mp3';
   },
 
   //开始播放歌曲
@@ -186,7 +196,6 @@ Page({
         },
         complete: function(res) {
           // complete
-          console.log(res)
         }
       })
     }, 1000)
@@ -315,12 +324,20 @@ Page({
             this.setData({
               currentScroll_FullScreen: (i - 5) * 40
             })
+          }else{
+            this.setData({
+              currentScroll_FullScreen: 0
+            })
           }
 
         } else {
           if (lyric[i].time >= this.data.lyric[2].time) {
             this.setData({
               currentScroll_NoFullScreen: (i - 1) * 40
+            })
+          }else{
+            this.setData({
+              currentScroll_FullScreen: 0
             })
           }
         }
@@ -339,6 +356,7 @@ Page({
     query.selectViewport().scrollOffset()
     query.exec(function(res) {
       // #the-id节点的上边界坐标
+      console.log(res);
       _this.setData({
         autoHeight: res[0].top
       })
@@ -361,15 +379,23 @@ Page({
             this.setData({
               currentScroll_FullScreen: (i - 6) * 40,
             })
-            break;
+          } else {
+            this.setData({
+              currentScroll_FullScreen: 0
+            })
           }
+          break;
         } else {
           if (i > 2) {
             this.setData({
               currentScroll_NoFullScreen: (i - 2) * 40
             })
-            break;
+          } else {
+            this.setData({
+              currentScroll_FullScreen: 0
+            })
           }
+          break;
         }
       }
     }

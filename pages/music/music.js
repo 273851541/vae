@@ -68,7 +68,7 @@ Page({
     })
     console.log(songInfo)
     this.setData({
-      'songUrl': 'http://music.163.com/song/media/outer/url?id=' + songInfo.id + '.mp3',
+      'songUrl': 'https://music.163.com/song/media/outer/url?id=' + songInfo.id + '.mp3',
       'imgurl': songInfo.al.picUrl,
       'playStatus': true
     })
@@ -76,8 +76,8 @@ Page({
     backgroundAudioManager.epname = songInfo.al.name;
     backgroundAudioManager.singer = songInfo.ar[0].name;
     backgroundAudioManager.duration = songInfo.dt / 1000;
-    backgroundAudioManager.webUrl = 'http://music.163.com/song/media/outer/url?id=' + songInfo.id + '.mp3';
-    backgroundAudioManager.src = 'http://music.163.com/song/media/outer/url?id=' + songInfo.id + '.mp3';
+    backgroundAudioManager.webUrl = 'https://music.163.com/song/media/outer/url?id=' + songInfo.id + '.mp3';
+    backgroundAudioManager.src = 'https://music.163.com/song/media/outer/url?id=' + songInfo.id + '.mp3';
   },
 
   autoPlayNext(){
@@ -93,7 +93,7 @@ Page({
       nextIndex++
     }
     this.backgroundAudioManagerHandler(playList[nextIndex])
-    backgroundAudioManager.src = 'http://music.163.com/song/media/outer/url?id=' + playList[nextIndex].id + '.mp3';
+    backgroundAudioManager.src = 'https://music.163.com/song/media/outer/url?id=' + playList[nextIndex].id + '.mp3';
   },
 
 

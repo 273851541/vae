@@ -10,4 +10,7 @@ App({
 
     wx.BaaS.init('ef1359e432b6437d6be4')
   },
+  globalData:{
+    song:null
+  }
 })

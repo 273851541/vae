@@ -136,13 +136,13 @@ Page({
             if (songs[i].artists[0].name === '许嵩' || songs[i].artists[0].name === 'Vae' || songs[i].artists[0].name === 'vae' || songs[i].artists[0].name === 'VAE') {
               songId = songs[i].id;
               _this.setData({
-                'songUrl': 'http://music.163.com/song/media/outer/url?id=' + songId + '.mp3'
+                'songUrl': 'https://music.163.com/song/media/outer/url?id=' + songId + '.mp3'
               })
               backgroundAudioManager.title = songs[i].name;
               backgroundAudioManager.epname = songs[i].album.name;
               backgroundAudioManager.singer = songs[i].artists[0].name;
               backgroundAudioManager.duration = songs[i].duration / 1000;
-              backgroundAudioManager.webUrl = 'http://music.163.com/song/media/outer/url?id=' + songId + '.mp3';
+              backgroundAudioManager.webUrl = 'https://music.163.com/song/media/outer/url?id=' + songId + '.mp3';
 
               _this.setData({
                 ["songInfo.singer"]: songs[i].artists[0].name,
