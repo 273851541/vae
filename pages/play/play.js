@@ -27,17 +27,59 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    let id = 167758;
+    // let id = 167758;
+    let id = options.id;
     this.getSongInfo(id);
     this.getLyric(id);
+  },
+
+  //上下一曲
+  autoNextPlay(event) {
+    let { musicList } = app.globalData;
+    let currentId = this.data.songInfo.id;
+    let nextIndex = musicList.findIndex(item => {
+      return item.id === currentId;
+    })
+    let nextItemData;
+    if (event && event.currentTarget.dataset.type==='prev'){
+      if (nextIndex === 0) {
+        nextItemData = musicList[musicList.length-1];
+      } else {
+        nextItemData = musicList[nextIndex - 1];
+      }
+    }else{
+      if (nextIndex >= musicList.length - 1) {
+        nextItemData = musicList[0];
+      } else {
+        nextItemData = musicList[nextIndex + 1];
+      }
+    }
+    app.globalData.song = null;
+
+    this.getSongInfo(nextItemData.id);
+    this.getLyric(nextItemData.id);
+    // this.backgroundAudioManagerHandler(nextItemData);
+  },
+
+
+  //背景音乐赋值
+  backgroundAudioManagerHandler(songInfo) {
     let {
       song
     } = app.globalData;
     if (!song) {
       song = app.globalData.song = wx.getBackgroundAudioManager();
+      song.src = url.songUrl + '?id=' + songInfo.id + '.mp3';
+      song.play();
+      app.globalData.songInfo = songInfo
     }
-    song.src = url.songUrl + '?id=' + id;
-    song.play();
+    song.title = songInfo.name;
+    song.epname = songInfo.al.name;
+    song.singer = songInfo.ar[0].name;
+    song.coverImgUrl = songInfo.al.picUrl
+    song.duration = songInfo.dt / 1000;
+    song.webUrl = url.songUrl+ '?id=' + songInfo.id + '.mp3';
+
 
     song.onTimeUpdate((res) => {
       if (this.data.duration !== song.duration) {
@@ -62,8 +104,6 @@ Page({
           currentLrc: attr
         })
 
-        // console.log(this.data.lyric)
-
         let attrIndex = this.data.lyricArr.findIndex(item => {
           return item.time === attr
         })
@@ -73,6 +113,34 @@ Page({
         this.lyricPosition(attrIndex);
       }
     })
+
+    song.onPlay(() => {
+      this.setData({
+        playStatus: false
+      })
+    })
+    song.onPause(() => {
+      this.setData({
+        playStatus: true
+      })
+    })
+    song.onEnded(() => {
+      this.setData({
+        playStatus: true
+      })
+      this.autoNextPlay()
+    })
+    song.onStop(() => {
+      this.setData({
+        playStatus: true
+      })
+    })
+    song.onError(() => {
+      wx.showToast({
+        title: '播放错误',
+      })
+    })
+    
   },
 
   //时间转换 
@@ -93,6 +161,7 @@ Page({
     song.paused ? song.play() : song.pause();
   },
 
+
   //拖动进度条过程中触发的事件
   changing() {
     this.setData({
@@ -102,13 +171,21 @@ Page({
 
   // 完成一次进度条拖动后触发的事件
   change(res) {
-    app.globalData.song.seek(res.detail.value);
+    let { song } = app.globalData
+    if(!song) return;
+    song.seek(res.detail.value);
     this.setData({
       isTouchMove: false,
       currentTime: res.detail.value
     })
+    this.interludePosition(res.detail.value)
+
+  },
+
+  //间奏时的歌词定位
+  interludePosition(time){
     let attrIndex = this.data.lyricArr.findIndex(item => {
-      return item.time > this.timeToString(res.detail.value)
+      return item.time > this.timeToString(time)
     })
     if (attrIndex === -1) {
       attrIndex = this.data.lyricArr.length - 1
@@ -118,13 +195,21 @@ Page({
       })
     } else {
 
-      this.setData({
-        attrIndex,
-        currentLrc: this.data.lyricArr[attrIndex - 1].time
-      })
+      if (attrIndex<1){
+        this.setData({
+          attrIndex,
+          currentLrc: this.data.lyricArr[0].time
+        })
+      }else{
+        this.setData({
+          attrIndex,
+          currentLrc: this.data.lyricArr[attrIndex - 1].time
+        })
+      }
     }
-    this.lyricPosition(attrIndex, 1);
 
+
+    this.lyricPosition(this.data.attrIndex, 1);
   },
 
   // 获取歌曲信息
@@ -139,6 +224,7 @@ Page({
           _this.setData({
             "songInfo": songInfo
           })
+          _this.backgroundAudioManagerHandler(songInfo)
           wx.hideLoading()
         }
       }
@@ -183,7 +269,8 @@ Page({
           arr.push({
             time: timerStr,
             timeStr: time,
-            word: clause
+            word: clause,
+            id:i
           });
         }
 
@@ -202,6 +289,10 @@ Page({
       lyric: obj,
       lyricArr: arrS
     })
+    
+    setTimeout(()=>{
+      this.interludePosition(this.data.currentTime)
+    },500)
   },
 
   //计算歌词要到达的位置
@@ -212,8 +303,7 @@ Page({
     query.selectViewport().scrollOffset()
     query.exec(function(res) {
       // #the-id节点的上边界坐标
-      console.log((res[0].height / 2));
-
+      if(!res[0]) return;
       if (type && type === 1) {
 
         _this.setData({
@@ -247,7 +337,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    
   },
 
   /**

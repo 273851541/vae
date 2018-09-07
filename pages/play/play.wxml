@@ -17,7 +17,7 @@
   <view style="height:100%;overflow:hidden;padding-top: 20rpx;padding-bottom: 20rpx;"  bindtap='fullScreenLyric' class='{{isFullScreen?isFullScreenStyle:""}}'>
   <view class='songName' wx:if='{{isFullScreen}}' style='height: 100rpx;line-height: 90rpx;'>{{songInfo.name}}</view>
     <scroll-view scroll-y="true" style="height:100%" scroll-with-animation="true" id='scrollView' scroll-top='{{lyricPositionTop}}'>
-      <view wx:for="{{lyricArr}}" id="time{{index}}" class="lyrics-item {{currentLrc===item.time?'lyrics-item_active':''}}">
+      <view wx:for="{{lyricArr}}" wx:key="{{item.id}}" id="time{{index}}" class="lyrics-item {{currentLrc===item.time?'lyrics-item_active':''}}">
           {{item.word}}
       </view>
     </scroll-view>
@@ -32,10 +32,10 @@
       <text>{{foo.toString(duration/60)}}:{{foo.toString(duration%60)}}</text>
     </view>
     <view class='playerMenu'>
-      <image src='../../utils/src/adp.png' class='prevBtn rotate180' bindtap='playPrev'></image>
+      <image src='../../utils/src/adp.png' class='prevBtn rotate180' bindtap='autoNextPlay' data-type='prev'></image>
       <image src='../../utils/src/adt.png' class='playBtn' wx:if="{{playStatus}}" bindtap='play'></image>
       <image src='../../utils/src/adr.png' class='playBtn' wx:else bindtap='play'></image>
-      <image src='../../utils/src/adp.png' class='nextBtn' bindtap='autoPlayNext'></image>
+      <image src='../../utils/src/adp.png' class='nextBtn' bindtap='autoNextPlay'></image>
     </view>
   </view>
 </view>

@@ -124,3 +124,7 @@ slider{
 .isFullScreenStyle{
   padding-top:90rpx
 }
+
+#scrollView view:last-of-type{
+  margin-bottom: 80rpx
+}
