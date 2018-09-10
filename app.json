@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/music/music",
+    "pages/albumsList/albumsList",
     "pages/play/play",
     "pages/mPlayer/mPlayer",
     "pages/video/video",

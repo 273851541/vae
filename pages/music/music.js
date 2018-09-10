@@ -1,6 +1,7 @@
 import url from '../../utils/baseUrl.js'
 const backgroundAudioManager = wx.getBackgroundAudioManager();
 var app = getApp();
+
 Page({
 
   /**
@@ -8,23 +9,22 @@ Page({
    */
   data: {
     playList: [],
+    albumsList:[],
     currentPlay: {},
     songUrl: "",
     playStatus: false,
     playImg: '../../utils/src/play.png',
     imgUrl: '',
     currentId:null,
-    currentSwiperId:0
+    currentSwiperId:1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    wx.showLoading({
-      title: 'LOADING',
-    })
     this.getPlayList();
+    this.getAlbumsList();
 
   },
 
@@ -79,20 +79,53 @@ Page({
 
   //获取歌曲播放列表
   getPlayList() {
+    let timer = setTimeout(() => {
+      wx.showLoading({
+        title: 'LOADING',
+      })
+    }, 500)
     let _this = this;
     wx.request({
       url: url.musicList + '?id=2384283232',
       success: function(res) {
+        clearTimeout(timer)
         let data = res.data;
         if (data.code === 200) {
+          wx.hideLoading()
           let playList = data.playlist.tracks.reverse();
-
           _this.setData({
             playList: playList
           })
-          app.globalData.musicList = playList;
         }
-        wx.hideLoading()
+      },
+      fail: function () {
+        clearTimeout(timer)
+      }
+    })
+  },
+
+  //获取专辑列表
+  getAlbumsList(){
+    let timer = setTimeout(()=>{
+      wx.showLoading({
+        title: 'LOADING',
+      })
+    },500)
+    let _this = this;
+    wx.request({
+      url: url.albumList+'?id=5771',
+      success:function(res){
+        // wx.hideLoading()
+        clearTimeout(timer)
+        let data = res.data;
+        if(data.code===200){
+          _this.setData({
+            albumsList:data.hotAlbums
+          })
+        }
+      },
+      fail:function(){
+        clearTimeout(timer)
       }
     })
   },
@@ -107,6 +140,7 @@ Page({
     wx.navigateTo({
       url: '../play/play?id=' + id
     })
+    app.globalData.musicList = this.data.playList;
     let itemIndex = this.data.playList.findIndex(item=>{
       return item.id===id;
     })
@@ -119,6 +153,13 @@ Page({
 
   },
 
+  //点击后跳转至专辑歌曲列表页
+  toAlbumsDetails(event){
+    let id = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../albumsList/albumsList?id=' + id
+    })
+  },
 
   //背景音乐赋值
   backgroundAudioManagerHandler(songInfo) {
@@ -159,97 +200,25 @@ Page({
   },
 
   //swiper滑动改变current事件
-  bindchange (){
-
+  bindchange (event){
+    if(event.detail.source==='touch'){
+      this.setData({
+        currentSwiperId:event.detail.current
+      })
+    }
   },
 
-  //
-  // itemPlayMusic(event) {
-  //   console.log(event);
-  //   let id = event.currentTarget.dataset.id;
-  //   let songInfo = this.data.playList.find(item => {
-  //     return item.id === id;
-  //   });
-  //   // this.backgroundAudioManagerHandler(songInfo);
-  //   this.toPlayerView()
-  // },
-
-  // backgroundAudioManagerHandler(songInfo){
-
-  //   this.setData({
-  //     'currentPlay': songInfo
-  //   })
-  //   console.log(songInfo)
-  //   this.setData({
-  //     'songUrl': 'https://music.163.com/song/media/outer/url?id=' + songInfo.id + '.mp3',
-  //     'imgurl': songInfo.al.picUrl,
-  //     'playStatus': true
-  //   })
-  //   backgroundAudioManager.title = songInfo.name;
-  //   backgroundAudioManager.epname = songInfo.al.name;
-  //   backgroundAudioManager.singer = songInfo.ar[0].name;
-  //   backgroundAudioManager.duration = songInfo.dt / 1000;
-  //   backgroundAudioManager.webUrl = 'https://music.163.com/song/media/outer/url?id=' + songInfo.id + '.mp3';
-  //   backgroundAudioManager.src = 'https://music.163.com/song/media/outer/url?id=' + songInfo.id + '.mp3';
-  // },
-
-  // autoPlayNext(){
-  //   let currentPlay = this.data.currentPlay;
-  //   let playList = this.data.playList;
-  //   let nextIndex;
-  //   nextIndex = playList.findIndex(item=>{
-  //     return item.id === currentPlay.id
-  //   })
-  //   if (nextIndex === playList.length-1){
-  //     nextIndex = 0;
-  //   }else{
-  //     nextIndex++
-  //   }
-  //   this.backgroundAudioManagerHandler(playList[nextIndex])
-  //   backgroundAudioManager.src = 'https://music.163.com/song/media/outer/url?id=' + playList[nextIndex].id + '.mp3';
-  // },
-
-
-  // onShow(){
-  //   let _this = this
-  //   wx.getBackgroundAudioPlayerState({
-  //     success(res){
-  //       if (res.status === 1) {
-  //         _this.setData({
-  //           playStatus: true
-  //         })
-  //       }else if (res.status === 2){
-  //         _this.setData({
-  //           playStatus: false,
-  //           songUrl:''
-  //         })
-  //       } else if (res.status === 0){
-  //         _this.setData({
-  //           playStatus: false
-  //         })
-  //       }
-  //     }
-  //   })  
-
-  //   backgroundAudioManager.onPlay(() => {
-  //     this.setData({
-  //       playStatus: true
-  //     })
-  //   })
-  //   backgroundAudioManager.onPause(() => {
-  //     this.setData({
-  //       playStatus: false
-  //     })
-  //   })
-  //   backgroundAudioManager.onEnded(() => {
-  //     this.setData({
-  //       playStatus: false
-  //     })
-  //     console.log(132546);
-  //     this.autoPlayNext();
-  //   })
-  // }
-
-
+  //点击切换tab
+  clickTab(event){
+    let current = event.currentTarget.dataset.current;
+    // if (current===0){
+    //   this.getPlayList();
+    // }else{
+    //   this.getAlbumsList();
+    // }
+    this.setData({
+      currentSwiperId: current
+    })
+  }
 
 })

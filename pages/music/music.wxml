@@ -1,19 +1,27 @@
 <view class="container">
   <view class='title'>
-    <text class='titile_item {{currentSwiperId==0?"title_item_action":""}}'>单曲</text>
-    <text class='titile_item {{currentSwiperId==1?"title_item_action":""}}'>专辑</text>
+    <text class='titile_item {{currentSwiperId==0?"title_item_action":""}}' bindtap='clickTab' data-current='0'>单曲</text>
+    <text class='titile_item {{currentSwiperId==1?"title_item_action":""}}' bindtap='clickTab' data-current='1'>专辑</text>
   </view>
   <swiper style='height:100%;overflow:hidden;' current="{{currentSwiperId}}" bindchange='bindchange'>
     <swiper-item style='overflow-y:scroll'>
-      <view wx:for="{{playList}}" wx:key="item.id" class='musicItem' bindtap='toPlayerView' data-id='{{item.id}}' data-type='itemBtn'>
+      <view wx:for="{{playList}}" wx:key="{{item.id}}" class='musicItem' bindtap='toPlayerView' data-id='{{item.id}}' data-type='itemBtn'>
         <view class='musicItem_container'>
           <image src='{{item.al.picUrl}}'></image>
           <text>{{item.name}}</text>
         </view>
       </view>
     </swiper-item>
-    <swiper-item>
-      这是专辑
+    <swiper-item style='overflow-y:scroll'>
+      <view class='albumsContext'>
+        <view wx:for='{{albumsList}}' wx:key="{{item.id}}" data-id='{{item.id}}' class='albumsBox' bindtap='toAlbumsDetails'>
+          <view class='imgBox'>
+            <image src='{{item.picUrl}}' class='imgs'></image>
+            <image src='../../utils/src/albums.png' class='imgs_other'></image>
+          </view>
+          <text class='albumsName'>{{item.name}}</text>
+        </view>
+      </view>
     </swiper-item>
   </swiper>
   <view class="musicPlayer {{playStatus?'musicPlayerAction':''}}" bindtap='toPlayerView' data-id='{{currentId}}' data-type='playBtn'>
