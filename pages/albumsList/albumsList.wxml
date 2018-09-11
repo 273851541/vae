@@ -1,0 +1,18 @@
+<view class="container">
+  <view class='EPBanner'>
+      <view class='bg_color' style='background:url({{albumsDetails.picUrl}})  no-repeat center center;background-size:cover;'></view>
+  </view>
+  <view wx:for="{{albumsInfo}}" wx:key="{{item.id}}" class='musicItem' bindtap='toPlayerView' data-id='{{item.id}}' data-type='itemBtn'>
+    <view class='musicItem_container'>
+      <image src='{{item.al.picUrl}}'></image>
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+  <!-- <view class="musicPlayer {{playStatus?'musicPlayerAction':''}}" bindtap='toPlayerView' data-id='{{currentId}}' data-type='playBtn'>
+    <image class="music_image  {{playStatus?'playRotation':''}}" src="{{imgurl}}"></image>
+    <view class='musicBtn'>
+      <image src='../../utils/src/bars.svg' style='width:40rpx' wx:if='{{playStatus}}'></image>
+      <image src='../../utils/src/music_icon.png' style='width:50rpx;height:50rpx' wx:if='{{!playStatus}}'></image>
+    </view>
+  </view> -->
+</view>
