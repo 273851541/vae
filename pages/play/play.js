@@ -12,7 +12,7 @@ Page({
     currentTime: 0,
     currentTimeStr: '00:00',
     isTouchMove: false,
-    playStatus: false,
+    playStatus: true,
     lyric: {
       '0': '正在获取歌词'
     },
@@ -70,15 +70,21 @@ Page({
       song = app.globalData.song = wx.getBackgroundAudioManager();
       song.src = url.songUrl + '?id=' + songInfo.id + '.mp3';
       song.play();
-      app.globalData.songInfo = songInfo
+    }else{
+      this.setData({
+        playStatus: song.paused,
+        duration: song.duration,
+        currentTime: song.currentTime,
+        currentTimeStr: this.timeToString(song.currentTime)
+      })
     }
+    app.globalData.songInfo = songInfo
     song.title = songInfo.name;
     song.epname = songInfo.al.name;
     song.singer = songInfo.ar[0].name;
     song.coverImgUrl = songInfo.al.picUrl
     song.duration = songInfo.dt / 1000;
     song.webUrl = url.songUrl+ '?id=' + songInfo.id + '.mp3';
-
 
     song.onTimeUpdate((res) => {
       if (this.data.duration !== song.duration) {

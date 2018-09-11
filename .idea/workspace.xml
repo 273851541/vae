@@ -3,6 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="3f50b6b9-7bfe-482b-b202-9fa9b94d08e3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/mPlayer/mPlayer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/mPlayer/mPlayer.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/mPlayer/mPlayer.wxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/mPlayer/mPlayer.wxss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/music/music.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/music/music.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/play/play.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/play/play.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/play/play.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/play/play.wxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,41 +26,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.40060928">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="mPlayer.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/pages/mPlayer/mPlayer.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="221">
-                  <caret line="207" selection-start-line="207" selection-end-line="207" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="mPlayer.wxml" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/pages/mPlayer/mPlayer.wxml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="357">
-                  <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
-                  <folding>
-                    <element signature="n#style#0;n#view#0;n#view#1;n#view#0;n#!!top" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="mPlayer.wxss" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/pages/mPlayer/mPlayer.wxss">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="476">
-                  <caret line="28" column="17" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="music.wxml" pinned="false" current-in-tab="false">
+          <file leaf-file-name="music.wxml" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/pages/music/music.wxml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="306">
-                  <caret line="26" column="131" selection-start-line="26" selection-start-column="131" selection-end-line="26" selection-end-column="131" />
+                <state relative-caret-position="119">
+                  <caret line="15" column="34" lean-forward="true" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
                 </state>
               </provider>
             </entry>
@@ -60,8 +38,8 @@
           <file leaf-file-name="music.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pages/music/music.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2397">
-                  <caret line="141" column="6" selection-start-line="141" selection-start-column="6" selection-end-line="141" selection-end-column="6" />
+                <state relative-caret-position="2414">
+                  <caret line="142" column="6" selection-start-line="142" selection-start-column="6" selection-end-line="142" selection-end-column="6" />
                 </state>
               </provider>
             </entry>
@@ -70,11 +48,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="mPlayer.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/pages/mPlayer/mPlayer.js">
+          <file leaf-file-name="music.wxml" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/pages/music/music.wxml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="218">
-                  <caret line="119" column="32" selection-start-line="119" selection-start-column="32" selection-end-line="119" selection-end-column="32" />
+                <state relative-caret-position="441">
+                  <caret line="26" column="131" selection-start-line="26" selection-start-column="131" selection-end-line="26" selection-end-column="131" />
                 </state>
               </provider>
             </entry>
@@ -173,12 +151,6 @@
               <item name="vae" type="b2602c69:ProjectViewProjectNode" />
               <item name="vae" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="mPlayer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vae" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vae" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
               <item name="music" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -231,6 +203,7 @@
       <workItem from="1536228187300" duration="136000" />
       <workItem from="1536313160959" duration="59000" />
       <workItem from="1536573674831" duration="44000" />
+      <workItem from="1536635947508" duration="2079000" />
     </task>
     <task id="LOCAL-00001" summary="'第二次提交'">
       <created>1536228298201</created>
@@ -253,15 +226,21 @@
       <option name="project" value="LOCAL" />
       <updated>1536573699549</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="'第4次提交'">
+      <created>1536635964476</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1536635964476</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44651000" />
+    <option name="totallyTimeSpent" value="46730000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="886" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16793409" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -658,15 +637,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/music/music.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2397">
-          <caret line="141" column="6" selection-start-line="141" selection-start-column="6" selection-end-line="141" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/music/music.wxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="26" column="131" selection-start-line="26" selection-start-column="131" selection-end-line="26" selection-end-column="131" />
+        <state relative-caret-position="2414">
+          <caret line="142" column="6" selection-start-line="142" selection-start-column="6" selection-end-line="142" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -689,8 +661,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/mPlayer/mPlayer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="119" column="32" selection-start-line="119" selection-start-column="32" selection-end-line="119" selection-end-column="32" />
+        <state relative-caret-position="235">
+          <caret line="120" column="6" lean-forward="true" selection-start-line="120" selection-start-column="6" selection-end-line="120" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/music/music.wxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="26" column="131" selection-start-line="26" selection-start-column="131" selection-end-line="26" selection-end-column="131" />
         </state>
       </provider>
     </entry>

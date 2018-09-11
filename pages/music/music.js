@@ -134,13 +134,13 @@ Page({
   toPlayerView(event) {
     if (event.currentTarget.dataset.type==='itemBtn'){
       app.globalData.song=null;
+      app.globalData.musicList = this.data.playList;
     }
     let id = event.currentTarget.dataset.id;
     if(!id)return
     wx.navigateTo({
       url: '../play/play?id=' + id
     })
-    app.globalData.musicList = this.data.playList;
     let itemIndex = this.data.playList.findIndex(item=>{
       return item.id===id;
     })
@@ -149,7 +149,6 @@ Page({
       imgurl: this.data.playList[itemIndex].al.picUrl
     })
 
-    console.log(app.globalData.musicList)
 
   },
 
