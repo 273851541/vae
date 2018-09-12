@@ -3,14 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3f50b6b9-7bfe-482b-b202-9fa9b94d08e3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/mPlayer/mPlayer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/mPlayer/mPlayer.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/mPlayer/mPlayer.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/mPlayer/mPlayer.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/music/music.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/music/music.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/play/play.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/play/play.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/play/play.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/play/play.wxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -203,7 +195,7 @@
       <workItem from="1536228187300" duration="136000" />
       <workItem from="1536313160959" duration="59000" />
       <workItem from="1536573674831" duration="44000" />
-      <workItem from="1536635947508" duration="2079000" />
+      <workItem from="1536635947508" duration="2109000" />
     </task>
     <task id="LOCAL-00001" summary="'第二次提交'">
       <created>1536228298201</created>
@@ -233,14 +225,22 @@
       <option name="project" value="LOCAL" />
       <updated>1536635964476</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="'第4次提交'">
+      <created>1536659079262</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1536659079262</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46730000" />
+    <option name="totallyTimeSpent" value="46760000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="886" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16793409" />
       <window_info anchor="bottom" id="TODO" order="6" />

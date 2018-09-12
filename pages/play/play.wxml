@@ -9,16 +9,16 @@
 
 <view class='container'>
   <view class='bg_color' style='background:url({{songInfo.al.picUrl}})  no-repeat center center;background-size:cover;'></view>
-  <view class='EPBox' wx:if='{{!isFullScreen}}' bindtap='fullScreenLyric'>
+  <view class='EPBox {{!isFullScreen?"":"hide"}}' bindtap='fullScreenLyric'>
     <image src='{{songInfo.al.picUrl}}' class='EPIMG'></image>
     <text class='songName'>{{songInfo.name}}</text>
   </view>
 
-  <view style="height:100%;overflow:hidden;padding-top: 20rpx;padding-bottom: 20rpx;"  bindtap='fullScreenLyric' class='{{isFullScreen?isFullScreenStyle:""}}'>
-  <view class='songName' wx:if='{{isFullScreen}}' style='height: 100rpx;line-height: 90rpx;'>{{songInfo.name}}</view>
+  <view style="height:100%;overflow:hidden;padding-top: 20rpx;padding-bottom: 20rpx;" bindtap='fullScreenLyric' class='{{isFullScreen?isFullScreenStyle:""}}'>
+    <view class='songName {{isFullScreen?"":"hide"}}' style='height: 100rpx;line-height: 90rpx;'>{{songInfo.name}}</view>
     <scroll-view scroll-y="true" style="height:100%" scroll-with-animation="true" id='scrollView' scroll-top='{{lyricPositionTop}}'>
       <view wx:for="{{lyricArr}}" wx:key="{{item.id}}" id="time{{index}}" class="lyrics-item {{currentLrc===item.time?'lyrics-item_active':''}}">
-          {{item.word}}
+        {{item.word}}
       </view>
     </scroll-view>
   </view>
@@ -34,10 +34,30 @@
     <view class='playerMenu'>
       <image src='../../utils/src/aeb.png' class='loveBtn'></image>
       <image src='../../utils/src/adp.png' class='prevBtn rotate180' bindtap='autoNextPlay' data-type='prev'></image>
-      <image src='../../utils/src/adt.png' class='playBtn' wx:if="{{playStatus}}" bindtap='play'></image>
-      <image src='../../utils/src/adr.png' class='playBtn' wx:else bindtap='play'></image>
+      <image src='../../utils/src/adt.png' class='playBtn {{playStatus?"":"hide"}}' bindtap='play'></image>
+      <image src='../../utils/src/adr.png' class='playBtn {{!playStatus?"":"hide"}}' bindtap='play'></image>
       <image src='../../utils/src/adp.png' class='nextBtn' bindtap='autoNextPlay'></image>
-      <image src='../../utils/src/aey.png' class='listBtn'></image>
+      <image src='../../utils/src/aey.png' class='listBtn' bindtap='listShow'></image>
+    </view>
+  </view>
+
+  <view class='popupBox {{!isShowPop?"hide":""}}' bindtap='listShow'></view>
+  <view class='popup {{!isShowPop?"hide":""}}'>
+    <view class='musicItem itemTitle'>
+      <text>列表</text>
+      <text> ({{musicList.length}}首)</text>
+    </view>
+    <!-- <view style="overflow-y:scroll;margin-top:100rpx;margin-bottom:100rpx;">
+
+    </view> -->
+    <scroll-view scroll-y='true' style="margin-top:100rpx;margin-bottom:100rpx;height:calc(100vh)" scroll-into-view='{{scrollToView}}'>
+      <view class='musicItem {{item.id===songInfo.id?"musicItem_active":""}}' wx:for='{{musicList}}' wx:key="{{item.id}}" id='item-{{item.id}}' bindtap='clickMusicList'>
+        <image src='/utils/src/current.png' wx:if="{{item.id===songInfo.id}}" class='currentIcon'></image>
+        {{item.name}}
+      </view>
+    </scroll-view>
+    <view class='musicItem itemTitle cancel' bindtap='listShow'>
+      <text>取消</text>
     </view>
   </view>
 </view>

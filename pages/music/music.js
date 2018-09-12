@@ -182,20 +182,22 @@ Page({
   //上下一曲
   autoNextPlay(){
     let currentId = this.data.currentId;
-    let nextIndex = this.data.playList.findIndex(item=>{
+    let musicList = app.globalData.musicList
+    let nextIndex = musicList.findIndex(item=>{
       return item.id === currentId;
     })
     let nextItemData;
-    if (nextIndex >= this.data.playList.length-1){
-      nextItemData = this.data.playList[0];
+    if (nextIndex >= musicList.length-1){
+      nextItemData = musicList[0];
     }else{
-      nextItemData = this.data.playList[nextIndex+1];
+      nextItemData = musicList[nextIndex+1];
     }
     this.backgroundAudioManagerHandler(nextItemData);
   },
 
   onShow(){
     this.playStatus();
+    console.log(app.globalData.musicList)
   },
 
   //swiper滑动改变current事件

@@ -8,8 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    albumsInfo:[],
-    albumsDetails:{}
+    albumsInfo: [],
+    albumsDetails: {},
+    bgColor: ''
   },
 
   /**
@@ -19,6 +20,7 @@ Page({
     let id = options.id;
     // let id = 72977174;
     this.getAlbumsList(id)
+
   },
 
   //获取专辑歌曲列表
@@ -38,7 +40,7 @@ Page({
         if (data.code === 200) {
           _this.setData({
             albumsInfo: data.songs,
-            albumsDetails:data.album
+            albumsDetails: data.album
           })
         }
       },
@@ -52,7 +54,7 @@ Page({
 
   //点击后跳转至播放页
   toPlayerView(event) {
-      app.globalData.song = null;
+    app.globalData.song = null;
     let id = event.currentTarget.dataset.id;
     if (!id) return
     wx.navigateTo({
@@ -71,7 +73,9 @@ Page({
 
   //背景音乐赋值
   backgroundAudioManagerHandler(songInfo) {
-    let { song } = app.globalData;
+    let {
+      song
+    } = app.globalData;
     song.src = url.songUrl + '?id=' + songInfo.id + '.mp3';
     song.play();
     song.title = songInfo.name;

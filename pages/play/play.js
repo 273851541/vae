@@ -20,7 +20,10 @@ Page({
     currentLrc: '',
     lyricPositionTop: 0,
     isFullScreen: false,
-    attrIndex: 0
+    attrIndex: 0,
+    musicList:[],
+    isShowPop:false,
+    scrollToView:''
   },
 
   /**
@@ -31,6 +34,9 @@ Page({
     let id = options.id;
     this.getSongInfo(id);
     this.getLyric(id);
+    this.setData({
+      musicList:app.globalData.musicList
+    })
   },
 
   //上下一曲
@@ -54,10 +60,14 @@ Page({
         nextItemData = musicList[nextIndex + 1];
       }
     }
-    app.globalData.song = null;
+    this.NextPlayHandler(nextItemData.id)
+  },
 
-    this.getSongInfo(nextItemData.id);
-    this.getLyric(nextItemData.id);
+  //切歌
+  NextPlayHandler(id){
+    app.globalData.song = null;
+    this.getSongInfo(id);
+    this.getLyric(id);
   },
 
 
@@ -164,6 +174,14 @@ Page({
       song
     } = app.globalData;
     song.paused ? song.play() : song.pause();
+  },
+
+  //点击播放列表
+  clickMusicList(event){
+    let id = event.currentTarget.id.substring(5)
+    if (id !== this.data.songInfo.id){
+      this.NextPlayHandler(id)
+    }
   },
 
 
@@ -331,6 +349,24 @@ Page({
     })
     this.lyricPosition(this.data.attrIndex, 1);
   },
+
+  //显示播放列表按钮
+  listShow(){
+    this.setData({
+      isShowPop: !this.data.isShowPop
+    })
+    this.setData({
+      scrollToView:"item-"+this.data.songInfo.id
+    })
+  },
+
+  // //隐藏播放列表
+  // hidePop(){
+  //   this.setData({
+  //     isShowPop: false
+  //   })
+  // },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -342,7 +378,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    
+
   },
 
   /**
