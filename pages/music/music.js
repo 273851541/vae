@@ -16,13 +16,18 @@ Page({
     playImg: '../../utils/src/play.png',
     imgUrl: '',
     currentId:null,
-    currentSwiperId:1
+    currentSwiperId:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+
+    wx.showLoading({
+      title: 'LOADING',
+    })
+
     this.getPlayList();
     this.getAlbumsList();
 
@@ -67,7 +72,12 @@ Page({
           title: '播放错误',
         })
       })
-
+      song.onNext(()=>{
+        this.autoNextPlay()
+      })
+      song.onPrev(()=>{
+        this.autoPrevPlay()
+      })
     }
     if (songInfo){
         this.setData({
@@ -96,6 +106,7 @@ Page({
           _this.setData({
             playList: playList
           })
+          wx.hideLoading()
         }
       },
       fail: function () {
@@ -122,6 +133,7 @@ Page({
           _this.setData({
             albumsList:data.hotAlbums
           })
+          wx.hideLoading()
         }
       },
       fail:function(){
@@ -148,8 +160,6 @@ Page({
       currentId:id,
       imgurl: this.data.playList[itemIndex].al.picUrl
     })
-
-
   },
 
   //点击后跳转至专辑歌曲列表页
@@ -179,7 +189,7 @@ Page({
     app.globalData.songInfo = songInfo;
   },
 
-  //上下一曲
+  //下一曲
   autoNextPlay(){
     let currentId = this.data.currentId;
     let musicList = app.globalData.musicList
@@ -191,6 +201,21 @@ Page({
       nextItemData = musicList[0];
     }else{
       nextItemData = musicList[nextIndex+1];
+    }
+    this.backgroundAudioManagerHandler(nextItemData);
+  },
+  //上一曲
+  autoPrevPlay(){
+    let currentId = this.data.currentId;
+    let musicList = app.globalData.musicList
+    let nextIndex = musicList.findIndex(item=>{
+      return item.id === currentId;
+    })
+    let nextItemData;
+    if (nextIndex === 0){
+      nextItemData = musicList[0];
+    }else{
+      nextItemData = musicList[musicList.length-1];
     }
     this.backgroundAudioManagerHandler(nextItemData);
   },
@@ -212,11 +237,6 @@ Page({
   //点击切换tab
   clickTab(event){
     let current = event.currentTarget.dataset.current;
-    // if (current===0){
-    //   this.getPlayList();
-    // }else{
-    //   this.getAlbumsList();
-    // }
     this.setData({
       currentSwiperId: current
     })

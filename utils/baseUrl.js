@@ -5,7 +5,12 @@ let url = {
   lyric: baseUrl +'/lyric',
   musicList: baseUrl +'/playlist/detail',
   albumList: baseUrl +'/artist/album',
-  album: baseUrl +'/album'
+  album: baseUrl +'/album',
+  searchVideo: baseUrl +'/search',
+  searchMV: baseUrl +'/artist/mv',
+  mvUrl: baseUrl +'/mv',
+  videoUrl: baseUrl +'/video',
+  search: baseUrl +'/search'
 }
 
 export default url

@@ -155,6 +155,24 @@ Page({
         title: '播放错误',
       })
     })
+    song.onNext(() => {
+      this.autoNextPlay({
+        currentTarget:{
+          dataset:{
+            type:'next'
+          }
+        }
+      })
+    })
+    song.onPrev(() => {
+      this.autoNextPlay({
+        currentTarget: {
+          dataset: {
+            type: 'prev'
+          }
+        }
+      })
+    })
     
   },
 

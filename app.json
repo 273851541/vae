@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/index/index",
+    "pages/video/video",
     "pages/music/music",
     "pages/albumsList/albumsList",
     "pages/play/play",
-    "pages/video/video",
-    "pages/index/index",
     "pages/images/images",
     "pages/my/my"
   ],

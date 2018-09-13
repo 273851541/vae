@@ -106,9 +106,10 @@ slider {
 .lyrics-item {
   text-align: center;
   color: rgba(204, 204, 204, 0.8);
-  height: 40px;
+  min-height: 40px;
   line-height: 40px;
   font-size: 28rpx;
+  margin:auto 50rpx;
 }
 
 .lyrics-item_active {
@@ -127,15 +128,17 @@ slider {
 
 .popup {
   width: 100%;
-  min-height: 30%;
+  /* min-height: 30%; */
   position: fixed;
   bottom: 0;
   left: 0;
 /* background:linear-gradient(to right,#141E30,#243B55); */
 background: #fff;
-  max-height: 70%;
+  /* max-height: 70%; */
   z-index: 100;
-  overflow-y: scroll;
+  height: 1000rpx;
+  overflow-y:scroll;
+
 }
 
 .popupBox {

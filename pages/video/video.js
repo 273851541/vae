@@ -1,4 +1,4 @@
-const baseUrl = 'http://118.24.128.24:3000';
+import url from '../../utils/baseUrl.js'
 
 Page({
 
@@ -7,9 +7,12 @@ Page({
    */
   data: {
     videoList: [],
+    mvList: [],
     pageIndex: 0,
+    currentType: 0,
+    currentSwiperId: 0
   },
-  
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -19,15 +22,15 @@ Page({
       title: 'LOADING',
       mask: true
     })
-    // this.getVideoList();
+
     this.getMVList(this.data.pageIndex);
 
   },
 
-  getVideoList() {
+  getVideoList(offset) {
     const _this = this;
     wx.request({
-      url: baseUrl + '/search?keywords=许嵩&type=1014&limit=10&offset=0',
+      url: url.searchVideo + '?keywords=许嵩&type=1014&limit=10&offset=' + (offset * 10),
       success: function(res) {
         let data = res.data;
         console.log(data);
@@ -62,21 +65,21 @@ Page({
   getMVList(offset) {
     const _this = this;
     wx.request({
-      url: baseUrl + '/artist/mv?id=5771&limit=10&offset=' + (offset * 10),
+      url: url.searchMV + '?id=5771&limit=10&offset=' + (offset * 10),
       success: function(res) {
         let data = res.data;
         console.log(data);
         if (data.code === 200) {
           if (data.mvs.length > 0) {
-            let videoList = _this.data.videoList;
+            let mvList = _this.data.mvList;
             data.mvs.map(item => {
               item.videoUrl = '';
               item.videoPlayStatus = false;
             })
-            videoList.push(...data.mvs);
+            mvList.push(...data.mvs);
 
             _this.setData({
-              'videoList': videoList
+              'mvList': mvList
             })
             wx.stopPullDownRefresh();
             wx.hideLoading();
@@ -99,17 +102,21 @@ Page({
     })
   },
 
-  getVideoUrl(event) {
+  getMVUrl(event) {
     let vid = event.currentTarget.dataset.id;
+    let urlStr = "";
+    if (this.data.currentSwiperId == 0) {
+      urlStr = url.mvUrl + '?mvid=' + vid
+    } else {
+      urlStr = url.videoUrl + '?id=' + vid
+    }
     let _this = this;
     wx.request({
-      url: baseUrl + '/mv?mvid=' + vid,
+      url: urlStr,
       success: function(res) {
         let data = res.data;
         console.log(data);
         if (data.code === 200) {
-
-
           _this.stopPlayVideo()
           _this.startPlayVideo({
             vid,
@@ -121,18 +128,29 @@ Page({
   },
 
   stopPlayVideo() {
-    let hasVideoPlayIndex = this.data.videoList.findIndex(item => {
+
+    let mvList = [];
+    let mvListStr = '';
+    if (this.data.currentSwiperId == 0) {
+      mvList = this.data.mvList;
+      mvListStr = 'mvList';
+    } else {
+      mvList = this.data.videoList;
+      mvListStr = 'videoList';
+    }
+
+    let hasVideoPlayIndex = mvList.findIndex(item => {
       return item.videoPlayStatus === true
     });
-    let hasVideoPlayList = this.data.videoList.find(item => {
+    let hasVideoPlayList = mvList.find(item => {
       return item.videoPlayStatus === true
     });
-    if (hasVideoPlayIndex < 0) {
+    if (hasVideoPlayIndex < 0 || hasVideoPlayList < 0) {
       return false;
     }
     console.log('关闭了一个视频');
-    let videoUrl = "videoList[" + hasVideoPlayIndex + "].videoUrl";
-    let videoPlayStatus = "videoList[" + hasVideoPlayIndex + "].videoPlayStatus";
+    let videoUrl = mvListStr+"[" + hasVideoPlayIndex + "].videoUrl";
+    let videoPlayStatus = mvListStr+"[" + hasVideoPlayIndex + "].videoPlayStatus";
     this.setData({
       [videoUrl]: '',
       [videoPlayStatus]: false,
@@ -145,13 +163,30 @@ Page({
     vid,
     data
   }) {
-    let videoIndex = this.data.videoList.findIndex(item => {
-      return item.id === vid
+
+    let mvList = [];
+    let mvListStr = '';
+    if (this.data.currentSwiperId == 0) {
+      mvList = this.data.mvList;
+      mvListStr = 'mvList';
+    } else {
+      mvList = this.data.videoList;
+      mvListStr = 'videoList';
+    }
+    let videoIndex = mvList.findIndex(item => {
+      return item.id === vid || item.vid === vid
     });
-    let videoUrl = "videoList[" + videoIndex + "].videoUrl";
-    let videoPlayStatus = "videoList[" + videoIndex + "].videoPlayStatus";
+    let videoUrl = mvListStr+"[" + videoIndex + "].videoUrl";
+    let videoPlayStatus = mvListStr+"[" + videoIndex + "].videoPlayStatus";
+
+    let videoUrlStr = '';
+    if (this.data.currentSwiperId == 0) {
+      videoUrlStr = data.data.brs[720] || data.data.brs[480] || data.data.brs[240]
+    } else {
+      videoUrlStr = data.urls[0].url
+    }
     this.setData({
-      [videoUrl]: data.data.brs[720] || data.data.brs[480] || data.data.brs[240],
+      [videoUrl]: videoUrlStr,
       [videoPlayStatus]: true,
     })
     let videoContext = wx.createVideoContext(`mvVideo-${vid}`);
@@ -169,7 +204,11 @@ Page({
     let pageIndex = this.data.pageIndex++;
     console.log(pageIndex);
     if (pageIndex >= 0) {
-      this.getMVList(pageIndex + 1);
+      if (this.data.currentSwiperId==0){
+        this.getMVList(pageIndex + 1);
+      }else{
+        this.getVideoList(pageIndex + 1);
+      }
     }
   },
 
@@ -178,11 +217,27 @@ Page({
    */
   onPullDownRefresh: function() {
     this.setData({
-      pageIndex:0,
-      videoList:[]
+      pageIndex: 0,
+      mvList: []
     })
     this.getMVList(this.data.pageIndex);
     console.log(123456)
+  },
+
+
+  //点击切换tab
+  clickTab(event) {
+    this.stopPlayVideo();
+    let current = event.currentTarget.dataset.current;
+    if (current == 1) {
+      if (this.data.videoList.length === 0) {
+        this.getVideoList(0);
+      }
+    }
+    this.setData({
+      pageIndex:0,
+      currentSwiperId: current
+    })
   },
 
 

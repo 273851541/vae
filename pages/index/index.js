@@ -1,8 +1,10 @@
 //index.js
 //获取应用实例
 const app = getApp()
-const backgroundAudioManager = wx.getBackgroundAudioManager()
-const baseUrl = 'http://118.24.128.24:3000'
+const InnerAudioContext = wx.createInnerAudioContext();
+const baseUrl = 'http://118.24.128.24:3000';
+import url from '../../utils/baseUrl.js';
+
 Page({
   data: {
     calendarsList: [],
@@ -24,45 +26,45 @@ Page({
       mask:true
     })
     this.getTodayData();
-    backgroundAudioManager.onPlay(() => {
+    InnerAudioContext.onPlay(() => {
       this.setData({
         playStatus: true,
         playImg: '../../utils/src/pause.png'
       })
     })
-    backgroundAudioManager.onPause(() => {
+    InnerAudioContext.onPause(() => {
       this.setData({
         playStatus: false,
         playImg: '../../utils/src/play.png'
       });
     })
-    backgroundAudioManager.onEnded(() => {
+    InnerAudioContext.onEnded(() => {
       this.setData({ 
         playStatus: false,
         playImg: '../../utils/src/play.png'
       });
-      backgroundAudioManager.src=" "
+      InnerAudioContext.src=" "
     })
-    backgroundAudioManager.onWaiting(() => {
+    InnerAudioContext.onWaiting(() => {
       this.setData({
         playStatus: "loading",
         playImg: '../../utils/src/loading.png'
       });
     })
-    backgroundAudioManager.onCanplay(() => {
+    InnerAudioContext.onCanplay(() => {
       this.setData({
         playStatus: true,
         playImg: '../../utils/src/pause.png'
       })
     })
-    backgroundAudioManager.onStop(() => {
+    InnerAudioContext.onStop(() => {
       this.setData({
         playStatus: false,
         playImg: '../../utils/src/play.png'
       });
-      backgroundAudioManager.src = " "
+      InnerAudioContext.src = " "
     })
-    // backgroundAudioManager.onError(() => {
+    // InnerAudioContext.onError(() => {
     //   this.setData({
     //     playStatus: false,
     //     playImg: '../../utils/src/play.png'
@@ -91,16 +93,17 @@ Page({
         playStatus: false,
         playImg: '../../utils/src/play.png'
       });
-      backgroundAudioManager.pause();
+      InnerAudioContext.pause();
     } else {
       this.setData({
         playStatus: true,
         playImg: '../../utils/src/pause.png'
       })
-      if (!backgroundAudioManager.src || backgroundAudioManager.src===" ") {
-        backgroundAudioManager.src = this.data.songUrl
+      if (!InnerAudioContext.src || InnerAudioContext.src===" ") {
+        InnerAudioContext.src = this.data.songUrl;
+        InnerAudioContext.play();
       }else{
-        backgroundAudioManager.play();
+        InnerAudioContext.play();
       }
     }
   },
@@ -125,7 +128,7 @@ Page({
   getSearchSong(songName) {
     let _this = this;
     wx.request({
-      url: baseUrl + '/search?keywords=' + songName + '&limit=5',
+      url: url.search + '?keywords=' + songName + '&limit=5',
       success: function(res) {
         let data = res.data;
         if (data.code === 200) {
@@ -133,16 +136,16 @@ Page({
           let songId;
           console.log(songs);
           for (let i in songs) {
-            if (songs[i].artists[0].name === '许嵩' || songs[i].artists[0].name === 'Vae' || songs[i].artists[0].name === 'vae' || songs[i].artists[0].name === 'VAE') {
+            if (songs[i].artists[0].name === '许嵩' || songs[i].artists[0].name === 'Vae' || songs[i].artists[0].name === 'vae' || songs[i].artists[0].name === 'VAE' || songs[i].artists[0].name === 'V') {
               songId = songs[i].id;
               _this.setData({
-                'songUrl': 'https://music.163.com/song/media/outer/url?id=' + songId + '.mp3'
+                'songUrl': url.songUrl+'?id=' + songId + '.mp3'
               })
-              backgroundAudioManager.title = songs[i].name;
-              backgroundAudioManager.epname = songs[i].album.name;
-              backgroundAudioManager.singer = songs[i].artists[0].name;
-              backgroundAudioManager.duration = songs[i].duration / 1000;
-              backgroundAudioManager.webUrl = 'https://music.163.com/song/media/outer/url?id=' + songId + '.mp3';
+              // InnerAudioContext.title = songs[i].name;
+              // InnerAudioContext.epname = songs[i].album.name;
+              // InnerAudioContext.singer = songs[i].artists[0].name;
+              // InnerAudioContext.duration = songs[i].duration / 1000;
+              // InnerAudioContext.webUrl = url.songUrl+'?id=' + songId + '.mp3';
 
               _this.setData({
                 ["songInfo.singer"]: songs[i].artists[0].name,
@@ -158,13 +161,13 @@ Page({
   getSongInfo(songId) {
     let _this = this;
     wx.request({
-      url: baseUrl + '/song/detail?ids=' + songId,
+      url: url.songDetail + '?ids=' + songId,
       success: function(res) {
         let data = res.data;
         if (data.code === 200) {
           let songs = data.songs;
           let songImgUrl = songs[0].al.picUrl;
-          backgroundAudioManager.coverImgUrl = songImgUrl;
+          InnerAudioContext.coverImgUrl = songImgUrl;
           _this.setData({
             ["songInfo.imgUrl"]: songImgUrl
           })

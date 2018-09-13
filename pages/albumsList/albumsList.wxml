@@ -1,3 +1,17 @@
+<wxs module='foo'>
+  module.exports = {
+    toString: function(dateStr) {
+      var date = getDate(dateStr);
+      var Month = date.getMonth() + 1;
+      var Day = date.getDate();
+      var Y = date.getFullYear() + '-';
+      var M = Month < 10 ? '0' + Month + '-' : Month + '-';
+      var D = Day + 1 < 10 ? '0' + Day : Day;
+      return Y + M + D;
+    }
+  }
+</wxs>
+
 <view class="container">
   <view class='EPBanner'>
     <view class='bg_color' style='background:url({{albumsDetails.picUrl}})  no-repeat center center;background-size:cover;'></view>
@@ -6,12 +20,20 @@
         <image src='{{albumsDetails.picUrl}}' class='imgs'></image>
         <image src='../../utils/src/albums.png' class='imgs_other'></image>
       </view>
+      <view class='EPContent'>
+        <text style='font-size:15px;font-weight:bold;color:rgba(255,255,255,1);margin-bottom:20rpx;'>{{albumsDetails.name}}</text>
+        <text style="line-height: 45rpx;">{{albumsDetails.artist.name}}</text>
+        <text style="line-height: 45rpx;">发行时间:{{foo.toString(albumsDetails.publishTime)}}</text>
+      </view>
     </view>
   </view>
-  <view wx:for="{{albumsInfo}}" wx:key="{{item.id}}" class='musicItem' bindtap='toPlayerView' data-id='{{item.id}}' data-type='itemBtn'>
-    <view class='musicItem_container'>
-      <image src='{{item.al.picUrl}}'></image>
-      <text>{{item.name}}</text>
+  <view style='position:relative;z-index:100;background:#fff;height:100%;'>
+    <view wx:for="{{albumsInfo}}" wx:key="{{item.id}}" class='musicItem' bindtap='toPlayerView' data-id='{{item.id}}' data-type='itemBtn'>
+      <view class='musicItem_container'>
+        <!-- <image src='{{item.al.picUrl}}'></image> -->
+        <text style='margin-right:30rpx;'>{{index+1}}</text>
+        <text>{{item.name}}</text>
+      </view>
     </view>
   </view>
   <!-- <view class="musicPlayer {{playStatus?'musicPlayerAction':''}}" bindtap='toPlayerView' data-id='{{currentId}}' data-type='playBtn'>
