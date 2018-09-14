@@ -5,14 +5,36 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    QRCode:''
+  },
+
+  previewImage: function (e) {
+    var current = e.target.dataset.src;
+    wx.previewImage({
+      current: current, // 当前显示图片的http链接   
+      urls: this.data.QRCode.split(',') // 需要预览的图片http链接列表   
+    })
+    // wx.getImageInfo({// 获取图片信息（此处可不要）
+    //   src: 'https://www.cslpyx.com/weiH5/jrkj.jpg',
+    //   success: function (res) {
+    //     console.log(res.width)
+    //     console.log(res.height)
+    //   }
+    // })
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+
+    var that = this
+    var scene_img = 'https://cloud-minapp-18952.cloud.ifanrusercontent.com/1g0iZUchzQDCBbEe.png' //这里添加图片的地址
+    that.setData({
+      QRCode: scene_img
+    })
+
   },
 
   /**

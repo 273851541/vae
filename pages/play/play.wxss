@@ -106,10 +106,14 @@ slider {
 .lyrics-item {
   text-align: center;
   color: rgba(204, 204, 204, 0.8);
-  min-height: 40px;
+  height: 40px;
   line-height: 40px;
   font-size: 28rpx;
   margin:auto 50rpx;
+  overflow:hidden;
+white-space:nowrap;
+text-overflow:ellipsis;
+
 }
 
 .lyrics-item_active {
