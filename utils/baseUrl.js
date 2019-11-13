@@ -1,4 +1,4 @@
-let baseUrl = 'http://192.168.1.29:3000'
+let baseUrl = 'http://49.234.105.119:3000'
 let url = {
   songDetail: baseUrl + '/song/detail',
   songUrl:'https://music.163.com/song/media/outer/url',

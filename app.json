@@ -19,11 +19,13 @@
       "provider": "wxc6b86e382a1e3294"
     }
   },
-  "requiredBackgroundModes":["audio"],
+  "requiredBackgroundModes": [
+    "audio"
+  ],
   "tabBar": {
     "selectedColor": "#6CA5FE",
     "backgroundColor": "#fff",
-    "borderStyle":"white",
+    "borderStyle": "white",
     "list": [
       {
         "pagePath": "pages/index/index",
@@ -50,5 +52,6 @@
         "selectedIconPath": "utils/src/my_select.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
