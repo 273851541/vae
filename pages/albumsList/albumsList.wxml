@@ -21,9 +21,14 @@
         <image src='../../utils/src/albums.png' class='imgs_other'></image>
       </view>
       <view class='EPContent'>
-        <text style='font-size:15px;font-weight:bold;color:rgba(255,255,255,1);margin-bottom:20rpx;'>{{albumsDetails.name}}</text>
-        <text style="line-height: 45rpx;">{{albumsDetails.artist.name}}</text>
-        <text style="line-height: 45rpx;">发行时间:{{foo.toString(albumsDetails.publishTime)}}</text>
+        <view>
+          <text style='font-size:15px;font-weight:bold;color:rgba(255,255,255,1);margin-bottom:5rpx;'>{{albumsDetails.name}}{{(albumsDetails.alias[0])}}</text>
+          <text style="line-height: 45rpx;">{{albumsDetails.artist.name}}</text>
+        </view>
+        <view>
+          <text style="line-height: 45rpx;">发行时间:{{foo.toString(albumsDetails.publishTime)}}</text>
+          <text style="line-height: 45rpx;">专辑详情:{{albumsDetails.description}}</text>
+        </view>
       </view>
     </view>
   </view>

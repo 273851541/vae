@@ -106,7 +106,7 @@ Page({
     let vid = event.currentTarget.dataset.id;
     let urlStr = "";
     if (this.data.currentSwiperId == 0) {
-      urlStr = url.mvUrl + '?mvid=' + vid
+      urlStr = url.mvUrl + '?id=' + vid
     } else {
       urlStr = url.videoUrl + '?id=' + vid
     }
@@ -181,7 +181,7 @@ Page({
 
     let videoUrlStr = '';
     if (this.data.currentSwiperId == 0) {
-      videoUrlStr = data.data.brs[720] || data.data.brs[480] || data.data.brs[240]
+      videoUrlStr = data.data.url||"";
     } else {
       videoUrlStr = data.urls[0].url
     }

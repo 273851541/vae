@@ -8,8 +8,8 @@ let url = {
   album: baseUrl +'/album',
   searchVideo: baseUrl +'/search',
   searchMV: baseUrl +'/artist/mv',
-  mvUrl: baseUrl +'/mv',
-  videoUrl: baseUrl +'/video',
+  mvUrl: baseUrl +'/mv/url',
+  videoUrl: baseUrl +'/video/url',
   search: baseUrl +'/search'
 }
 

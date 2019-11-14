@@ -1,9 +1,9 @@
 {
   "pages": [
-    "pages/my/my",
-    "pages/index/index",
-    "pages/video/video",
     "pages/music/music",
+    "pages/video/video",
+    "pages/index/index",
+    "pages/my/my",
     "pages/albumsList/albumsList",
     "pages/play/play"
   ],

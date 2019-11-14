@@ -46,7 +46,6 @@ Page({
       song.onPlay(()=>{
         this.setData({
           playStatus: true
-
         })
       })
       song.onPause(()=>{

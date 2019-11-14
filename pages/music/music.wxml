@@ -7,7 +7,7 @@
     <swiper-item style='overflow-y:scroll'>
       <view wx:for="{{playList}}" wx:key="{{item.id}}" class='musicItem' bindtap='toPlayerView' data-id='{{item.id}}' data-type='itemBtn'>
         <view class='musicItem_container'>
-          <image src='{{item.al.picUrl}}'></image>
+          <image src='{{item.al.picUrl}}' wx:if="{{playList}}"></image>
           <text>{{item.name}}</text>
         </view>
       </view>

@@ -4,7 +4,16 @@
     <text>如果你觉得酷的话,就请我喝杯咖啡吧</text>
     <text>点击下图,然后长按图片选择"识别图中二维码"</text>
     <view class='QRCode'>
-      <image src='https://cloud-minapp-18952.cloud.ifanrusercontent.com/1g0iZUchzQDCBbEe.png' bindtap="previewImage"></image>
+      <image class="QRIMG" src='{{QRCode}}' bindtap="previewImage"></image>
+    </view>
+  </view>
+  <view class='box One'>
+    <view class='my_title'>建议</view>
+    <view>
+      <text>你的每个建议都会让它变得更好</text>
+      <button class="feedBack" open-type="contact" bindcontact="handleContact">
+        <image class="feedBackIMG" src='../../utils/src/feedback.png'></image>
+      </button>
     </view>
   </view>
 </view>
