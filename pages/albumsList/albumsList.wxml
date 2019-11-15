@@ -22,12 +22,15 @@
       </view>
       <view class='EPContent'>
         <view>
-          <text style='font-size:15px;font-weight:bold;color:rgba(255,255,255,1);margin-bottom:5rpx;'>{{albumsDetails.name}}{{(albumsDetails.alias[0])}}</text>
-          <text style="line-height: 45rpx;">{{albumsDetails.artist.name}}</text>
+          <text style='font-size:30rpx;font-weight:bold;color:rgba(255,255,255,1);margin-bottom:5rpx;'>{{albumsDetails.name}}{{(albumsDetails.alias[0])}}</text>
+          <text>{{albumsDetails.artist.name}}</text>
         </view>
         <view>
-          <text style="line-height: 45rpx;">发行时间:{{foo.toString(albumsDetails.publishTime)}}</text>
-          <text style="line-height: 45rpx;">专辑详情:{{albumsDetails.description}}</text>
+          <text>发行时间:{{foo.toString(albumsDetails.publishTime)}}</text>
+          <view class="EPdetail" bindtap="isShowEPDetailHandle">
+            <text>专辑详情:{{albumsDetails.description}}</text>
+            <image src="../../utils/src/right.png"></image>
+          </view>
         </view>
       </view>
     </view>
@@ -35,17 +38,10 @@
   <view style='position:relative;z-index:100;background:#fff;height:100%;'>
     <view wx:for="{{albumsInfo}}" wx:key="{{item.id}}" class='musicItem' bindtap='toPlayerView' data-id='{{item.id}}' data-type='itemBtn'>
       <view class='musicItem_container'>
-        <!-- <image src='{{item.al.picUrl}}'></image> -->
         <text style='margin-right:30rpx;'>{{index+1}}</text>
         <text>{{item.name}}</text>
       </view>
     </view>
   </view>
-  <!-- <view class="musicPlayer {{playStatus?'musicPlayerAction':''}}" bindtap='toPlayerView' data-id='{{currentId}}' data-type='playBtn'>
-    <image class="music_image  {{playStatus?'playRotation':''}}" src="{{imgurl}}"></image>
-    <view class='musicBtn'>
-      <image src='../../utils/src/bars.svg' style='width:40rpx' wx:if='{{playStatus}}'></image>
-      <image src='../../utils/src/music_icon.png' style='width:50rpx;height:50rpx' wx:if='{{!playStatus}}'></image>
-    </view>
-  </view> -->
+  <van-popup show="{{ isShowEPDetail }}" custom-class='popupClass' position='bottom' round='true' bind:close="onClose" close-icon="close" closeable>{{albumsDetails.description}}</van-popup>
 </view>

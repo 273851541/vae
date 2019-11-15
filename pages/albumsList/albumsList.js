@@ -10,7 +10,8 @@ Page({
   data: {
     albumsInfo: [],
     albumsDetails: {},
-    bgColor: ''
+    bgColor: '',
+    isShowEPDetail:false
   },
 
   /**
@@ -22,9 +23,21 @@ Page({
     })
 
     let id = options.id;
-    // let id = 72977174;
+    // let id = 82435664;
     this.getAlbumsList(id)
 
+  },
+
+  isShowEPDetailHandle(){
+    this.setData({
+      isShowEPDetail:true
+    })
+  },
+
+  onClose(){
+    this.setData({
+      isShowEPDetail:false
+    })
   },
 
   //获取专辑歌曲列表

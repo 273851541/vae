@@ -32,7 +32,9 @@
       <text>{{foo.toString(duration/60)}}:{{foo.toString(duration%60)}}</text>
     </view>
     <view class='playerMenu'>
-      <image src='../../utils/src/aeb.png' class='loveBtn'></image>
+      <image src='../../utils/src/bht.png' class='loveBtn'></image>
+      <!-- <image src='../../utils/src/bi3.png' class='loveBtn'></image>  -->
+      <!-- <image src='../../utils/src/bi1.png' class='loveBtn'></image>  -->
       <image src='../../utils/src/adp.png' class='prevBtn rotate180' bindtap='autoNextPlay' data-type='prev'></image>
       <image src='../../utils/src/adt.png' class='playBtn {{playStatus?"":"hide"}}' bindtap='play'></image>
       <image src='../../utils/src/adr.png' class='playBtn {{!playStatus?"":"hide"}}' bindtap='play'></image>

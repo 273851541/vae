@@ -23,7 +23,8 @@ Page({
     attrIndex: 0,
     musicList:[],
     isShowPop:false,
-    scrollToView:''
+    scrollToView:'',
+    ListPlayOrder:0   //0 循环列表  1顺序播放   2 随机播放    3随机播放
   },
 
   /**
@@ -202,7 +203,6 @@ Page({
     }
   },
 
-
   //拖动进度条过程中触发的事件
   changing() {
     this.setData({
@@ -376,14 +376,7 @@ Page({
     this.setData({
       scrollToView:"item-"+this.data.songInfo.id
     })
-  },
-
-  // //隐藏播放列表
-  // hidePop(){
-  //   this.setData({
-  //     isShowPop: false
-  //   })
-  // },
+  }, 
 
   /**
    * 生命周期函数--监听页面初次渲染完成

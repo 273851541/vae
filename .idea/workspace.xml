@@ -1,7 +1,381 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f50b6b9-7bfe-482b-b202-9fa9b94d08e3" name="Default" comment="" />
+    <list default="true" id="3f50b6b9-7bfe-482b-b202-9fa9b94d08e3" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/dist/action-sheet/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/action-sheet/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/action-sheet/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/action-sheet/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/action-sheet/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/area/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/area/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/area/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/area/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/area/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/button/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/button/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/button/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/button/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/button/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/card/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/card/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/card/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/card/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/card/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/cell-group/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/cell-group/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/cell-group/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/cell-group/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/cell-group/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/cell/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/cell/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/cell/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/cell/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/cell/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/checkbox-group/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/checkbox-group/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/checkbox-group/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/checkbox-group/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/checkbox-group/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/checkbox/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/checkbox/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/checkbox/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/checkbox/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/checkbox/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/circle/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/circle/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/circle/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/circle/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/circle/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/col/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/col/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/col/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/col/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/col/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/collapse-item/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/collapse-item/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/collapse-item/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/collapse-item/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/collapse-item/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/collapse/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/collapse/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/collapse/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/collapse/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/collapse/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/common/color.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/common/color.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/common/component.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/common/component.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/common/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/common/style/clearfix.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/common/style/ellipsis.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/common/style/hairline.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/common/style/mixins/clearfix.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/common/style/mixins/ellipsis.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/common/style/mixins/hairline.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/common/style/theme.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/common/style/var.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/common/utils.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/common/utils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/count-down/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/count-down/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/count-down/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/count-down/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/count-down/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/count-down/utils.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/count-down/utils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/datetime-picker/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/datetime-picker/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/datetime-picker/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/datetime-picker/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/datetime-picker/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/definitions/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/definitions/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/definitions/weapp.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/definitions/weapp.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dialog/dialog.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dialog/dialog.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dialog/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dialog/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dialog/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dialog/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dialog/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/divider/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/divider/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/divider/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/divider/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/divider/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dropdown-item/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dropdown-item/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dropdown-item/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dropdown-item/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dropdown-item/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dropdown-menu/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dropdown-menu/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dropdown-menu/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dropdown-menu/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/dropdown-menu/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/field/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/field/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/field/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/field/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/field/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/goods-action-button/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/goods-action-button/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/goods-action-button/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/goods-action-button/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/goods-action-button/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/goods-action-icon/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/goods-action-icon/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/goods-action-icon/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/goods-action-icon/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/goods-action-icon/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/goods-action/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/goods-action/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/goods-action/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/goods-action/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/goods-action/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/grid-item/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/grid-item/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/grid-item/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/grid-item/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/grid-item/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/grid/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/grid/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/grid/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/grid/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/grid/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/icon/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/icon/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/icon/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/icon/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/icon/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/image/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/image/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/image/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/image/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/image/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/info/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/info/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/info/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/info/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/info/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/loading/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/loading/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/loading/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/loading/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/loading/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/mixins/basic.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/mixins/basic.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/mixins/button.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/mixins/button.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/mixins/link.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/mixins/link.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/mixins/observer/behavior.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/mixins/observer/behavior.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/mixins/observer/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/mixins/observer/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/mixins/open-type.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/mixins/open-type.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/mixins/touch.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/mixins/touch.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/mixins/transition.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/mixins/transition.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/nav-bar/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/nav-bar/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/nav-bar/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/nav-bar/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/nav-bar/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/notice-bar/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/notice-bar/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/notice-bar/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/notice-bar/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/notice-bar/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/notify/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/notify/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/notify/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/notify/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/notify/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/notify/notify.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/notify/notify.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/overlay/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/overlay/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/overlay/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/overlay/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/overlay/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/panel/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/panel/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/panel/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/panel/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/panel/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/picker-column/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/picker-column/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/picker-column/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/picker-column/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/picker-column/index.wxs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/picker-column/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/picker/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/picker/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/picker/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/picker/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/picker/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/picker/shared.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/picker/shared.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/popup/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/popup/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/popup/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/popup/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/popup/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/progress/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/progress/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/progress/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/progress/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/progress/index.wxs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/progress/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/radio-group/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/radio-group/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/radio-group/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/radio-group/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/radio-group/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/radio/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/radio/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/radio/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/radio/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/radio/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/rate/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/rate/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/rate/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/rate/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/rate/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/row/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/row/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/row/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/row/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/row/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/search/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/search/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/search/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/search/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/search/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/sidebar-item/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/sidebar-item/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/sidebar-item/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/sidebar-item/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/sidebar-item/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/sidebar/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/sidebar/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/sidebar/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/sidebar/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/sidebar/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/skeleton/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/skeleton/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/skeleton/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/skeleton/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/skeleton/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/slider/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/slider/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/slider/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/slider/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/slider/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/stepper/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/stepper/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/stepper/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/stepper/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/stepper/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/steps/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/steps/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/steps/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/steps/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/steps/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/sticky/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/sticky/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/sticky/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/sticky/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/sticky/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/submit-bar/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/submit-bar/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/submit-bar/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/submit-bar/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/submit-bar/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/swipe-cell/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/swipe-cell/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/swipe-cell/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/swipe-cell/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/swipe-cell/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/switch/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/switch/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/switch/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/switch/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/switch/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tab/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tab/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tab/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tab/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tab/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tabbar-item/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tabbar-item/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tabbar-item/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tabbar-item/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tabbar-item/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tabbar/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tabbar/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tabbar/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tabbar/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tabbar/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tabs/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tabs/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tabs/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tabs/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tabs/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tag/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tag/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tag/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tag/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tag/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/toast/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/toast/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/toast/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/toast/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/toast/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/toast/toast.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/toast/toast.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/transition/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/transition/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/transition/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/transition/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/transition/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tree-select/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tree-select/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tree-select/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tree-select/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tree-select/index.wxs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/tree-select/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/uploader/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/uploader/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/uploader/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/uploader/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/uploader/index.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/uploader/utils.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/uploader/utils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/wxs/array.wxs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/wxs/bem.wxs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/wxs/memoize.wxs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/wxs/object.wxs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/wxs/utils.wxs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/bht.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/bi1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/bi3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/src/right.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/albumsList/albumsList.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/albumsList/albumsList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/albumsList/albumsList.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/albumsList/albumsList.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/albumsList/albumsList.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/albumsList/albumsList.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/albumsList/albumsList.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/albumsList/albumsList.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/play/play.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/play/play.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/play/play.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/play/play.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/play/play.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/play/play.wxss" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -19,8 +393,8 @@
           <file leaf-file-name="music.wxml" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/pages/music/music.wxml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="357">
-                  <caret line="29" column="51" lean-forward="true" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="51" />
+                <state relative-caret-position="374">
+                  <caret line="22" column="15" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
                   <folding>
                     <element signature="n#style#0;n#image#0;n#view#0;n#view#1;n#view#0;n#!!top" expanded="true" />
                   </folding>
@@ -31,8 +405,8 @@
           <file leaf-file-name="music.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pages/music/music.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2618">
-                  <caret line="154" column="6" selection-start-line="154" selection-start-column="6" selection-end-line="154" selection-end-column="6" />
+                <state relative-caret-position="2601">
+                  <caret line="153" column="6" selection-start-line="153" selection-start-column="6" selection-end-line="153" selection-end-column="6" />
                 </state>
               </provider>
             </entry>
@@ -44,8 +418,11 @@
           <file leaf-file-name="music.wxml" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/pages/music/music.wxml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="197">
-                  <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
+                <state relative-caret-position="68">
+                  <caret line="4" column="9" lean-forward="true" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+                  <folding>
+                    <element signature="n#style#0;n#image#0;n#view#0;n#view#1;n#view#0;n#!!top" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -110,7 +487,7 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
+    <option name="x" value="1592" />
     <option name="y" value="-8" />
     <option name="width" value="1616" />
     <option name="height" value="886" />
@@ -122,6 +499,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -155,7 +533,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -201,6 +578,8 @@
       <workItem from="1536831753398" duration="40000" />
       <workItem from="1536919216035" duration="39000" />
       <workItem from="1573638272330" duration="69000" />
+      <workItem from="1573726320150" duration="663000" />
+      <workItem from="1573800113675" duration="1838000" />
     </task>
     <task id="LOCAL-00001" summary="'第二次提交'">
       <created>1536228298201</created>
@@ -265,20 +644,27 @@
       <option name="project" value="LOCAL" />
       <updated>1573638287183</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="提交">
+      <created>1573726354763</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1573726354763</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46968000" />
+    <option name="totallyTimeSpent" value="49469000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="886" extended-state="6" />
+    <frame x="1592" y="-298" width="2576" height="1426" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16793409" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10441292" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.32931727" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.19114219" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
@@ -565,8 +951,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/music/music.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2618">
-          <caret line="154" column="6" selection-start-line="154" selection-start-column="6" selection-end-line="154" selection-end-column="6" />
+        <state relative-caret-position="2601">
+          <caret line="153" column="6" selection-start-line="153" selection-start-column="6" selection-end-line="153" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -575,8 +961,8 @@
     <entry file="file://$PROJECT_DIR$/pages/mPlayer/mPlayer.js" />
     <entry file="file://$PROJECT_DIR$/pages/music/music.wxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="29" column="51" lean-forward="true" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="51" />
+        <state relative-caret-position="68">
+          <caret line="4" column="9" lean-forward="true" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
           <folding>
             <element signature="n#style#0;n#image#0;n#view#0;n#view#1;n#view#0;n#!!top" expanded="true" />
           </folding>
