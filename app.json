@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/play/play",
     "pages/music/music",
     "pages/albumsList/albumsList",
     "pages/video/video",
-    "pages/index/index",
     "pages/my/my"
   ],
   "window": {
