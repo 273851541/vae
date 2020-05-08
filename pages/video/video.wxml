@@ -1,15 +1,14 @@
 <view class="container">
   <view class='title'>
-    <text class='titile_item {{currentSwiperId==0?"title_item_action":""}}' bindtap='clickTab' data-current='0'>MV</text>
+    <text class='titile_item {{currentSwiperId==0?"title_item_action":""}}' bindtap='clickTab' data-current='0'>视频</text>
     <text class='titile_item {{currentSwiperId==1?"title_item_action":""}}' bindtap='clickTab' data-current='1'>发现</text>
   </view>
   <view class='videoContainer' style='margin-top:80rpx;'>
     <view class='{{currentSwiperId==0?"":"hide"}}'>
       <view class='videoBox' wx:for="{{mvList}}" wx:key="{{item.id}}">
-        <view class='videoMask' wx:if="{{!item.videoPlayStatus}}" data-id="{{item.id}}" style="background:url('{{item.imgurl16v9}}') center center;background-size:100%;" bindtap='getMVUrl'>
+        <view class='videoMask' data-id="{{item.id}}" style="background:url('{{item.imgurl16v9}}') center center;background-size:100%;" bindtap='getMVUrl'>
           <image src='../../utils/src/playVideo.png'></image>
         </view>
-        <video id='mvVideo-{{item.id}}' poster="{{item.imgurl16v9}}" duration="{{item.duration/1000}}" src='{{item.videoUrl}}' bindplay="bindplay" wx:if="{{item.videoPlayStatus}}"></video>
         <view class="videoTitle">
           <text>{{item.name}}</text>
         </view>

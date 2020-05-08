@@ -1,0 +1,9 @@
+
+@import '../video/video.wxss';
+ video{
+  min-height: 100px !important;
+ }
+
+ .videoTitle{
+   padding-top: 0;
+ }

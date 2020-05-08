@@ -1,19 +1,26 @@
 <view class='container'>
-  <view class='box One'>
-    <view class='my_title'>打赏</view>
-    <text>如果你觉得酷的话,就请我喝杯咖啡吧</text>
-    <text>点击下图,然后长按图片选择"识别图中二维码"</text>
-    <view class='QRCode'>
-      <image class="QRIMG" src='{{QRCode}}' bindtap="previewImage"></image>
-    </view>
-  </view>
-  <view class='box One'>
-    <view class='my_title'>建议</view>
-    <view>
-      <text>你的每个建议都会让它变得更好</text>
-      <button class="feedBack" open-type="contact" bindcontact="handleContact">
-        <image class="feedBackIMG" src='../../utils/src/feedback.png'></image>
-      </button>
-    </view>
-  </view>
+	<view class='box loginBox'>
+		<image class="wechatAvatar" src="../../utils/src/wechatAvatar.png"></image>
+		<text class="wechatName">于成金</text>
+	</view>
+	<view class='box' style="padding-top: 0; padding-bottom: 0;">
+		<view class="One"  bindtap="previewImage">
+			<view class="titleBox">
+				<text class='my_title'>打赏</text>
+				<text class="my_label">如果你觉得酷的话,就请我喝瓶可乐吧!</text>
+			</view>
+			<view class='feedBack'>
+				<image class="feedBackIMG" src='../../utils/src/musang.png'></image>
+			</view>
+		</view>
+    <view class="One">
+			<view class="titleBox">
+				<text class='my_title'>建议</text>
+				<text class="my_label">你的每个建议都会让它变得更好</text>
+			</view>
+			<button class="feedBack" open-type="contact">
+				<image class="feedBackIMG" src='../../utils/src/feedback.png'></image>
+			</button>
+		</view>
+	</view>
 </view>

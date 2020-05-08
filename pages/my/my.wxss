@@ -8,10 +8,19 @@
   padding-bottom: 20rpx;
 }
 
+.box view:last-of-type{
+  border-bottom: none;
+}
+
 .my_title {
   margin-bottom: 10rpx;
   font-size: 35rpx;
   font-weight: bold;
+}
+
+.my_label{
+  font-size: 25rpx;
+  color: #999;
 }
 
 .QRCode {
@@ -27,19 +36,51 @@
 }
 
 .feedBackIMG {
-  width: 100rpx;
-  height: 100rpx;
-  margin: 40rpx auto;
-  padding: 10rpx;
-  border: 1px solid #eee;
-  border-radius: 10rpx;
+  width: 80rpx;
+  height: 80rpx;
 }
 
 .feedBack{
   border: none;
-  background: none
+  background: none;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.titleBox{
+  display: flex;
+  flex-direction: column;
 }
 
 button:after{
   border: none
+}
+
+
+.loginBox{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.loginBox .wechatAvatar{
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.wechatName{
+  font-size: 40rpx;
+  font-weight: bold;
+  margin-left: 30rpx;
+}
+
+.One{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #eee;
 }

@@ -176,8 +176,10 @@ Page({
     let videoIndex = mvList.findIndex(item => {
       return item.id === vid || item.vid === vid
     });
+    let videoPlayList = mvList.find(item => {
+      return item.id === vid || item.vid === vid
+    });
     let videoUrl = mvListStr+"[" + videoIndex + "].videoUrl";
-    let videoPlayStatus = mvListStr+"[" + videoIndex + "].videoPlayStatus";
 
     let videoUrlStr = '';
     if (this.data.currentSwiperId == 0) {
@@ -187,10 +189,18 @@ Page({
     }
     this.setData({
       [videoUrl]: videoUrlStr,
-      [videoPlayStatus]: true,
     })
-    let videoContext = wx.createVideoContext(`mvVideo-${vid}`);
-    videoContext.play();
+
+    console.log(videoPlayList);
+    // let sendList = {
+    //   id:videoPlayList.id,
+    //   imgurl16v9:videoPlayList.imgurl16v9,
+    //   duration:videoPlayList.duration
+    // }
+    wx.navigateTo({
+      url: '../videoPlay/videoPlay?id='+videoPlayList.id+'&imgurl16v9='+encodeURIComponent(videoPlayList.imgurl16v9)+'&duration='+videoPlayList.duration+'&videoUrl='+encodeURIComponent(videoPlayList.videoUrl)+'&name='+videoPlayList.name
+    })
+
   },
 
   /**
@@ -238,15 +248,6 @@ Page({
       pageIndex:0,
       currentSwiperId: current
     })
-  },
-
-
-  bindended() {
-
-  },
-
-  bindplay(event) {
-
   },
 
   /**

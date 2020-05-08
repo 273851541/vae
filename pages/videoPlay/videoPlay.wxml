@@ -1,0 +1,9 @@
+<!--pages/videoPlay/videoPlay.wxml-->
+<view class="container">
+	<view class="videoBox">
+		<video id='mvVideo-{{id}}' poster="{{imgurl16v9}}" duration="{{duration/1000}}" src='{{videoUrl}}' autoplay></video>
+		 <view class="videoTitle">
+        <text>{{name}}</text>
+      </view>
+	</view>
+</view>

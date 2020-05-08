@@ -61,6 +61,8 @@
   flex-direction: column;
   justify-content: center;
   min-height: 100rpx;
+  font-size: 30rpx;
+  font-weight: bold;
 }
 
 .loadingBox {
