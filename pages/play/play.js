@@ -265,6 +265,9 @@ Page({
           _this.setData({
             "songInfo": songInfo
           })
+          wx.setNavigationBarTitle({
+            title: songInfo.name
+          })
           _this.backgroundAudioManagerHandler(songInfo)
           wx.hideLoading()
         }

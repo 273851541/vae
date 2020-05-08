@@ -10,7 +10,18 @@ App({
 
     wx.BaaS.init('ef1359e432b6437d6be4');
 
-
+    wx.getSetting({
+      complete: (res) => {
+        console.log(res)
+        // if(res.errMsg==="getSetting:ok"){
+        //   wx.getUserInfo({
+        //     complete: (res) => {
+        //       console.log(res)
+        //     },
+        //   })
+        // }
+      },
+    })
       
   },
 
@@ -18,6 +29,7 @@ App({
   globalData:{
     song:null,
     musicList:[],
-    songInfo:null
+    songInfo:null,
+    userInfo:null
   }
 })

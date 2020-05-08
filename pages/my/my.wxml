@@ -1,7 +1,10 @@
 <view class='container'>
 	<view class='box loginBox'>
-		<image class="wechatAvatar" src="../../utils/src/wechatAvatar.png"></image>
-		<text class="wechatName">于成金</text>
+		<image class="wechatAvatar" src="{{userInfo.avatarUrl||'../../utils/src/wechatAvatar.png'}}"></image>
+			<text class="wechatName" wx:if="{{userInfo.nickName}}">{{userInfo.nickName}}</text>
+		<button class="feedBack" open-type="getUserInfo" bindgetuserinfo='getuserinfo' wx:else>
+			<text class="wechatName">点击登录</text>
+		</button>
 	</view>
 	<view class='box' style="padding-top: 0; padding-bottom: 0;">
 		<view class="One"  bindtap="previewImage">

@@ -198,7 +198,7 @@ Page({
     //   duration:videoPlayList.duration
     // }
     wx.navigateTo({
-      url: '../videoPlay/videoPlay?id='+videoPlayList.id+'&imgurl16v9='+encodeURIComponent(videoPlayList.imgurl16v9)+'&duration='+videoPlayList.duration+'&videoUrl='+encodeURIComponent(videoPlayList.videoUrl)+'&name='+videoPlayList.name
+      url: '../videoPlay/videoPlay?id='+videoPlayList.id+'&imgurl16v9='+encodeURIComponent(videoPlayList.imgurl16v9)+'&duration='+videoPlayList.duration+'&videoUrl='+encodeURIComponent(videoPlayList.videoUrl)+'&name='+(videoPlayList.name||videoPlayList.title)
     })
 
   },

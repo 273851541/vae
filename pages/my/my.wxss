@@ -8,7 +8,7 @@
   padding-bottom: 20rpx;
 }
 
-.box view:last-of-type{
+.box view:last-of-type {
   border-bottom: none;
 }
 
@@ -18,7 +18,7 @@
   font-weight: bold;
 }
 
-.my_label{
+.my_label {
   font-size: 25rpx;
   color: #999;
 }
@@ -40,7 +40,7 @@
   height: 80rpx;
 }
 
-.feedBack{
+.feedBack {
   border: none;
   background: none;
   display: flex;
@@ -49,34 +49,40 @@
   margin: 0;
 }
 
-.titleBox{
+.titleBox {
   display: flex;
   flex-direction: column;
 }
 
-button:after{
+button:after {
   border: none
 }
 
 
-.loginBox{
+.loginBox {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.loginBox .wechatAvatar{
+.loginBox .wechatAvatar {
   width: 100rpx;
   height: 100rpx;
+  border-radius: 50%;
 }
 
-.wechatName{
+.wechatName {
   font-size: 40rpx;
   font-weight: bold;
   margin-left: 30rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 70%;
+
 }
 
-.One{
+.One {
   display: flex;
   flex-direction: row;
   align-items: center;

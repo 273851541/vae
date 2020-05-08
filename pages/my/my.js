@@ -5,7 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    userInfo:{}
+  },
+
+  getuserinfo(e){
+    console.log(e)
+    this.setData({
+      userInfo:e.detail.userInfo
+    })
+    wx.setStorage({
+      data: JSON.stringify(e.detail.userInfo),
+      key: 'userInfo'
+    })
   },
 
   previewImage: function (e) {
@@ -15,15 +26,21 @@ Page({
     })
   },
 
-  handleContact(){
-
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let _this = this;
+    wx.getStorage({
+      key: 'userInfo',
+      success({data}){
+        if(data){
+          _this.setData({
+            userInfo:JSON.parse(data)
+          })
+        }
+      }
+    })
   },
 
   /**
@@ -37,7 +54,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
   },
 
   /**
