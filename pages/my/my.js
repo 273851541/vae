@@ -5,24 +5,36 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo:{}
+    userInfo: {}
   },
 
-  getuserinfo(e){
-    console.log(e)
-    this.setData({
-      userInfo:e.detail.userInfo
-    })
-    wx.setStorage({
-      data: JSON.stringify(e.detail.userInfo),
-      key: 'userInfo'
-    })
+  getuserinfo(e) {
+    console.log(e);
+    let userInfo;
+    wx.login({
+      success: res => {
+        // 获取到用户的 code 之后：res.code
+        console.log("用户的code:" + res.code);
+        userInfo = e.detail.userInfo;
+        userInfo.userCode = res.code;
+        let _this = this;
+        wx.setStorage({
+          data: JSON.stringify(userInfo),
+          key: 'userInfo',
+          success(){
+            _this.setData({
+              userInfo: userInfo
+            })
+          }
+        })
+      }
+    });
   },
 
   previewImage: function (e) {
     wx.navigateToMiniProgram({
-      appId:'wx18a2ac992306a5a4',
-      path:'pages/apps/largess/detail?id=vZZA23c9Dd%2BgPc1CLmE7uw%3D%3D'
+      appId: 'wx18a2ac992306a5a4',
+      path: 'pages/apps/largess/detail?id=vZZA23c9Dd%2BgPc1CLmE7uw%3D%3D'
     })
   },
 
@@ -33,10 +45,10 @@ Page({
     let _this = this;
     wx.getStorage({
       key: 'userInfo',
-      success({data}){
-        if(data){
+      success({ data }) {
+        if (data) {
           _this.setData({
-            userInfo:JSON.parse(data)
+            userInfo: JSON.parse(data)
           })
         }
       }
@@ -47,7 +59,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
@@ -60,34 +72,34 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

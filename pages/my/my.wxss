@@ -8,12 +8,7 @@
   padding-bottom: 20rpx;
 }
 
-.box view:last-of-type {
-  border-bottom: none;
-}
-
 .my_title {
-  margin-bottom: 10rpx;
   font-size: 35rpx;
   font-weight: bold;
 }
@@ -38,13 +33,12 @@
 .feedBackIMG {
   width: 80rpx;
   height: 80rpx;
+  margin-right: 20rpx;
 }
 
 .feedBack {
   border: none;
   background: none;
-  display: flex;
-  align-items: center;
   padding: 0;
   margin: 0;
 }
@@ -52,6 +46,7 @@
 .titleBox {
   display: flex;
   flex-direction: column;
+  margin-left: 20rpx;
 }
 
 button:after {
@@ -86,7 +81,15 @@ button:after {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
   padding: 20rpx 0;
   border-bottom: 1rpx solid #eee;
+}
+
+.customStyle{
+  align-items: center;
+  padding: 20rpx 0 !important;
+}
+
+.labelStyle{
+  margin-top: 0 !important;
 }

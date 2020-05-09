@@ -29,7 +29,6 @@ Page({
     })
 
     this.getPlayList();
-    this.getAlbumsList();
 
   },
 
@@ -95,7 +94,7 @@ Page({
     }, 500)
     let _this = this;
     wx.request({
-      url: url.musicList + '?id=319777286',
+      url: url.musicList + '?id=319777286&limit=30&offset=0',
       success: function(res) {
         clearTimeout(timer)
         let data = res.data;
@@ -226,9 +225,13 @@ Page({
 
   //swiper滑动改变current事件
   bindchange (event){
+    let current = event.detail.current;
     if(event.detail.source==='touch'){
+      if(current==1&&this.data.albumsList.length===0){
+        this.getAlbumsList();
+      }
       this.setData({
-        currentSwiperId:event.detail.current
+        currentSwiperId:current
       })
     }
   },
@@ -236,6 +239,9 @@ Page({
   //点击切换tab
   clickTab(event){
     let current = event.currentTarget.dataset.current;
+    if(current==1&&this.data.albumsList.length===0){
+      this.getAlbumsList();
+    }
     this.setData({
       currentSwiperId: current
     })

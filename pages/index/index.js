@@ -17,13 +17,18 @@ Page({
       imgUrl: '',
       songName: '',
       singer: '',
-    }
+    },
+    currentParentSwiperId:0,
+    currentChildSwiperId:1,
+    traceDataPage:1,
+    traceData:[],
+    swiperStatus:true
   },
-  onLoad: function() {
-    // this.getList();
+  onLoad: function () {
+    this.getTraceData(this.data.traceDataPage);
     wx.showLoading({
       title: 'LOADING',
-      mask:true
+      mask: true
     })
     this.getTodayData();
     InnerAudioContext.onPlay(() => {
@@ -39,11 +44,11 @@ Page({
       });
     })
     InnerAudioContext.onEnded(() => {
-      this.setData({ 
+      this.setData({
         playStatus: false,
         playImg: '../../utils/src/play.png'
       });
-      InnerAudioContext.src=" "
+      InnerAudioContext.src = " "
     })
     InnerAudioContext.onWaiting(() => {
       this.setData({
@@ -76,17 +81,6 @@ Page({
 
 
   },
-  getList(action) {
-    wx.request({
-      url: 'https://www.xusong.com/api/NEWS/getCalendarList.json?page=1&pageSize=10',
-      success(res) {
-        console.log(res.data);
-      },
-      fail() {
-
-      }
-    })
-  },
   musicPlayHandler() {
     if (this.data.playStatus) {
       this.setData({
@@ -99,10 +93,10 @@ Page({
         playStatus: true,
         playImg: '../../utils/src/pause.png'
       })
-      if (!InnerAudioContext.src || InnerAudioContext.src===" ") {
+      if (!InnerAudioContext.src || InnerAudioContext.src === " ") {
         InnerAudioContext.src = this.data.songUrl;
         InnerAudioContext.play();
-      }else{
+      } else {
         InnerAudioContext.play();
       }
     }
@@ -129,7 +123,7 @@ Page({
     let _this = this;
     wx.request({
       url: url.search + '?keywords=' + songName + '&limit=5',
-      success: function(res) {
+      success: function (res) {
         let data = res.data;
         if (data.code === 200) {
           let songs = data.result.songs;
@@ -139,7 +133,7 @@ Page({
             if (songs[i].artists[0].name === '许嵩' || songs[i].artists[0].name === 'Vae' || songs[i].artists[0].name === 'vae' || songs[i].artists[0].name === 'VAE' || songs[i].artists[0].name === 'V') {
               songId = songs[i].id;
               _this.setData({
-                'songUrl': url.songUrl+'?id=' + songId + '.mp3'
+                'songUrl': url.songUrl + '?id=' + songId + '.mp3'
               })
               // InnerAudioContext.title = songs[i].name;
               // InnerAudioContext.epname = songs[i].album.name;
@@ -162,7 +156,7 @@ Page({
     let _this = this;
     wx.request({
       url: url.songDetail + '?ids=' + songId,
-      success: function(res) {
+      success: function (res) {
         let data = res.data;
         if (data.code === 200) {
           let songs = data.songs;
@@ -175,6 +169,57 @@ Page({
         }
       }
     })
+  },
+  getTraceData(page){
+    let _this = this;
+    wx.request({
+      url: url.traceList+'?pageSize=30&page='+page,
+      success({data}) {
+        if(data.state){
+          if(data.result.activityInfo.length>0){
+            _this.setData({
+              traceDataPage:page++,
+              traceData:data.result.activityInfo
+            })
+          }else{
+            
+          }
+        }
+      },
+      fail() {
+        wx.showToast({
+          title: '请求失败',
+        })
+      }
+    })
+  },
+
+  //swiper滑动改变current事件
+  bindchange(event) {
+    let current = event.detail.current;
+    if (event.detail.source === 'touch') {
+      if (current == 1 && this.data.traceData.length === 0) {
+        this.getTraceData(this.data.traceDataPage);
+      }
+      this.setData({
+        currentChildSwiperId: current
+      })
+    }
+  },
+
+  //点击切换tab
+  clickTab(event) {
+    let current = event.currentTarget.dataset.current;
+    // if (current == 1 && this.data.albumsList.length === 0) {
+    //   this.getAlbumsList();
+    // }
+    this.setData({
+      currentChildSwiperId: current
+    })
+  },
+
+  scrollTolower(e){
+    this.getTraceData(this.data.traceDataPage)
   },
     /**
    * 生命周期函数--监听页面初次渲染完成
@@ -215,13 +260,13 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

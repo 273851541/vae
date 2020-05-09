@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "Vae"
+  "navigationBarTitleText": "Vae",
+  "usingComponents": {
+    "van-cell": "../../dist/cell/index"
+  }
 }

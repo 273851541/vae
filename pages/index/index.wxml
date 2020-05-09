@@ -2,30 +2,53 @@
 <view class="container">
 
 
-  <swiper vertical='true' style='height:100%'>
-    <swiper-item>
-      <view class='title' style='margin:auto 30rpx'>Today</view>
-      <view class='box One'>
-        <view class='banner'>
-          <image src="{{songInfo.imgUrl}}"></image>
-        </view>
-        <view class='content'>
-          <text class='today_text'>{{content}}</text>
-          <!-- <text class='today_text'>是现在这样的四月</text> -->
-          <text class='today_text' style='font-size:30rpx;text-align:right'>—— {{songInfo.singer}}《{{songInfo.songName}}》</text>
-          <!-- <image ></image> -->
-        </view>
-        <view class="musicPlayer {{playStatus?'musicPlayerAction':''}}" bindtap='musicPlayHandler'>
-          <image class="music_image  {{playStatus?'playRotation':''}}" src="{{songInfo.imgUrl}}"></image>
-          <view class='musicBtn'>
-            <image src='{{playImg}}' wx:if="{{playStatus==='loading'}}" class="musicBtn_img loadingRotation"></image>
-            <image src='{{playImg}}' wx:else class="musicBtn_img"></image>
-          </view>
-        </view>
-      </view>
-    </swiper-item>
-    <swiper-item>
-      465413516185
-    </swiper-item>
-  </swiper>
+	<swiper vertical='{{swiperStatus}}' style='height:100%'>
+		<swiper-item>
+			<view class='title' style='margin:auto 30rpx;text-align:left'>Today</view>
+			<view class='box One'>
+				<view class='banner'>
+					<image src="{{songInfo.imgUrl}}"></image>
+				</view>
+				<view class='content'>
+					<text class='today_text'>{{content}}</text>
+					<text class='today_text' style='font-size:30rpx;text-align:right'>—— {{songInfo.singer}}《{{songInfo.songName}}》</text>
+				</view>
+				<view class="musicPlayer {{playStatus?'musicPlayerAction':''}}" bindtap='musicPlayHandler'>
+					<image class="music_image  {{playStatus?'playRotation':''}}" src="{{songInfo.imgUrl}}"></image>
+					<view class='musicBtn'>
+						<image src='{{playImg}}' wx:if="{{playStatus==='loading'}}" class="musicBtn_img loadingRotation"></image>
+						<image src='{{playImg}}' wx:else class="musicBtn_img"></image>
+					</view>
+				</view>
+			</view>
+		</swiper-item>
+		<swiper-item>
+			<view class='title'>
+				<text class='titile_item {{currentChildSwiperId==0?"title_item_action":""}}' bindtap='clickTab' data-current='0'>文章</text>
+				<text class='titile_item {{currentChildSwiperId==1?"title_item_action":""}}' bindtap='clickTab' data-current='1'>行程</text>
+			</view>
+			<swiper style='height:100%;overflow:hidden;' current="{{currentChildSwiperId}}" bindchange='bindchange'>
+				<swiper-item style='overflow-y:scroll'>
+					<!-- <view wx:for="{{playList}}" wx:key="{{item.id}}" class='musicItem' bindtap='toPlayerView' data-id='{{item.id}}' data-type='itemBtn'>
+						<view class='musicItem_container'>
+							<image src='{{item.al.picUrl}}' wx:if="{{playList}}"></image>
+							<text>{{item.name}}</text>
+						</view>
+					</view> -->
+					123456
+				</swiper-item>
+				<swiper-item style='overflow-y:scroll'>
+					<scroll-view scroll-y="true" style="height:100%" scroll-with-animation="true" bindscrolltolower='scrollTolower' id='scrollView'>
+						<van-cell wx:for="{{traceData}}" title='{{item.title}}' label="{{item.content}}" border="{{index<traceData.length-1}}" custom-class="{{'customStyle '+(index===traceData.length-1?'customStyleMargin':'')}}" label-class="labelStyle" title-class="titleStyle" is-link />
+					</scroll-view>
+				</swiper-item>
+			</swiper>
+			<view class='loadingBox' wx:if="{{traceData.length!==0}}">
+				<view wx:if='{{traceDataPage<1}}'>
+					没有更多数据了
+				</view>
+				<view wx:else class='dot-bricks'></view>
+			</view>
+		</swiper-item>
+	</swiper>
 </view>

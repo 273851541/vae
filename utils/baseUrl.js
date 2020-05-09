@@ -10,7 +10,8 @@ let url = {
   searchMV: baseUrl +'/artist/mv',
   mvUrl: baseUrl +'/mv/url',
   videoUrl: baseUrl +'/video/url',
-  search: baseUrl +'/search'
+  search: baseUrl +'/search',
+  traceList:'https://xusong.taihe.com/api/NEWS/getCalendarList.json'
 }
 
 export default url
