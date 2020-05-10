@@ -18,19 +18,21 @@ Page({
       songName: '',
       singer: '',
     },
-    currentParentSwiperId:0,
-    currentChildSwiperId:1,
-    traceDataPage:1,
-    traceData:[],
-    swiperStatus:true
+    currentParentSwiperId: 1,
+    currentChildSwiperId: 1,
+    traceDataPage: 1,
+    traceData: [],
+    swiperStatus: true,
+    Oneheight: 0
   },
   onLoad: function () {
-    this.getTraceData(this.data.traceDataPage);
+    this.getTodayHeight();
     wx.showLoading({
       title: 'LOADING',
       mask: true
     })
     this.getTodayData();
+    this.getTraceData(this.data.traceDataPage);
     InnerAudioContext.onPlay(() => {
       this.setData({
         playStatus: true,
@@ -170,19 +172,19 @@ Page({
       }
     })
   },
-  getTraceData(page){
+  getTraceData(page) {
     let _this = this;
     wx.request({
-      url: url.traceList+'?pageSize=30&page='+page,
-      success({data}) {
-        if(data.state){
-          if(data.result.activityInfo.length>0){
+      url: url.traceList + '?pageSize=30&page=' + page,
+      success({ data }) {
+        if (data.state) {
+          if (data.result.activityInfo.length > 0) {
             _this.setData({
-              traceDataPage:page++,
-              traceData:data.result.activityInfo
+              traceDataPage: page++,
+              traceData: data.result.activityInfo
             })
-          }else{
-            
+          } else {
+
           }
         }
       },
@@ -207,6 +209,24 @@ Page({
     }
   },
 
+  getTodayHeight() {
+    var query = wx.createSelectorQuery();
+    //选择id
+    var that = this;
+    let One, pulltopstyle;
+    query.select('.title').boundingClientRect(function (rect) {
+      One = rect.height;
+    }).exec();
+    query.select('.pulltopstyle').boundingClientRect(function (rect) {
+      pulltopstyle = rect.height;
+    }).exec();
+    query.select('.swiperClass').boundingClientRect(function (res) {
+      that.setData({
+        Oneheight: (res.height - One - pulltopstyle - 25 ) + 'px'
+      })
+    }).exec();
+  },
+
   //点击切换tab
   clickTab(event) {
     let current = event.currentTarget.dataset.current;
@@ -218,12 +238,12 @@ Page({
     })
   },
 
-  scrollTolower(e){
+  scrollTolower(e) {
     this.getTraceData(this.data.traceDataPage)
   },
-    /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
+  /**
+ * 生命周期函数--监听页面初次渲染完成
+ */
   onReady: function () {
     console.log('onReady')
   },

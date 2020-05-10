@@ -2,7 +2,6 @@
 @import '../music/music.wxss';
 
 .One {
-  height: 90%;
   position: relative;
   padding-left: 0;
   padding-right: 0;
@@ -75,6 +74,18 @@
   color: #6ca5fe;
   box-shadow: 9991px -16px 0 0 #6ca5fe, 9991px 0 0 0 #6ca5fe, 10007px 0 0 0 #6ca5fe;
   animation: dotBricks 2s infinite ease;
+}
+
+
+
+swiper,swiper-item{
+  height:100vh !important;
+}
+
+.pulltopstyle{
+  font-size: 28rpx;
+  text-align: center;
+  color: #999;
 }
 
 @keyframes dotBricks {

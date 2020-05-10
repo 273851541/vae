@@ -2,10 +2,10 @@
 <view class="container">
 
 
-	<swiper vertical='{{swiperStatus}}' style='height:100%'>
+	<swiper vertical='{{swiperStatus}}' current="{{currentParentSwiperId}}" class="swiperClass">
 		<swiper-item>
 			<view class='title' style='margin:auto 30rpx;text-align:left'>Today</view>
-			<view class='box One'>
+			<view class='box One' style="height:{{Oneheight}}">
 				<view class='banner'>
 					<image src="{{songInfo.imgUrl}}"></image>
 				</view>
@@ -21,13 +21,14 @@
 					</view>
 				</view>
 			</view>
+			<view class='pulltopstyle'>上划有惊喜</view>
 		</swiper-item>
 		<swiper-item>
 			<view class='title'>
 				<text class='titile_item {{currentChildSwiperId==0?"title_item_action":""}}' bindtap='clickTab' data-current='0'>文章</text>
 				<text class='titile_item {{currentChildSwiperId==1?"title_item_action":""}}' bindtap='clickTab' data-current='1'>行程</text>
 			</view>
-			<swiper style='height:100%;overflow:hidden;' current="{{currentChildSwiperId}}" bindchange='bindchange'>
+			<swiper style='overflow:hidden;' current="{{currentChildSwiperId}}" bindchange='bindchange'>
 				<swiper-item style='overflow-y:scroll'>
 					<!-- <view wx:for="{{playList}}" wx:key="{{item.id}}" class='musicItem' bindtap='toPlayerView' data-id='{{item.id}}' data-type='itemBtn'>
 						<view class='musicItem_container'>
@@ -39,7 +40,7 @@
 				</swiper-item>
 				<swiper-item style='overflow-y:scroll'>
 					<scroll-view scroll-y="true" style="height:100%" scroll-with-animation="true" bindscrolltolower='scrollTolower' id='scrollView'>
-						<van-cell wx:for="{{traceData}}" title='{{item.title}}' label="{{item.content}}" border="{{index<traceData.length-1}}" custom-class="{{'customStyle '+(index===traceData.length-1?'customStyleMargin':'')}}" label-class="labelStyle" title-class="titleStyle" is-link />
+						<van-cell wx:for="{{traceData}}" title='{{item.title}}' label="{{item.content}}" bind:click="traceContontL" border="{{index<traceData.length-1}}" custom-class="{{'customStyle '+(index===traceData.length-1?'customStyleMargin':'')}}" label-class="labelStyle" title-class="titleStyle" is-link/>
 					</scroll-view>
 				</swiper-item>
 			</swiper>

@@ -40,9 +40,9 @@ page {
 }
 
 .musicPlayer {
-  position: absolute;
-  bottom: 30rpx;
-  right: 30rpx;
+  position: absolute !important;
+  bottom: 30rpx !important;
+  right: 30rpx !important;
   width: 100rpx;
   height: 100rpx;
   border-radius: 50%;
