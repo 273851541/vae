@@ -49,18 +49,17 @@
 .customStyle{
   align-items: center;
 }
-.customStyleMargin{
-  margin-bottom: 100rpx;
-}
 
 .loadingBox {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1.5rem 0;
+  padding: 20rpx 0;
   margin: 0 -5%;
   overflow: hidden;
   background: #fff;
+  margin-bottom: 100rpx;
+  font-size: 25rpx;
 }
 
 .dot-bricks {

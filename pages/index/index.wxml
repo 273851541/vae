@@ -40,16 +40,16 @@
 				</swiper-item>
 				<swiper-item style='overflow-y:scroll'>
 					<scroll-view scroll-y="true" style="height:100%" scroll-with-animation="true" bindscrolltolower='scrollTolower' id='scrollView'>
-						<van-cell wx:for="{{traceData}}" title='{{item.title}}' label="{{item.content}}" bind:click="traceContontL" border="{{index<traceData.length-1}}" custom-class="{{'customStyle '+(index===traceData.length-1?'customStyleMargin':'')}}" label-class="labelStyle" title-class="titleStyle" is-link/>
+						<van-cell wx:for="{{traceData}}" title='{{item.title}}' label="{{item.content}}" bind:click="toTraceContont" data-id="{{item.id}}" border="{{index<traceData.length-1}}" custom-class="customStyle" label-class="labelStyle" title-class="titleStyle" is-link />
+						<view class='loadingBox' wx:if="{{traceData.length>0}}">
+							<view wx:if='{{traceDataPage==0}}'>
+								没有更多数据了
+							</view>
+							<view wx:else class='dot-bricks'></view>
+						</view>
 					</scroll-view>
 				</swiper-item>
 			</swiper>
-			<view class='loadingBox' wx:if="{{traceData.length!==0}}">
-				<view wx:if='{{traceDataPage<1}}'>
-					没有更多数据了
-				</view>
-				<view wx:else class='dot-bricks'></view>
-			</view>
 		</swiper-item>
 	</swiper>
 </view>

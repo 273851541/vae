@@ -8,7 +8,8 @@ Page({
   data: {
     videoList: [],
     mvList: [],
-    pageIndex: 0,
+    pageIndex1: 0,
+    pageIndex2: 0,
     currentType: 0,
     currentSwiperId: 0
   },
@@ -23,7 +24,7 @@ Page({
       mask: true
     })
 
-    this.getMVList(this.data.pageIndex);
+    this.getMVList(this.data.pageIndex1);
 
   },
 
@@ -47,6 +48,10 @@ Page({
               'videoList': videoList
             })
             wx.hideLoading();
+          }else{
+             _this.setData({
+              pageIndex1: -1
+            })
           }
         } else {
           wx.showToast({
@@ -85,7 +90,7 @@ Page({
             wx.hideLoading();
           } else {
             _this.setData({
-              pageIndex: -1
+              pageIndex1: -1
             })
           }
         } else {
@@ -208,17 +213,17 @@ Page({
    */
   onReachBottom: function() {
     console.log('到底了');
-    if (this.data.pageIndex < 0) {
-      return false;
-    }
-    let pageIndex = this.data.pageIndex++;
-    console.log(pageIndex);
-    if (pageIndex >= 0) {
-      if (this.data.currentSwiperId==0){
-        this.getMVList(pageIndex + 1);
-      }else{
-        this.getVideoList(pageIndex + 1);
+
+    if (this.data.currentSwiperId==0){
+      if (this.data.pageIndex1 < 0) {
+        return false;
       }
+      this.getMVList(this.data.pageIndex1 + 1);
+    }else{
+      if (this.data.pageIndex2 < 0) {
+        return false;
+      }
+      this.getVideoList(this.data.pageIndex2 + 1);
     }
   },
 
@@ -239,15 +244,14 @@ Page({
   clickTab(event) {
     this.stopPlayVideo();
     let current = event.currentTarget.dataset.current;
+    this.setData({
+      currentSwiperId: current
+    })
     if (current == 1) {
       if (this.data.videoList.length === 0) {
         this.getVideoList(0);
       }
     }
-    this.setData({
-      pageIndex:0,
-      currentSwiperId: current
-    })
   },
 
   /**

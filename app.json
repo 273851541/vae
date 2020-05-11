@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/traceContont/traceContont",
     "pages/music/music",
     "pages/my/my",
     "pages/play/play",

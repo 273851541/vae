@@ -179,12 +179,18 @@ Page({
       success({ data }) {
         if (data.state) {
           if (data.result.activityInfo.length > 0) {
+            let traceData = _this.data.traceData;
+            traceData.push(...data.result.activityInfo);
+            page = page +1
             _this.setData({
-              traceDataPage: page++,
-              traceData: data.result.activityInfo
+              traceDataPage: page,
+              traceData: traceData
             })
-          } else {
-
+            wx.hideLoading();
+          }else{
+            _this.setData({
+              traceDataPage: 0
+            })
           }
         }
       },
@@ -195,6 +201,14 @@ Page({
       }
     })
   },
+
+  toTraceContont(e){
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../traceContont/traceContont?id=' + id,
+    })
+  },
+
 
   //swiper滑动改变current事件
   bindchange(event) {
@@ -239,6 +253,9 @@ Page({
   },
 
   scrollTolower(e) {
+    if (this.data.traceDataPage === 0) {
+      return false;
+    }
     this.getTraceData(this.data.traceDataPage)
   },
   /**
