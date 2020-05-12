@@ -2,7 +2,7 @@
 <view class="container">
 
 
-	<swiper vertical='{{swiperStatus}}' current="{{currentParentSwiperId}}" class="swiperClass">
+	<swiper vertical='{{swiperStatus}}' current="{{currentParentSwiperId}}" bindchange='parentSwiperChange' class="swiperClass">
 		<swiper-item>
 			<view class='title' style='margin:auto 30rpx;text-align:left'>Today</view>
 			<view class='box One' style="height:{{Oneheight}}">
@@ -30,13 +30,15 @@
 			</view>
 			<swiper style='overflow:hidden;' current="{{currentChildSwiperId}}" bindchange='bindchange'>
 				<swiper-item style='overflow-y:scroll'>
-					<!-- <view wx:for="{{playList}}" wx:key="{{item.id}}" class='musicItem' bindtap='toPlayerView' data-id='{{item.id}}' data-type='itemBtn'>
-						<view class='musicItem_container'>
-							<image src='{{item.al.picUrl}}' wx:if="{{playList}}"></image>
-							<text>{{item.name}}</text>
+						<scroll-view scroll-y="true" style="height:100%" scroll-with-animation="true" bindscrolltolower='scrollTolower' id='scrollView'>
+						<van-cell wx:for="{{blogData}}" title='{{item.name}}' bind:click="toBlogContont" data-id="{{item.key}}" border="{{index<traceData.length-1}}" custom-class="customStyle" label-class="labelStyle" title-class="titleStyle" is-link />
+						<view class='loadingBox' wx:if="{{blogData.length>0}}">
+							<view wx:if='{{blogDataPage==-1}}'>
+								没有更多数据了
+							</view>
+							<view wx:else class='dot-bricks'></view>
 						</view>
-					</view> -->
-					123456
+					</scroll-view>
 				</swiper-item>
 				<swiper-item style='overflow-y:scroll'>
 					<scroll-view scroll-y="true" style="height:100%" scroll-with-animation="true" bindscrolltolower='scrollTolower' id='scrollView'>

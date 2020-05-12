@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3f50b6b9-7bfe-482b-b202-9fa9b94d08e3" name="Default" comment="'685445'">
+    <list default="true" id="3f50b6b9-7bfe-482b-b202-9fa9b94d08e3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -46,8 +46,8 @@
           <file leaf-file-name="music.wxml" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/pages/music/music.wxml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="272">
-                  <caret line="16" column="64" selection-start-line="16" selection-start-column="64" selection-end-line="16" selection-end-column="64" />
+                <state relative-caret-position="561">
+                  <caret line="33" column="7" lean-forward="true" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="7" />
                   <folding>
                     <element signature="n#style#0;n#image#0;n#view#0;n#view#1;n#view#0;n#!!top" expanded="true" />
                   </folding>
@@ -210,6 +210,7 @@
       <workItem from="1573800113675" duration="3356000" />
       <workItem from="1588931532538" duration="127000" />
       <workItem from="1589160408388" duration="619000" />
+      <workItem from="1589191449021" duration="1076000" />
     </task>
     <task id="LOCAL-00001" summary="'第二次提交'">
       <created>1536228298201</created>
@@ -302,11 +303,18 @@
       <option name="project" value="LOCAL" />
       <updated>1588931637591</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="'685445'">
+      <created>1589191497995</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1589191497995</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51733000" />
+    <option name="totallyTimeSpent" value="52809000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1592" y="-298" width="2576" height="1426" extended-state="6" />

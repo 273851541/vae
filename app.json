@@ -1,13 +1,14 @@
 {
   "pages": [
+    "pages/video/video",
     "pages/index/index",
     "pages/traceContont/traceContont",
     "pages/music/music",
     "pages/my/my",
     "pages/play/play",
     "pages/albumsList/albumsList",
-    "pages/video/video",
-    "pages/videoPlay/videoPlay"
+    "pages/videoPlay/videoPlay",
+    "pages/blogContont/blogContont"
   ],
   "window": {
     "backgroundTextStyle": "dark",

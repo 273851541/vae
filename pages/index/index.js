@@ -4,7 +4,7 @@ const app = getApp()
 const InnerAudioContext = wx.createInnerAudioContext();
 const baseUrl = 'http://118.24.128.24:3000';
 import url from '../../utils/baseUrl.js';
-
+var BaaS_query = new wx.BaaS.Query()
 Page({
   data: {
     calendarsList: [],
@@ -18,21 +18,22 @@ Page({
       songName: '',
       singer: '',
     },
-    currentParentSwiperId: 1,
-    currentChildSwiperId: 1,
+    currentParentSwiperId: 0,
+    currentChildSwiperId:"0",
     traceDataPage: 1,
+    blogDataPage:0,
     traceData: [],
+    blogData: [],
     swiperStatus: true,
     Oneheight: 0
   },
   onLoad: function () {
-    this.getTodayHeight();
     wx.showLoading({
       title: 'LOADING',
       mask: true
     })
+    this.getTodayHeight();
     this.getTodayData();
-    this.getTraceData(this.data.traceDataPage);
     InnerAudioContext.onPlay(() => {
       this.setData({
         playStatus: true,
@@ -104,19 +105,26 @@ Page({
     }
   },
   getTodayData() {
-    let tableId = 48875;
-    let query = new wx.BaaS.Query()
+    let tableId = 'today';
     let MyTableObject = new wx.BaaS.TableObject(tableId);
-    MyTableObject.setQuery(query).limit(1).offset(Math.floor(Math.random() * 5)).find().then(res => {
+    MyTableObject.setQuery(BaaS_query).limit(1).offset(Math.floor(Math.random() * 5)).find().then(res => {
       // success
       console.log(res.data);
       let data = res.data.objects[0]
-      this.setData({
-        'content': data.content,
-        ['songInfo.songName']: data.songName,
-        ['songInfo.singer']: data.singer,
-      })
-      this.getSearchSong(data.songName);
+      if(res.data.objects.length>0){
+        this.setData({
+          'content': data.content,
+          ['songInfo.songName']: data.songName,
+          ['songInfo.singer']: data.singer,
+        })
+        this.getSearchSong(data.songName);
+      }else{
+        wx.showToast({
+          icon:'none',
+          title: '暂无数据',
+        })
+      }
+
     }, err => {
       // err
     })
@@ -169,10 +177,19 @@ Page({
           })
           wx.hideLoading()
         }
+      },fail() {
+        wx.showToast({
+          title: '请求失败',
+          icon:'none'
+        })
       }
     })
   },
   getTraceData(page) {
+    wx.showLoading({
+      title: 'LOADING',
+      mask: true
+    })
     let _this = this;
     wx.request({
       url: url.traceList + '?pageSize=30&page=' + page,
@@ -186,19 +203,52 @@ Page({
               traceDataPage: page,
               traceData: traceData
             })
-            wx.hideLoading();
-          }else{
+          }else{   
             _this.setData({
               traceDataPage: 0
             })
           }
         }
+        wx.hideLoading();
       },
       fail() {
         wx.showToast({
           title: '请求失败',
+          icon:'none'
         })
       }
+    })
+  },
+  getBlogData(page){
+    wx.showLoading({
+      title: 'LOADING',
+      mask: true
+    })
+    let tableId = 99412;
+    let MyTableObject = new wx.BaaS.TableObject(tableId);
+    let offset = page*10;
+    MyTableObject.limit(30).offset(offset).find().then(res => {
+      // success
+      console.log("博客",res.data);
+      let data = res.data.objects
+
+      if (data.length > 0) {
+        let blogData = this.data.blogData;
+        blogData.push(...data);
+        page = page + 1
+        this.setData({
+          blogDataPage: page,
+          blogData: blogData
+        })
+      }else{
+        this.setData({
+          blogDataPage: -1
+        })
+      }
+
+      wx.hideLoading();
+    }, err => {
+      // err
     })
   },
 
@@ -206,6 +256,23 @@ Page({
     let id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: '../traceContont/traceContont?id=' + id,
+    })
+  },
+
+  toBlogContont(e){
+    let id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../blogContont/blogContont?id=' + id,
+    })
+  },
+
+  parentSwiperChange(e){
+    let current = e.detail.current;
+    if (current == 1 && this.data.blogData.length === 0) {
+      this.getBlogData(this.data.blogDataPage);
+    }
+    this.setData({
+      currentParentSwiperId:current
     })
   },
 
@@ -244,19 +311,26 @@ Page({
   //点击切换tab
   clickTab(event) {
     let current = event.currentTarget.dataset.current;
-    // if (current == 1 && this.data.albumsList.length === 0) {
-    //   this.getAlbumsList();
-    // }
+    if (current == 1 && this.data.traceData.length === 0) {
+      this.getTraceData(this.data.traceDataPage);
+    }
     this.setData({
       currentChildSwiperId: current
     })
   },
 
   scrollTolower(e) {
-    if (this.data.traceDataPage === 0) {
-      return false;
+    if(this.data.currentChildSwiperId==0){
+      if (this.data.blogDataPage === -1) {
+        return false;
+      }
+      this.getBlogData(this.data.blogDataPage)
+    }else if(this.data.currentChildSwiperId==1){
+      if (this.data.traceDataPage === 0) {
+        return false;
+      }
+      this.getTraceData(this.data.traceDataPage)
     }
-    this.getTraceData(this.data.traceDataPage)
   },
   /**
  * 生命周期函数--监听页面初次渲染完成

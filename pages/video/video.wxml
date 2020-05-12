@@ -3,8 +3,45 @@
     <text class='titile_item {{currentSwiperId==0?"title_item_action":""}}' bindtap='clickTab' data-current='0'>视频</text>
     <text class='titile_item {{currentSwiperId==1?"title_item_action":""}}' bindtap='clickTab' data-current='1'>发现</text>
   </view>
-  <view class='videoContainer' style='margin-top:80rpx;'>
-    <view class='{{currentSwiperId==0?"":"hide"}}'>
+  <!-- <view class='videoContainer' style='margin-top:80rpx;'> -->
+
+ <swiper style='height:100%;overflow:hidden;' current="{{currentSwiperId}}" bindchange='bindchange'>
+    <swiper-item style='overflow-y:scroll'>
+     <view class='videoBox' wx:for="{{mvList}}" wx:key="{{item.id}}">
+        <view class='videoMask' data-id="{{item.id}}" style="background:url('{{item.imgurl16v9}}') center center;background-size:100%;" bindtap='getMVUrl'>
+          <image src='../../utils/src/playVideo.png'></image>
+        </view>
+        <view class="videoTitle">
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+      <view class='loadingBox' wx:if="{{mvList.length!==0}}">
+        <view wx:if='{{pageIndex<0}}'>
+          没有更多数据了
+        </view>
+        <view wx:else class='dot-bricks'></view>
+      </view>
+    </swiper-item>
+    <swiper-item style='overflow-y:scroll'>
+     <view class='videoBox' wx:for="{{videoList}}" wx:key="{{item.vid}}">
+        <view class='videoMask' wx:if="{{!item.videoPlayStatus}}" data-id="{{item.vid}}" style="background:url('{{item.coverUrl}}') center center;background-size:100%;" bindtap='getMVUrl'>
+          <image src='../../utils/src/playVideo.png'></image>
+        </view>
+        <video id='mvVideo-{{item.vid}}' poster="{{item.coverUrl}}" duration="{{item.durationms/1000}}" src='{{item.videoUrl}}' bindplay="bindplay" wx:if="{{item.videoPlayStatus}}"></video>
+        <view class="videoTitle">
+          <text>{{item.title}}</text>
+        </view>
+      </view>
+      <view class='loadingBox' wx:if="{{videoList.length!==0}}">
+        <view wx:if='{{pageIndex<0}}'>
+          没有更多数据了
+        </view>
+        <view wx:else class='dot-bricks'></view>
+      </view>
+    </swiper-item>
+  </swiper>
+
+    <!-- <view class='{{currentSwiperId==0?"":"hide"}}'>
       <view class='videoBox' wx:for="{{mvList}}" wx:key="{{item.id}}">
         <view class='videoMask' data-id="{{item.id}}" style="background:url('{{item.imgurl16v9}}') center center;background-size:100%;" bindtap='getMVUrl'>
           <image src='../../utils/src/playVideo.png'></image>
@@ -36,6 +73,6 @@
         </view>
         <view wx:else class='dot-bricks'></view>
       </view>
-    </view>
-  </view>
+    </view> -->
+  <!-- </view> -->
 </view>
