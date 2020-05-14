@@ -1,13 +1,13 @@
 {
   "pages": [
+    "pages/videoPlay/videoPlay",
     "pages/video/video",
     "pages/index/index",
-    "pages/traceContont/traceContont",
     "pages/music/music",
+    "pages/traceContont/traceContont",
     "pages/my/my",
     "pages/play/play",
     "pages/albumsList/albumsList",
-    "pages/videoPlay/videoPlay",
     "pages/blogContont/blogContont"
   ],
   "window": {
@@ -28,7 +28,7 @@
   "tabBar": {
     "selectedColor": "#6CA5FE",
     "backgroundColor": "#fff",
-    "borderStyle": "white",
+    "borderStyle": "black",
     "list": [
       {
         "pagePath": "pages/index/index",

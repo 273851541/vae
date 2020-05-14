@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "播放视频",
+  "usingComponents": {
+    "van-cell": "../../dist/cell/index"
+  }
 }

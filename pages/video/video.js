@@ -1,5 +1,7 @@
 import url from '../../utils/baseUrl.js'
 
+import tools from '../../utils/tools'
+
 Page({
 
   /**
@@ -18,7 +20,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     wx.showLoading({
       title: 'LOADING',
       mask: true
@@ -32,61 +34,31 @@ Page({
     const _this = this;
     wx.request({
       url: url.searchVideo + '?keywords=许嵩&type=1014&limit=10&offset=' + (offset * 10),
-      success: function(res) {
+      success: function (res) {
         let data = res.data;
         console.log(data);
         if (data.code === 200) {
-          if (data.result.videos.length > 0) {
+          let videos = data.result.videos;
+          if (videos.length > 0) {
             let videoList = _this.data.videoList;
-            data.result.videos.map(item => {
-              item.videoUrl = '';
-              item.videoPlayStatus = false;
+            videos.map((s,index) => {
+              s.videoUrl = '';
+              s.videoPlayStatus = false;
+              if(index%5===0){
+                if(offset>0||(offset===0&&index>0)){
+                  videos.splice(index,0,{
+                    flag:true
+                  })
+                }
+              }
             })
-            videoList.push(...data.result.videos);
 
+            videoList.push(...videos);
+            offset = offset +1
             _this.setData({
+              pageIndex2:offset,
               'videoList': videoList
             })
-            wx.hideLoading();
-          }else{
-             _this.setData({
-              pageIndex1: -1
-            })
-          }
-        } else {
-          wx.showToast({
-            title: '数据获取失败',
-          })
-        }
-      },
-      fail: function() {
-        wx.showToast({
-          title: '数据获取失败',
-        })
-      }
-    })
-  },
-
-  getMVList(offset) {
-    const _this = this;
-    wx.request({
-      url: url.searchMV + '?id=5771&limit=10&offset=' + (offset * 10),
-      success: function(res) {
-        let data = res.data;
-        console.log(data);
-        if (data.code === 200) {
-          if (data.mvs.length > 0) {
-            let mvList = _this.data.mvList;
-            data.mvs.map(item => {
-              item.videoUrl = '';
-              item.videoPlayStatus = false;
-            })
-            mvList.push(...data.mvs);
-
-            _this.setData({
-              'mvList': mvList
-            })
-            wx.stopPullDownRefresh();
             wx.hideLoading();
           } else {
             _this.setData({
@@ -99,10 +71,60 @@ Page({
           })
         }
       },
-      fail: function() {
-        wx.showToast({
-          title: '数据获取失败',
-        })
+      fail: function () {
+        // wx.showToast({
+        //   title: '数据获取失败',
+        // })
+      }
+    })
+  },
+
+  getMVList(offset) {
+    const _this = this;
+    wx.request({
+      url: url.searchMV + '?id=5771&limit=10&offset=' + (offset * 10),
+      success: function (res) {
+        let data = res.data;
+        console.log(data);
+        if (data.code === 200) {
+          let mvs = data.mvs
+          if (mvs.length > 0) {
+            let mvList = _this.data.mvList;
+            mvs.map((s,index) => {
+              s.videoUrl = '';
+              s.videoPlayStatus = false;
+              if(index%5===0){
+                if(offset>0||(offset===0&&index>0)){
+                  mvs.splice(index,0,{
+                    flag:true
+                  })
+                }
+              }
+            })
+
+            mvList.push(...mvs);
+            offset = offset +1
+            _this.setData({
+              pageIndex1:offset,
+              'mvList': mvList
+            })
+            wx.stopPullDownRefresh();
+            wx.hideLoading();
+          } else {
+            _this.setData({
+              pageIndex1: -1
+            })
+          }
+        } else {
+          // wx.showToast({
+          //   title: '数据获取失败',
+          // })
+        }
+      },
+      fail: function () {
+        // wx.showToast({
+        //   title: '数据获取失败',
+        // })
       }
     })
   },
@@ -118,7 +140,7 @@ Page({
     let _this = this;
     wx.request({
       url: urlStr,
-      success: function(res) {
+      success: function (res) {
         let data = res.data;
         console.log(data);
         if (data.code === 200) {
@@ -154,8 +176,8 @@ Page({
       return false;
     }
     console.log('关闭了一个视频');
-    let videoUrl = mvListStr+"[" + hasVideoPlayIndex + "].videoUrl";
-    let videoPlayStatus = mvListStr+"[" + hasVideoPlayIndex + "].videoPlayStatus";
+    let videoUrl = mvListStr + "[" + hasVideoPlayIndex + "].videoUrl";
+    let videoPlayStatus = mvListStr + "[" + hasVideoPlayIndex + "].videoPlayStatus";
     this.setData({
       [videoUrl]: '',
       [videoPlayStatus]: false,
@@ -184,11 +206,11 @@ Page({
     let videoPlayList = mvList.find(item => {
       return item.id === vid || item.vid === vid
     });
-    let videoUrl = mvListStr+"[" + videoIndex + "].videoUrl";
+    let videoUrl = mvListStr + "[" + videoIndex + "].videoUrl";
 
     let videoUrlStr = '';
     if (this.data.currentSwiperId == 0) {
-      videoUrlStr = data.data.url||"";
+      videoUrlStr = data.data.url || "";
     } else {
       videoUrlStr = data.urls[0].url
     }
@@ -197,48 +219,25 @@ Page({
     })
 
     console.log(videoPlayList);
-    // let sendList = {
-    //   id:videoPlayList.id,
-    //   imgurl16v9:videoPlayList.imgurl16v9,
-    //   duration:videoPlayList.duration
-    // }
     wx.navigateTo({
-      url: '../videoPlay/videoPlay?id='+videoPlayList.id+'&imgurl16v9='+encodeURIComponent(videoPlayList.imgurl16v9)+'&duration='+videoPlayList.duration+'&videoUrl='+encodeURIComponent(videoPlayList.videoUrl)+'&name='+(videoPlayList.name||videoPlayList.title)
+      url: '../videoPlay/videoPlay?id=' + videoPlayList.id + '&imgurl16v9=' + encodeURIComponent(videoPlayList.imgurl16v9) + '&duration=' + videoPlayList.duration + '&videoUrl=' + encodeURIComponent(videoPlayList.videoUrl) + '&name=' + (videoPlayList.name || videoPlayList.title)
     })
 
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-    console.log('到底了');
-
-    if (this.data.currentSwiperId==0){
-      if (this.data.pageIndex1 < 0) {
+  scrollTolower(e) {
+    if(this.data.currentSwiperId==0){
+      if (this.data.mvList.length === -1) {
         return false;
       }
-      this.getMVList(this.data.pageIndex1 + 1);
-    }else{
-      if (this.data.pageIndex2 < 0) {
+      this.getMVList(this.data.pageIndex1)
+    }else if(this.data.currentSwiperId==1){
+      if (this.data.videoList.length === -1) {
         return false;
       }
-      this.getVideoList(this.data.pageIndex2 + 1);
+      this.getVideoList(this.data.pageIndex2)
     }
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-    this.setData({
-      pageIndex: 0,
-      mvList: []
-    })
-    this.getMVList(this.data.pageIndex);
-    console.log(123456)
-  },
-
 
   //点击切换tab
   clickTab(event) {
@@ -254,38 +253,52 @@ Page({
     }
   },
 
+
+  //swiper滑动改变current事件
+  bindchange(event) {
+    let current = event.detail.current;
+    if (event.detail.source === 'touch') {
+      if (current == 1 && this.data.videoList.length === 0) {
+        this.getTraceData(this.data.traceDataPage);
+      }
+      this.setData({
+        currentSwiperId: current
+      })
+    }
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

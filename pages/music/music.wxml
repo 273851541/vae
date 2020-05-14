@@ -5,7 +5,7 @@
   </view>
   <swiper style='height:100%;overflow:hidden;' current="{{currentSwiperId}}" bindchange='bindchange'>
     <swiper-item style='overflow-y:scroll'>
-      <view wx:for="{{playList}}" wx:key="{{item.id}}" class='musicItem' bindtap='toPlayerView' data-id='{{item.id}}' data-type='itemBtn'>
+      <view wx:for="{{playList}}" wx:key="index" class='musicItem' bindtap='toPlayerView' data-id='{{item.id}}' data-type='itemBtn'>
         <view class='musicItem_container'>
           <image src='{{item.al.picUrl}}' wx:if="{{playList}}"></image>
           <text>{{item.name}}</text>
@@ -14,7 +14,7 @@
     </swiper-item>
     <swiper-item style='overflow-y:scroll'>
       <view class='albumsContext'>
-        <view wx:for='{{albumsList}}' wx:key="{{item.id}}" data-id='{{item.id}}' class='albumsBox' bindtap='toAlbumsDetails'>
+        <view wx:for='{{albumsList}}' wx:key="index" data-id='{{item.id}}' class='albumsBox' bindtap='toAlbumsDetails'>
           <view class='imgBox'>
             <image src='{{item.picUrl}}' class='imgs'></image>
             <image src='../../utils/src/albums.png' class='imgs_other'></image>
@@ -24,7 +24,7 @@
       </view>
     </swiper-item>
   </swiper>
-  <view class="musicPlayer {{playStatus?'musicPlayerAction':''}}" bindtap='toPlayerView' data-id='{{currentId}}' data-type='playBtn'>
+  <view class="musicPlayer {{playStatus?'musicPlayerAction':''}}" wx:if="{{playStatus}}" bindtap='toPlayerView' data-id='{{currentId}}' data-type='playBtn'>
     <image class="music_image  {{playStatus?'playRotation':''}}" src="{{imgurl}}"></image>
     <view class='musicBtn'>
       <image src='../../utils/src/bars.svg' style='width:40rpx' wx:if='{{playStatus}}'></image>

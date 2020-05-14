@@ -11,6 +11,7 @@ let url = {
   mvUrl: baseUrl +'/mv/url',
   videoUrl: baseUrl +'/video/url',
   search: baseUrl +'/search',
+  relatedVideo: baseUrl +'/related/allvideo',
   traceList:'https://xusong.taihe.com/api/NEWS/getCalendarList.json',
   traceContentList:'https://xusong.taihe.com/api/NEWS/getActivityDetail.json'
 }

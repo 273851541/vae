@@ -1,7 +1,5 @@
-<!--index.wxml-->
+
 <view class="container">
-
-
 	<swiper vertical='{{swiperStatus}}' current="{{currentParentSwiperId}}" bindchange='parentSwiperChange' class="swiperClass">
 		<swiper-item>
 			<view class='title' style='margin:auto 30rpx;text-align:left'>Today</view>
@@ -11,7 +9,7 @@
 				</view>
 				<view class='content'>
 					<text class='today_text'>{{content}}</text>
-					<text class='today_text' style='font-size:30rpx;text-align:right'>—— {{songInfo.singer}}《{{songInfo.songName}}》</text>
+					<text class='today_text' style='font-size:25rpx;text-align:center;color:#999'>{{songInfo.singer}}《{{songInfo.songName}}》</text>
 				</view>
 				<view class="musicPlayer {{playStatus?'musicPlayerAction':''}}" bindtap='musicPlayHandler'>
 					<image class="music_image  {{playStatus?'playRotation':''}}" src="{{songInfo.imgUrl}}"></image>
@@ -21,6 +19,15 @@
 					</view>
 				</view>
 			</view>
+			<!-- <view class="operaBox">
+				<view class="musicPlayer {{playStatus?'musicPlayerAction':''}}" bindtap='musicPlayHandler'>
+					<image class="music_image  {{playStatus?'playRotation':''}}" src="{{songInfo.imgUrl}}"></image>
+					<view class='musicBtn'>
+						<image src='{{playImg}}' wx:if="{{playStatus==='loading'}}" class="musicBtn_img loadingRotation"></image>
+						<image src='{{playImg}}' wx:else class="musicBtn_img"></image>
+					</view>
+				</view>
+			</view> -->
 			<view class='pulltopstyle'>上划有惊喜</view>
 		</swiper-item>
 		<swiper-item>
@@ -30,8 +37,8 @@
 			</view>
 			<swiper style='overflow:hidden;' current="{{currentChildSwiperId}}" bindchange='bindchange'>
 				<swiper-item style='overflow-y:scroll'>
-						<scroll-view scroll-y="true" style="height:100%" scroll-with-animation="true" bindscrolltolower='scrollTolower' id='scrollView'>
-						<van-cell wx:for="{{blogData}}" title='{{item.name}}' bind:click="toBlogContont" data-id="{{item.key}}" border="{{index<traceData.length-1}}" custom-class="customStyle" label-class="labelStyle" title-class="titleStyle" is-link />
+					<scroll-view scroll-y="true" style="height:100%" scroll-with-animation="true" bindscrolltolower='scrollTolower' id='scrollView'>
+						<van-cell wx:for="{{blogData}}" size='large' title='{{item.name}}' bind:click="toBlogContont" data-id="{{item.key}}" data-name="{{item.name}}" border="{{index<traceData.length-1}}" custom-class="customStyle" label-class="labelStyle" title-class="titleStyle" is-link />
 						<view class='loadingBox' wx:if="{{blogData.length>0}}">
 							<view wx:if='{{blogDataPage==-1}}'>
 								没有更多数据了
@@ -42,7 +49,15 @@
 				</swiper-item>
 				<swiper-item style='overflow-y:scroll'>
 					<scroll-view scroll-y="true" style="height:100%" scroll-with-animation="true" bindscrolltolower='scrollTolower' id='scrollView'>
-						<van-cell wx:for="{{traceData}}" title='{{item.title}}' label="{{item.content}}" bind:click="toTraceContont" data-id="{{item.id}}" border="{{index<traceData.length-1}}" custom-class="customStyle" label-class="labelStyle" title-class="titleStyle" is-link />
+						<view wx:for="{{traceData}}">
+							<van-cell wx:if="{{item.dateDiff}}" size='large' label="{{item.content}}" bind:click="toTraceContont" data-id="{{item.id}}"  border="{{index<traceData.length-1}}" custom-class="customStyle" label-class="labelStyle" title-class="titleStyle" is-link>
+								<view slot="title" style="display: flex;align-items: center;">
+									<van-tag type="danger" style="margin-right:10rpx">最新</van-tag>
+									<view class="van-cell-text">{{item.title}}</view>
+								</view>
+							</van-cell>
+							<van-cell wx:else size='large' title='{{item.title}}' label="{{item.content}}" bind:click="toTraceContont" data-id="{{item.id}}"  border="{{index<traceData.length-1}}" custom-class="customStyle" label-class="labelStyle" title-class="titleStyle" is-link />
+						</view>
 						<view class='loadingBox' wx:if="{{traceData.length>0}}">
 							<view wx:if='{{traceDataPage==0}}'>
 								没有更多数据了

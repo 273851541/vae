@@ -1,0 +1,20 @@
+/* pages/traceContont/traceContont.wxss */
+@import "../../utils/wxParse/wxParse.wxss";
+.titleStyle{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.titleStyleFont{
+  font-size: 35rpx;
+}
+
+.contentStyle{
+  padding: var(--cell-vertical-padding,10px) var(--cell-horizontal-padding,16px);
+}
+
+.contentStyle image{
+  width: 100% !important;
+  border-radius: 20rpx;
+}

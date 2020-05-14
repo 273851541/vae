@@ -1,9 +1,15 @@
 <!--pages/videoPlay/videoPlay.wxml-->
+
 <view class="container">
 	<view class="videoBox">
 		<video id='mvVideo-{{id}}' poster="{{imgurl16v9}}" duration="{{duration/1000}}" src='{{videoUrl}}' autoplay></video>
-		 <view class="videoTitle">
-        <text>{{name}}</text>
-      </view>
+		<view class="videoTitle">
+			<text>{{name}}</text>
+		</view>
+	</view>
+	<view class="relatedVideoBox">
+		<van-cell wx:for='{{relatedVideoData}}' title='{{item.title}}' label="{{item.durationms}}" bindtap="previewImage" title-class="titleStyle" custom-class='customStyle' label-class='labelStyle'>
+			<image slot='icon' class="feedBackIMG" src='{{item.coverUrl}}'></image>
+		</van-cell>
 	</view>
 </view>

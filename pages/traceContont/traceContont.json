@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "行程详情",
+  "usingComponents": {
+    "van-cell": "../../dist/cell/index"
+  }
+}

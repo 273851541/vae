@@ -186,17 +186,28 @@ Page({
     })
   },
   getTraceData(page) {
-    wx.showLoading({
-      title: 'LOADING',
-      mask: true
-    })
+    if(page==1){
+      wx.showLoading({
+        title: 'LOADING',
+        mask: true
+      })
+    }
     let _this = this;
     wx.request({
-      url: url.traceList + '?pageSize=30&page=' + page,
+      url: url.traceList + '?pageSize=20&page=' + page,
       success({ data }) {
         if (data.state) {
           if (data.result.activityInfo.length > 0) {
             let traceData = _this.data.traceData;
+            let activityInfo = data.result.activityInfo;
+            activityInfo.map(s=>{
+              if(_this.dateDiff(s.startTime)>0){
+                s.dateDiff = true
+              }else{
+                s.dateDiff = false
+              }
+            })
+
             traceData.push(...data.result.activityInfo);
             page = page +1
             _this.setData({
@@ -220,10 +231,12 @@ Page({
     })
   },
   getBlogData(page){
-    wx.showLoading({
-      title: 'LOADING',
-      mask: true
-    })
+    if(page==0){
+      wx.showLoading({
+        title: 'LOADING',
+        mask: true
+      })
+    }
     let tableId = 99412;
     let MyTableObject = new wx.BaaS.TableObject(tableId);
     let offset = page*10;
@@ -261,8 +274,9 @@ Page({
 
   toBlogContont(e){
     let id = e.currentTarget.dataset.id;
+    let name = e.currentTarget.dataset.name;
     wx.navigateTo({
-      url: '../blogContont/blogContont?id=' + id,
+      url: '../blogContont/blogContont?id=' + id+"&name=" + name,
     })
   },
 
@@ -274,6 +288,48 @@ Page({
     this.setData({
       currentParentSwiperId:current
     })
+  },
+
+  dateDiff: function(sDate2) {
+    let strSeparator = "-";
+    let strDateArrayStart;
+    let strDateArrayEnd;
+    let intDay;
+    let sDate1 = this.currentTime()
+    // let sDate1 = '2020-01-01'
+    strDateArrayStart = sDate1.split(strSeparator);
+    strDateArrayEnd = sDate2.split(strSeparator);
+    let strDateS = new Date(
+      strDateArrayStart[0] +
+      "/" +
+      strDateArrayStart[1] +
+      "/" +
+      strDateArrayStart[2]
+    );
+    let strDateE = new Date(
+      strDateArrayEnd[0] + "/" + strDateArrayEnd[1] + "/" + strDateArrayEnd[2]
+    );
+    intDay = (strDateE - strDateS) / (1000 * 3600 * 24);
+    return intDay;
+  },
+  currentTime: function() {
+    let now = new Date();
+
+    let year = now.getFullYear();
+    let month = now.getMonth() + 1;
+    let day = now.getDate(); 
+
+    let clock = year + "-";
+
+    if (month < 10) clock += "0";
+
+    clock += month + "-";
+
+    if (day < 10) clock += "0";
+
+    clock += day + " ";
+
+    return clock;
   },
 
 
@@ -291,16 +347,19 @@ Page({
   },
 
   getTodayHeight() {
-    var query = wx.createSelectorQuery();
+    let query = wx.createSelectorQuery();
     //选择id
-    var that = this;
-    let One, pulltopstyle;
+    let that = this;
+    let One, pulltopstyle,operaBox;
     query.select('.title').boundingClientRect(function (rect) {
       One = rect.height;
     }).exec();
     query.select('.pulltopstyle').boundingClientRect(function (rect) {
       pulltopstyle = rect.height;
     }).exec();
+    // query.select('.operaBox').boundingClientRect(function (rect) {
+    //   operaBox = rect.height;
+    // }).exec();
     query.select('.swiperClass').boundingClientRect(function (res) {
       that.setData({
         Oneheight: (res.height - One - pulltopstyle - 25 ) + 'px'

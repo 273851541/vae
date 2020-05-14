@@ -36,7 +36,7 @@
     </view>
   </view>
   <view style='position:relative;z-index:100;background:#fff;height:100%;'>
-    <view wx:for="{{albumsInfo}}" wx:key="{{item.id}}" class='musicItem' bindtap='toPlayerView' data-id='{{item.id}}' data-type='itemBtn'>
+    <view wx:for="{{albumsInfo}}" wx:key="index" class='musicItem' bindtap='toPlayerView' data-id='{{item.id}}' data-type='itemBtn'>
       <view class='musicItem_container'>
         <text style='margin-right:30rpx;'>{{index+1}}</text>
         <text>{{item.name}}</text>

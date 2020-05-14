@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "Vae",
   "usingComponents": {
     "van-popup": "../../dist/popup/index"
   }

@@ -49,9 +49,14 @@ Page({
         wx.hideLoading()
         let data = res.data;
         if (data.code === 200) {
+          let description = data.album.description.replace(/'\n\n'/g, '<br/>');
+          data.album.description = description
           _this.setData({
             albumsInfo: data.songs,
             albumsDetails: data.album
+          })
+          wx.setNavigationBarTitle({
+            title: data.album.name
           })
           wx.hideLoading();
         }

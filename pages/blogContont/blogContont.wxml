@@ -1,0 +1,9 @@
+<!--pages/traceContont/traceContont.wxml-->
+<import src="../../utils/wxParse/wxParse.wxml" />
+<view class="container">
+	<view class="contentStyle">
+		<template is="wxParse" data="{{wxParseData:article.nodes}}" />
+		<view style="border-radius:20rpx"></view>
+		<ad unit-id="adunit-32d6caad7a3f18b5" ad-intervals="30"></ad>
+	</view>
+</view>
