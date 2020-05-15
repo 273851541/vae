@@ -8,26 +8,26 @@
 					<image src="{{songInfo.imgUrl}}"></image>
 				</view>
 				<view class='content'>
-					<text class='today_text'>{{content}}</text>
+					<text class='today_text' style="margin-bottom: 50rpx;">{{content}}</text>
 					<text class='today_text' style='font-size:25rpx;text-align:center;color:#999'>{{songInfo.singer}}《{{songInfo.songName}}》</text>
 				</view>
-				<view class="musicPlayer {{playStatus?'musicPlayerAction':''}}" bindtap='musicPlayHandler'>
+				<!-- <view class="musicPlayer {{playStatus?'musicPlayerAction':''}}" bindtap='musicPlayHandler'>
 					<image class="music_image  {{playStatus?'playRotation':''}}" src="{{songInfo.imgUrl}}"></image>
+					<view class='musicBtn'>
+						<image src='{{playImg}}' wx:if="{{playStatus==='loading'}}" class="musicBtn_img loadingRotation"></image>
+						<image src='{{playImg}}' wx:else class="musicBtn_img"></image>
+					</view>
+				</view> -->
+			</view>
+			<view class="operaBox">
+				<view class="musicPlayer {{playStatus?'musicPlayerAction':''}}" bindtap='musicPlayHandler'>
+					<image class="music_image  {{playStatus?'playRotation':''}}" src="{{songInfo.imgUrl+'?param=80y80'}}"></image>
 					<view class='musicBtn'>
 						<image src='{{playImg}}' wx:if="{{playStatus==='loading'}}" class="musicBtn_img loadingRotation"></image>
 						<image src='{{playImg}}' wx:else class="musicBtn_img"></image>
 					</view>
 				</view>
 			</view>
-			<!-- <view class="operaBox">
-				<view class="musicPlayer {{playStatus?'musicPlayerAction':''}}" bindtap='musicPlayHandler'>
-					<image class="music_image  {{playStatus?'playRotation':''}}" src="{{songInfo.imgUrl}}"></image>
-					<view class='musicBtn'>
-						<image src='{{playImg}}' wx:if="{{playStatus==='loading'}}" class="musicBtn_img loadingRotation"></image>
-						<image src='{{playImg}}' wx:else class="musicBtn_img"></image>
-					</view>
-				</view>
-			</view> -->
 			<view class='pulltopstyle'>上划有惊喜</view>
 		</swiper-item>
 		<swiper-item>

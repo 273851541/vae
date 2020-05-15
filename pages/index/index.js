@@ -357,12 +357,12 @@ Page({
     query.select('.pulltopstyle').boundingClientRect(function (rect) {
       pulltopstyle = rect.height;
     }).exec();
-    // query.select('.operaBox').boundingClientRect(function (rect) {
-    //   operaBox = rect.height;
-    // }).exec();
+    query.select('.operaBox').boundingClientRect(function (rect) {
+      operaBox = rect.height;
+    }).exec();
     query.select('.swiperClass').boundingClientRect(function (res) {
       that.setData({
-        Oneheight: (res.height - One - pulltopstyle - 25 ) + 'px'
+        Oneheight: (res.height - One - pulltopstyle - operaBox - 25 ) + 'px'
       })
     }).exec();
   },

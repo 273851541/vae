@@ -220,7 +220,7 @@ Page({
 
     console.log(videoPlayList);
     wx.navigateTo({
-      url: '../videoPlay/videoPlay?id=' + videoPlayList.id + '&imgurl16v9=' + encodeURIComponent(videoPlayList.imgurl16v9) + '&duration=' + videoPlayList.duration + '&videoUrl=' + encodeURIComponent(videoPlayList.videoUrl) + '&name=' + (videoPlayList.name || videoPlayList.title)
+      url: '../videoPlay/videoPlay?id=' + (videoPlayList.id||videoPlayList.vid) + '&imgurl16v9=' + encodeURIComponent(videoPlayList.imgurl16v9||videoPlayList.coverUrl) + '&duration=' + (videoPlayList.duration||videoPlayList.durationms) + '&videoUrl=' + encodeURIComponent(videoPlayList.videoUrl) + '&name=' + (videoPlayList.name || videoPlayList.title)
     })
 
   },

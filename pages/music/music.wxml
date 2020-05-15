@@ -7,7 +7,7 @@
     <swiper-item style='overflow-y:scroll'>
       <view wx:for="{{playList}}" wx:key="index" class='musicItem' bindtap='toPlayerView' data-id='{{item.id}}' data-type='itemBtn'>
         <view class='musicItem_container'>
-          <image src='{{item.al.picUrl}}' wx:if="{{playList}}"></image>
+          <image src='{{item.al.picUrl+"?param=80y80"}}' wx:if="{{playList}}" lazy-load="{{true}}"></image>
           <text>{{item.name}}</text>
         </view>
       </view>
@@ -16,7 +16,7 @@
       <view class='albumsContext'>
         <view wx:for='{{albumsList}}' wx:key="index" data-id='{{item.id}}' class='albumsBox' bindtap='toAlbumsDetails'>
           <view class='imgBox'>
-            <image src='{{item.picUrl}}' class='imgs'></image>
+            <image src='{{item.picUrl+"?param=400y400"}}' class='imgs' lazy-load="{{true}}"></image>
             <image src='../../utils/src/albums.png' class='imgs_other'></image>
           </view>
           <text class='albumsName'>{{item.name}}</text>

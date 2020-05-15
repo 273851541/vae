@@ -10,6 +10,7 @@
 
  .relatedVideoBox{
    padding: 0 30rpx;
+   margin-bottom: 50rpx;
  }
 
  .feedBackIMG{

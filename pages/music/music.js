@@ -94,7 +94,7 @@ Page({
     }, 500)
     let _this = this;
     wx.request({
-      url: url.musicList + '?id=319777286&limit=30&offset=0',
+      url: url.musicList + '?id=319777286&limit=10&offset=1',
       success: function(res) {
         clearTimeout(timer)
         let data = res.data;
