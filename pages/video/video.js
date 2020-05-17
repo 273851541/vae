@@ -259,7 +259,7 @@ Page({
     let current = event.detail.current;
     if (event.detail.source === 'touch') {
       if (current == 1 && this.data.videoList.length === 0) {
-        this.getTraceData(this.data.traceDataPage);
+        this.getVideoList(this.data.pageIndex2);
       }
       this.setData({
         currentSwiperId: current

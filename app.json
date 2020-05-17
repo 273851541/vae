@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/videoPlay/videoPlay",
     "pages/video/video",
+    "pages/videoPlay/videoPlay",
     "pages/music/music",
     "pages/traceContont/traceContont",
     "pages/my/my",

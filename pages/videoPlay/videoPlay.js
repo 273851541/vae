@@ -32,7 +32,7 @@ Page({
     })
     this.getAllVideo(options.id);
     wx.setNavigationBarTitle({
-      title:"options.name"
+      title:options.name
     })
   
   },
@@ -61,6 +61,39 @@ Page({
     })
   },
   
+  playVideo(e){
+    let id = e.currentTarget.dataset.id;
+    wx.showLoading({
+      title: 'LOADING',
+      mask:true
+    })
+    let _this = this;
+    wx.request({
+      url: url.videoUrl+'?id='+id,
+      success:function(res){
+        if(res.data.code===200){
+          let urls = res.data.urls[0];
+          let relatedVideoData = _this.data.relatedVideoData;
+          relatedVideoData.map(s=>{
+            if(s.vid === id){
+              _this.setData({
+                videoUrl:urls.url,
+                name:s.title,
+                duration:s.durationms,
+                imgurl16v9:s.coverUrl,
+                id:urls.id
+              })
+              wx.setNavigationBarTitle({
+                title:s.title
+              })
+              _this.getAllVideo(urls.id)
+            }
+          })
+        }
+        wx.hideLoading()
+      }
+    })
+  },
 
   /**
    * 生命周期函数--监听页面显示
@@ -101,6 +134,11 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    return {
+      title: this.data.name,
+      path: '/page/videoPlay/videoPlay?id=' + this.data.id + '&imgurl16v9=' + encodeURIComponent(this.data.imgurl16v9) + '&duration=' + (this.data.duration) + '&videoUrl=' + encodeURIComponent(this.data.videoUrl) + '&name=' + (this.data.name)
+    }
 
+    console.log()
   }
 })

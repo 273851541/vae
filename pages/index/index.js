@@ -283,7 +283,7 @@ Page({
   parentSwiperChange(e){
     let current = e.detail.current;
     if (current == 1 && this.data.blogData.length === 0) {
-      this.getBlogData(this.data.blogDataPage);
+      this.getTraceData(this.data.traceDataPage);
     }
     this.setData({
       currentParentSwiperId:current
@@ -337,8 +337,8 @@ Page({
   bindchange(event) {
     let current = event.detail.current;
     if (event.detail.source === 'touch') {
-      if (current == 1 && this.data.traceData.length === 0) {
-        this.getTraceData(this.data.traceDataPage);
+      if (current == 1 && this.data.blogData.length === 0) {
+        this.getBlogData(this.data.blogDataPage);
       }
       this.setData({
         currentChildSwiperId: current
@@ -370,8 +370,8 @@ Page({
   //点击切换tab
   clickTab(event) {
     let current = event.currentTarget.dataset.current;
-    if (current == 1 && this.data.traceData.length === 0) {
-      this.getTraceData(this.data.traceDataPage);
+    if (current == 1 && this.data.blogData.length === 0) {
+      this.getBlogData(this.data.blogDataPage);
     }
     this.setData({
       currentChildSwiperId: current
@@ -380,15 +380,15 @@ Page({
 
   scrollTolower(e) {
     if(this.data.currentChildSwiperId==0){
-      if (this.data.blogDataPage === -1) {
-        return false;
-      }
-      this.getBlogData(this.data.blogDataPage)
-    }else if(this.data.currentChildSwiperId==1){
       if (this.data.traceDataPage === 0) {
         return false;
       }
       this.getTraceData(this.data.traceDataPage)
+    }else if(this.data.currentChildSwiperId==1){
+      if (this.data.blogDataPage === -1) {
+        return false;
+      }
+      this.getBlogData(this.data.blogDataPage)
     }
   },
   /**

@@ -8,12 +8,12 @@
 		</view>
 	</view>
 	<view class="relatedVideoBox">
-		<view style="border-radius:20rpx">
+		<view style="border-radius:20rpx;overflow: auto;">
 			<ad unit-id="adunit-32d6caad7a3f18b5" ad-intervals="30"></ad>
 		</view>
 		<view style="font-size: 30rpx;font-weight: bold;margin: 15rpx auto;">相关视频</view>
-		<van-cell wx:for='{{relatedVideoData}}' title='{{item.title}}' label="{{item.durationms}}" border="{{false}}" bindtap="previewImage" title-class="titleStyle" custom-class='customStyle' label-class='labelStyle'>
-			<image slot='icon' class="feedBackIMG" src='{{item.coverUrl}}'></image>
+		<van-cell wx:for='{{relatedVideoData}}' title='{{item.title}}' label="{{item.durationms}}" border="{{false}}" data-id="{{item.vid||item.id}}" bindtap="playVideo" title-class="titleStyle" custom-class='customStyle' label-class='labelStyle'>
+			<image slot='icon' class="feedBackIMG" src='{{item.coverUrl+"?param=200x200"}}'></image>
 		</van-cell>
 	</view>
 </view>
