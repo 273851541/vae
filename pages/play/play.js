@@ -31,8 +31,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // let id = 1308081110;
-    let id = options.id;
+    let id = 1308081110;
+    // let id = options.id;
     this.getSongInfo(id);
     this.getLyric(id);
     this.setData({

@@ -87,8 +87,8 @@
 }
 
 .playerMenu image {
-  width: 130rpx;
-  height: 130rpx;
+  width: 100rpx;
+  height: 100rpx;
 }
 
 .playBtn {
@@ -199,9 +199,4 @@ z-index: 100;
   width:30rpx;
   height:30rpx;
   margin-right:10rpx;
-}
-
-.loveBtn{
-  width: 115rpx !important;
-  height: 115rpx !important;
 }

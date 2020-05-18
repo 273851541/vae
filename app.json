@@ -1,12 +1,12 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/play/play",
     "pages/video/video",
     "pages/videoPlay/videoPlay",
     "pages/music/music",
     "pages/traceContont/traceContont",
     "pages/my/my",
-    "pages/play/play",
     "pages/albumsList/albumsList",
     "pages/blogContont/blogContont"
   ],
@@ -18,7 +18,7 @@
   },
   "plugins": {
     "sdkPlugin": {
-      "version": "1.7.0",
+      "version": "3.9.0",
       "provider": "wxc6b86e382a1e3294"
     }
   },

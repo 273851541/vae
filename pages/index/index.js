@@ -28,11 +28,17 @@ Page({
     Oneheight: 0
   },
   onLoad: function () {
+    wx.BaaS.auth.loginWithWechat().then(user => {
+      console.log("用户的code:" + user);
+      // 登录成功
+    }, err => {
+      console.log("用户的err:" + err);
+      // 登录失败
+    })
     wx.showLoading({
       title: 'LOADING',
       mask: true
     })
-    this.getTodayHeight();
     this.getTodayData();
     InnerAudioContext.onPlay(() => {
       this.setData({
@@ -72,15 +78,6 @@ Page({
       });
       InnerAudioContext.src = " "
     })
-    // InnerAudioContext.onError(() => {
-    //   this.setData({
-    //     playStatus: false,
-    //     playImg: '../../utils/src/play.png'
-    //   });
-    //   wx.showToast({
-    //     title: '加载失败'
-    //   })
-    // })
 
 
   },
@@ -128,8 +125,7 @@ Page({
     }, err => {
       // err
     })
-  },
-  getSearchSong(songName) {
+  },  getSearchSong(songName) {
     let _this = this;
     wx.request({
       url: url.search + '?keywords=' + songName + '&limit=5',
@@ -403,6 +399,7 @@ Page({
    */
   onShow: function () {
     console.log("onShow")
+    this.getTodayHeight();
   },
 
   /**

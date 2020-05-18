@@ -3,16 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3f50b6b9-7bfe-482b-b202-9fa9b94d08e3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/music/music.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/music/music.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/music/music.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/music/music.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/video/video.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/video/video.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/videoPlay/videoPlay.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/videoPlay/videoPlay.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/videoPlay/videoPlay.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/videoPlay/videoPlay.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,8 +21,8 @@
           <file leaf-file-name="music.wxml" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/pages/music/music.wxml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="544">
-                  <caret line="32" column="9" lean-forward="true" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+                <state relative-caret-position="561">
+                  <caret line="33" column="7" lean-forward="true" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="7" />
                   <folding>
                     <element signature="n#style#0;n#swiper-item#1;n#swiper#0;n#view#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#image#0;n#view#0;n#view#1;n#view#0;n#!!top" expanded="true" />
@@ -57,8 +47,8 @@
           <file leaf-file-name="music.wxml" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/pages/music/music.wxml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="85">
-                  <caret line="5" column="54" selection-start-line="5" selection-start-column="54" selection-end-line="5" selection-end-column="54" />
+                <state relative-caret-position="68">
+                  <caret line="4" column="9" lean-forward="true" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
                   <folding>
                     <element signature="n#style#0;n#swiper-item#1;n#swiper#0;n#view#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#image#0;n#view#0;n#view#1;n#view#0;n#!!top" expanded="true" />
@@ -228,7 +218,8 @@
       <workItem from="1589363158075" duration="85000" />
       <workItem from="1589419795439" duration="26000" />
       <workItem from="1589463583678" duration="1452000" />
-      <workItem from="1589520193977" duration="672000" />
+      <workItem from="1589520193977" duration="874000" />
+      <workItem from="1589765042291" duration="1111000" />
     </task>
     <task id="LOCAL-00001" summary="'第二次提交'">
       <created>1536228298201</created>
@@ -349,14 +340,22 @@
       <option name="project" value="LOCAL" />
       <updated>1589465830432</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="'685445'">
+      <created>1589535448530</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1589535448530</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58117000" />
+    <option name="totallyTimeSpent" value="59430000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1592" y="-298" width="2576" height="1426" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10441292" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -661,8 +660,8 @@
     <entry file="file://$PROJECT_DIR$/pages/mPlayer/mPlayer.js" />
     <entry file="file://$PROJECT_DIR$/pages/music/music.wxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="9" lean-forward="true" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+        <state relative-caret-position="68">
+          <caret line="4" column="9" lean-forward="true" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
           <folding>
             <element signature="n#style#0;n#swiper-item#1;n#swiper#0;n#view#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#image#0;n#view#0;n#view#1;n#view#0;n#!!top" expanded="true" />

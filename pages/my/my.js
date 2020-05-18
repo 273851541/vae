@@ -1,4 +1,5 @@
 // pages/my/my.js
+const app = getApp()
 Page({
 
   /**
@@ -9,26 +10,23 @@ Page({
   },
 
   getuserinfo(e) {
-    console.log(e);
-    let userInfo;
-    wx.login({
-      success: res => {
-        // 获取到用户的 code 之后：res.code
-        console.log("用户的code:" + res.code);
-        userInfo = e.detail.userInfo;
-        userInfo.userCode = res.code;
-        let _this = this;
-        wx.setStorage({
-          data: JSON.stringify(userInfo),
-          key: 'userInfo',
-          success(){
-            _this.setData({
-              userInfo: userInfo
-            })
-          }
-        })
-      }
-    });
+    let _this = this;
+    wx.BaaS.auth.loginWithWechat(e).then(user => {
+      // user 包含用户完整信息，详见下方描述
+      app.globalData.userInfo = user
+      wx.setStorage({
+        data: user,
+        key: 'userInfo',
+        success() {
+          _this.setData({
+            userInfo: user
+          })
+        }
+      })
+    }, err => {
+      console.log(err)
+      // **err 有两种情况**：用户拒绝授权，HError 对象上会包含基本用户信息：id、openid、unionid；其他类型的错误，如网络断开、请求超时等，将返回 HError 对象（详情见下方注解）
+    })
   },
 
   previewImage: function (e) {
@@ -48,7 +46,7 @@ Page({
       success({ data }) {
         if (data) {
           _this.setData({
-            userInfo: JSON.parse(data)
+            userInfo: data
           })
         }
       }
