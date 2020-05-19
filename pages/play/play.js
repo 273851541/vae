@@ -1,6 +1,6 @@
 import url from '../../utils/baseUrl.js'
 var app = getApp();
-
+var MyTableObject = new wx.BaaS.TableObject("_userprofile");
 Page({
 
   /**
@@ -21,40 +21,71 @@ Page({
     lyricPositionTop: 0,
     isFullScreen: false,
     attrIndex: 0,
-    musicList:[],
-    isShowPop:false,
-    scrollToView:'',
-    ListPlayOrder:0   //0 循环列表  1顺序播放   2 随机播放    3随机播放
+    musicList: [],
+    isShowPop: false,
+    scrollToView: '',
+    isLove: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-    let id = 1308081110;
-    // let id = options.id;
+  onLoad: function (options) {
+    // let id = 1308081110;
+    let id = options.id;
     this.getSongInfo(id);
     this.getLyric(id);
     this.setData({
-      musicList:app.globalData.musicList
+      musicList: app.globalData.musicList
     })
+    this.queryLoveSong(id)
+
+
+  },
+
+  queryLoveSong(id) {
+    let userInfo = app.globalData.userInfo;
+    let query = new wx.BaaS.Query();
+    query.compare("id","=",id)
+    MyTableObject.setQuery(query).select('love_song').find().then(res => {
+      console.log(res)
+      
+    }, err => {
+      console.log(err)// err
+    });
+
+    if (userInfo) {
+      userInfo.love_song.map(s => {
+        if (id == s.id) {
+          this.setData({
+            isLove: true
+          })
+          return false
+        }
+        this.setData({
+          isLove: false
+        })
+      })
+    }
   },
 
   //上下一曲
   autoNextPlay(event) {
-    let { musicList } = app.globalData;
+    let {
+      musicList
+    } = app.globalData;
     let currentId = this.data.songInfo.id;
     let nextIndex = musicList.findIndex(item => {
       return item.id === currentId;
     })
     let nextItemData;
-    if (event && event.currentTarget.dataset.type==='prev'){
+    if (event && event.currentTarget.dataset.type === 'prev') {
       if (nextIndex === 0) {
-        nextItemData = musicList[musicList.length-1];
+        nextItemData = musicList[musicList.length - 1];
       } else {
         nextItemData = musicList[nextIndex - 1];
       }
-    }else{
+    } else {
       if (nextIndex >= musicList.length - 1) {
         nextItemData = musicList[0];
       } else {
@@ -64,8 +95,56 @@ Page({
     this.NextPlayHandler(nextItemData.id)
   },
 
+  loveHandle() {
+
+    if (app.globalData.userInfo) {
+      let songInfo = this.data.songInfo;
+      let love_songInfo = {
+        id: songInfo.id,
+        name: songInfo.name,
+        picUrl: songInfo.al.picUrl
+      }
+      console.log(love_songInfo);
+      let product = MyTableObject.getWithoutData(app.globalData.userInfo.id);
+      if (this.data.isLove) {
+        console.log('取消收藏')
+      } else {
+
+        product.append("love_song", love_songInfo).update().then(res => {
+          // success
+          console.log(res)
+          if (res.statusCode === 200) {
+            wx.showToast({
+              title: '已收藏',
+            })
+            this.setData({
+              isLove:true
+            })
+          }
+        }, err => {
+          console.log(err)
+          //err 为 HError 对象
+        });
+      }
+    } else {
+      wx.showModal({
+        title: "提示",
+        content: "该功能需要授权登录",
+        confirmText: "去授权",
+        success(res) {
+          if (res.confirm) {
+            wx.switchTab({
+              url: '/pages/my/my',
+            })
+          }
+        }
+      })
+    }
+
+  },
+
   //切歌
-  NextPlayHandler(id){
+  NextPlayHandler(id) {
     app.globalData.song = null;
     this.getSongInfo(id);
     this.getLyric(id);
@@ -81,7 +160,7 @@ Page({
       song = app.globalData.song = wx.getBackgroundAudioManager();
       song.src = url.songUrl + '?id=' + songInfo.id + '.mp3';
       song.play();
-    }else{
+    } else {
       this.setData({
         playStatus: song.paused,
         duration: song.duration,
@@ -95,7 +174,7 @@ Page({
     song.singer = songInfo.ar[0].name;
     song.coverImgUrl = songInfo.al.picUrl
     song.duration = songInfo.dt / 1000;
-    song.webUrl = url.songUrl+ '?id=' + songInfo.id + '.mp3';
+    song.webUrl = url.songUrl + '?id=' + songInfo.id + '.mp3';
 
     song.onTimeUpdate((res) => {
       if (this.data.duration !== song.duration) {
@@ -158,9 +237,9 @@ Page({
     })
     song.onNext(() => {
       this.autoNextPlay({
-        currentTarget:{
-          dataset:{
-            type:'next'
+        currentTarget: {
+          dataset: {
+            type: 'next'
           }
         }
       })
@@ -174,7 +253,7 @@ Page({
         }
       })
     })
-    
+
   },
 
   //时间转换 
@@ -196,9 +275,9 @@ Page({
   },
 
   //点击播放列表
-  clickMusicList(event){
+  clickMusicList(event) {
     let id = event.currentTarget.id.substring(5)
-    if (id !== this.data.songInfo.id){
+    if (id !== this.data.songInfo.id) {
       this.NextPlayHandler(id)
     }
   },
@@ -212,8 +291,10 @@ Page({
 
   // 完成一次进度条拖动后触发的事件
   change(res) {
-    let { song } = app.globalData
-    if(!song) return;
+    let {
+      song
+    } = app.globalData
+    if (!song) return;
     song.seek(res.detail.value);
     this.setData({
       isTouchMove: false,
@@ -224,7 +305,7 @@ Page({
   },
 
   //间奏时的歌词定位
-  interludePosition(time){
+  interludePosition(time) {
     let attrIndex = this.data.lyricArr.findIndex(item => {
       return item.time > this.timeToString(time)
     })
@@ -236,12 +317,12 @@ Page({
       })
     } else {
 
-      if (attrIndex<1){
+      if (attrIndex < 1) {
         this.setData({
           attrIndex,
           currentLrc: this.data.lyricArr[0].time
         })
-      }else{
+      } else {
         this.setData({
           attrIndex,
           currentLrc: this.data.lyricArr[attrIndex - 1].time
@@ -258,13 +339,14 @@ Page({
     let _this = this;
     wx.request({
       url: url.songDetail + '?ids=' + songId,
-      success: function(res) {
+      success: function (res) {
         let data = res.data;
         if (data.code === 200) {
           let songInfo = data.songs[0];
           _this.setData({
             "songInfo": songInfo
           })
+          _this.queryLoveSong(songId)
           wx.setNavigationBarTitle({
             title: songInfo.name
           })
@@ -280,7 +362,7 @@ Page({
     let _this = this;
     wx.request({
       url: url.lyric + '?id=' + id,
-      success: function(res) {
+      success: function (res) {
         let data = res.data;
         if (data.code === 200) {
           let lyric = data.lrc.lyric;
@@ -291,7 +373,7 @@ Page({
   },
 
   // 歌词解析
-  parseLyric: function(lrc) {
+  parseLyric: function (lrc) {
     let lyrics = lrc.split("\n");
     let lrcObj = [];
     let obj = {};
@@ -314,7 +396,7 @@ Page({
             time: timerStr,
             timeStr: time,
             word: clause,
-            id:i
+            id: i
           });
         }
 
@@ -322,7 +404,7 @@ Page({
     }
 
     function compare(property) {
-      return function(obj1, obj2) {
+      return function (obj1, obj2) {
         var value1 = obj1[property];
         var value2 = obj2[property];
         return value1 - value2; // 升序
@@ -333,10 +415,10 @@ Page({
       lyric: obj,
       lyricArr: arrS
     })
-    
-    setTimeout(()=>{
+
+    setTimeout(() => {
       this.interludePosition(this.data.currentTime)
-    },500)
+    }, 500)
   },
 
   //计算歌词要到达的位置
@@ -345,9 +427,9 @@ Page({
     var query = wx.createSelectorQuery()
     query.select('#scrollView').boundingClientRect()
     query.selectViewport().scrollOffset()
-    query.exec(function(res) {
+    query.exec(function (res) {
       // #the-id节点的上边界坐标
-      if(!res[0]) return;
+      if (!res[0]) return;
       if (type && type === 1) {
 
         _this.setData({
@@ -372,61 +454,61 @@ Page({
   },
 
   //显示播放列表按钮
-  listShow(){
+  listShow() {
     this.setData({
       isShowPop: !this.data.isShowPop
     })
     this.setData({
-      scrollToView:"item-"+this.data.songInfo.id
+      scrollToView: "item-" + this.data.songInfo.id
     })
-  }, 
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

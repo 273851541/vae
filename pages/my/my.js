@@ -51,6 +51,8 @@ Page({
         }
       }
     })
+
+
   },
 
   /**
@@ -64,6 +66,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var MyTableObject = new wx.BaaS.TableObject("_userprofile");
+    let query = new wx.BaaS.Query();
+    let id = 178438000657972;
+    query.compare("id","=",id)
+    MyTableObject.setQuery(query).select('love_song').find().then(res => {
+      console.log(res)
+    }, err => {
+      console.log(err)// err
+    });
   },
 
   /**

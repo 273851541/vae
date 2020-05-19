@@ -19,22 +19,38 @@ Page({
       singer: '',
     },
     currentParentSwiperId: 0,
-    currentChildSwiperId:"0",
+    currentChildSwiperId: "0",
     traceDataPage: 1,
-    blogDataPage:0,
+    blogDataPage: 0,
     traceData: [],
     blogData: [],
     swiperStatus: true,
-    Oneheight: 0
+    Oneheight: 0,
+    showPullTop:true
   },
   onLoad: function () {
-    wx.BaaS.auth.loginWithWechat().then(user => {
-      console.log("用户的code:" + user);
-      // 登录成功
-    }, err => {
-      console.log("用户的err:" + err);
-      // 登录失败
-    })
+    if(app.globalData.userInfo){
+      this.setData({
+        showPullTop:false
+      })
+      this.readyHandle();
+      console.log(app.globalData.userInfo)
+    }else{
+      wx.BaaS.auth.loginWithWechat().then(user => {
+        console.log("用户的code:" + user);
+        // 登录成功
+        this.readyHandle();
+      }, err => {
+        wx.showToast({
+          title: "code:"+err.code+" "+err.message
+        })
+      })
+    }
+
+
+  },
+
+  readyHandle() {
     wx.showLoading({
       title: 'LOADING',
       mask: true
@@ -78,9 +94,8 @@ Page({
       });
       InnerAudioContext.src = " "
     })
-
-
   },
+
   musicPlayHandler() {
     if (this.data.playStatus) {
       this.setData({
@@ -108,16 +123,16 @@ Page({
       // success
       console.log(res.data);
       let data = res.data.objects[0]
-      if(res.data.objects.length>0){
+      if (res.data.objects.length > 0) {
         this.setData({
           'content': data.content,
           ['songInfo.songName']: data.songName,
           ['songInfo.singer']: data.singer,
         })
         this.getSearchSong(data.songName);
-      }else{
+      } else {
         wx.showToast({
-          icon:'none',
+          icon: 'none',
           title: '暂无数据',
         })
       }
@@ -125,7 +140,8 @@ Page({
     }, err => {
       // err
     })
-  },  getSearchSong(songName) {
+  },
+  getSearchSong(songName) {
     let _this = this;
     wx.request({
       url: url.search + '?keywords=' + songName + '&limit=5',
@@ -173,16 +189,17 @@ Page({
           })
           wx.hideLoading()
         }
-      },fail() {
+      },
+      fail() {
         wx.showToast({
           title: '请求失败',
-          icon:'none'
+          icon: 'none'
         })
       }
     })
   },
   getTraceData(page) {
-    if(page==1){
+    if (page == 1) {
       wx.showLoading({
         title: 'LOADING',
         mask: true
@@ -191,26 +208,28 @@ Page({
     let _this = this;
     wx.request({
       url: url.traceList + '?pageSize=20&page=' + page,
-      success({ data }) {
+      success({
+        data
+      }) {
         if (data.state) {
           if (data.result.activityInfo.length > 0) {
             let traceData = _this.data.traceData;
             let activityInfo = data.result.activityInfo;
-            activityInfo.map(s=>{
-              if(_this.dateDiff(s.startTime)>0){
+            activityInfo.map(s => {
+              if (_this.dateDiff(s.startTime) > 0) {
                 s.dateDiff = true
-              }else{
+              } else {
                 s.dateDiff = false
               }
             })
 
             traceData.push(...data.result.activityInfo);
-            page = page +1
+            page = page + 1
             _this.setData({
               traceDataPage: page,
               traceData: traceData
             })
-          }else{   
+          } else {
             _this.setData({
               traceDataPage: 0
             })
@@ -221,13 +240,13 @@ Page({
       fail() {
         wx.showToast({
           title: '请求失败',
-          icon:'none'
+          icon: 'none'
         })
       }
     })
   },
-  getBlogData(page){
-    if(page==0){
+  getBlogData(page) {
+    if (page == 0) {
       wx.showLoading({
         title: 'LOADING',
         mask: true
@@ -235,10 +254,10 @@ Page({
     }
     let tableId = 99412;
     let MyTableObject = new wx.BaaS.TableObject(tableId);
-    let offset = page*10;
+    let offset = page * 10;
     MyTableObject.limit(30).offset(offset).find().then(res => {
       // success
-      console.log("博客",res.data);
+      console.log("博客", res.data);
       let data = res.data.objects
 
       if (data.length > 0) {
@@ -249,7 +268,7 @@ Page({
           blogDataPage: page,
           blogData: blogData
         })
-      }else{
+      } else {
         this.setData({
           blogDataPage: -1
         })
@@ -261,32 +280,32 @@ Page({
     })
   },
 
-  toTraceContont(e){
+  toTraceContont(e) {
     let id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: '../traceContont/traceContont?id=' + id,
     })
   },
 
-  toBlogContont(e){
+  toBlogContont(e) {
     let id = e.currentTarget.dataset.id;
     let name = e.currentTarget.dataset.name;
     wx.navigateTo({
-      url: '../blogContont/blogContont?id=' + id+"&name=" + name,
+      url: '../blogContont/blogContont?id=' + id + "&name=" + name,
     })
   },
 
-  parentSwiperChange(e){
+  parentSwiperChange(e) {
     let current = e.detail.current;
-    if (current == 1 && this.data.blogData.length === 0) {
+    if (current == 1 && this.data.traceData.length === 0) {
       this.getTraceData(this.data.traceDataPage);
     }
     this.setData({
-      currentParentSwiperId:current
+      currentParentSwiperId: current
     })
   },
 
-  dateDiff: function(sDate2) {
+  dateDiff: function (sDate2) {
     let strSeparator = "-";
     let strDateArrayStart;
     let strDateArrayEnd;
@@ -308,12 +327,12 @@ Page({
     intDay = (strDateE - strDateS) / (1000 * 3600 * 24);
     return intDay;
   },
-  currentTime: function() {
+  currentTime: function () {
     let now = new Date();
 
     let year = now.getFullYear();
     let month = now.getMonth() + 1;
-    let day = now.getDate(); 
+    let day = now.getDate();
 
     let clock = year + "-";
 
@@ -346,7 +365,7 @@ Page({
     let query = wx.createSelectorQuery();
     //选择id
     let that = this;
-    let One, pulltopstyle,operaBox;
+    let One, pulltopstyle, operaBox;
     query.select('.title').boundingClientRect(function (rect) {
       One = rect.height;
     }).exec();
@@ -358,7 +377,7 @@ Page({
     }).exec();
     query.select('.swiperClass').boundingClientRect(function (res) {
       that.setData({
-        Oneheight: (res.height - One - pulltopstyle - operaBox - 25 ) + 'px'
+        Oneheight: (res.height - One - pulltopstyle - operaBox - 25) + 'px'
       })
     }).exec();
   },
@@ -375,12 +394,12 @@ Page({
   },
 
   scrollTolower(e) {
-    if(this.data.currentChildSwiperId==0){
+    if (this.data.currentChildSwiperId == 0) {
       if (this.data.traceDataPage === 0) {
         return false;
       }
       this.getTraceData(this.data.traceDataPage)
-    }else if(this.data.currentChildSwiperId==1){
+    } else if (this.data.currentChildSwiperId == 1) {
       if (this.data.blogDataPage === -1) {
         return false;
       }
@@ -388,8 +407,8 @@ Page({
     }
   },
   /**
- * 生命周期函数--监听页面初次渲染完成
- */
+   * 生命周期函数--监听页面初次渲染完成
+   */
   onReady: function () {
     console.log('onReady')
   },

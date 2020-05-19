@@ -77,6 +77,10 @@
 }
 
 
+.hide{
+  display: none
+}
+
 
 swiper,swiper-item{
   height:100vh !important;
@@ -85,7 +89,7 @@ swiper,swiper-item{
 .pulltopstyle{
   font-size: 28rpx;
   text-align: center;
-  color: #999;
+  color: #ccc;
 }
 
 
