@@ -34,10 +34,8 @@ Page({
         showPullTop:false
       })
       this.readyHandle();
-      console.log(app.globalData.userInfo)
     }else{
       wx.BaaS.auth.loginWithWechat().then(user => {
-        console.log("用户的code:" + user);
         // 登录成功
         this.readyHandle();
       }, err => {

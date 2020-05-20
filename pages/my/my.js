@@ -1,5 +1,6 @@
 // pages/my/my.js
-const app = getApp()
+const app = getApp();
+var MyTableObject = new wx.BaaS.TableObject("_userprofile");
 Page({
 
   /**
@@ -13,7 +14,8 @@ Page({
     let _this = this;
     wx.BaaS.auth.loginWithWechat(e).then(user => {
       // user 包含用户完整信息，详见下方描述
-      app.globalData.userInfo = user
+      this.queryUserInfo(user.id)
+
       wx.setStorage({
         data: user,
         key: 'userInfo',
@@ -36,6 +38,12 @@ Page({
     })
   },
 
+  toLoveList(){
+    wx.navigateTo({
+      url: '../loveList/loveList',
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -51,8 +59,17 @@ Page({
         }
       }
     })
+  },
 
-
+  queryUserInfo(id){
+    let query = new wx.BaaS.Query();
+    query.compare("id","=",id)
+    MyTableObject.setQuery(query).find().then(res => {
+      console.log(res)
+      app.globalData.userInfo = res.data.objects[0]
+    }, err => {
+      console.log(err)// err
+    });
   },
 
   /**
@@ -66,15 +83,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var MyTableObject = new wx.BaaS.TableObject("_userprofile");
-    let query = new wx.BaaS.Query();
-    let id = 178438000657972;
-    query.compare("id","=",id)
-    MyTableObject.setQuery(query).select('love_song').find().then(res => {
-      console.log(res)
-    }, err => {
-      console.log(err)// err
-    });
+
   },
 
   /**

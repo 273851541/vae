@@ -34,37 +34,26 @@ Page({
     // let id = 1308081110;
     let id = options.id;
     this.getSongInfo(id);
-    this.getLyric(id);
     this.setData({
       musicList: app.globalData.musicList
     })
     this.queryLoveSong(id)
-
+    console.log("globalData",app.globalData)
 
   },
 
   queryLoveSong(id) {
     let userInfo = app.globalData.userInfo;
-    let query = new wx.BaaS.Query();
-    query.compare("id","=",id)
-    MyTableObject.setQuery(query).select('love_song').find().then(res => {
-      console.log(res)
-      
-    }, err => {
-      console.log(err)// err
-    });
-
     if (userInfo) {
+      this.setData({
+        isLove: false
+      })
       userInfo.love_song.map(s => {
         if (id == s.id) {
           this.setData({
             isLove: true
           })
-          return false
         }
-        this.setData({
-          isLove: false
-        })
       })
     }
   },
@@ -96,18 +85,39 @@ Page({
   },
 
   loveHandle() {
-
-    if (app.globalData.userInfo) {
+    let userInfo = app.globalData.userInfo
+    if (userInfo) {
+      let userId = userInfo.id
       let songInfo = this.data.songInfo;
+      let love_song = userInfo.love_song
+      let product = MyTableObject.getWithoutData(userId);
       let love_songInfo = {
         id: songInfo.id,
         name: songInfo.name,
-        picUrl: songInfo.al.picUrl
+        picUrl: songInfo.al.picUrl,
+        epname: songInfo.al.name,
+        singer: songInfo.ar[0].name,
+        duration:songInfo.dt,
+        webUrl:url.songUrl + '?id=' + songInfo.id + '.mp3'
       }
-      console.log(love_songInfo);
-      let product = MyTableObject.getWithoutData(app.globalData.userInfo.id);
       if (this.data.isLove) {
-        console.log('取消收藏')
+        
+        product.remove("love_song", love_songInfo).update().then(res => {
+          // success
+          console.log(res)
+          if (res.statusCode === 200) {
+            wx.showToast({
+              title: '取消收藏',
+            })
+            this.setData({
+              isLove: false
+            })
+            app.globalData.userInfo = res.data
+          }
+        }, err => {
+          console.log(err)
+          //err 为 HError 对象
+        });
       } else {
 
         product.append("love_song", love_songInfo).update().then(res => {
@@ -118,8 +128,9 @@ Page({
               title: '已收藏',
             })
             this.setData({
-              isLove:true
+              isLove: true
             })
+            app.globalData.userInfo = res.data
           }
         }, err => {
           console.log(err)
@@ -147,7 +158,6 @@ Page({
   NextPlayHandler(id) {
     app.globalData.song = null;
     this.getSongInfo(id);
-    this.getLyric(id);
   },
 
 
@@ -336,6 +346,10 @@ Page({
 
   // 获取歌曲信息
   getSongInfo(songId) {
+    wx.showLoading({
+      title: 'LOADING',
+      mask:true
+    })
     let _this = this;
     wx.request({
       url: url.songDetail + '?ids=' + songId,
@@ -351,6 +365,7 @@ Page({
             title: songInfo.name
           })
           _this.backgroundAudioManagerHandler(songInfo)
+          _this.getLyric(songId);
           wx.hideLoading()
         }
       }
@@ -367,6 +382,7 @@ Page({
         if (data.code === 200) {
           let lyric = data.lrc.lyric;
           _this.parseLyric(lyric)
+          wx.hideLoading()
         }
       }
     })

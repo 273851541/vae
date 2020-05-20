@@ -1,0 +1,10 @@
+<!--pages/loveList/loveList.wxml-->
+<view class="container">
+	<view wx:for="{{love_song}}" wx:key="index" class='musicItem' bindtap='toPlayerView' data-id='{{item.id}}' data-type='itemBtn'>
+		<view class='musicItem_container'>
+			<image src='{{item.picUrl+"?param=80y80"}}' wx:if="{{love_song}}" lazy-load="{{true}}"></image>
+			<text>{{item.name}}</text>
+		</view>
+		<image src='/utils/src/current.png' wx:if="{{item.id==currentId}}" class='currentIcon'></image>
+	</view>
+</view>

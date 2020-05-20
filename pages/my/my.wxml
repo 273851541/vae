@@ -7,6 +7,9 @@
 		</button>
 	</view>
 	<view class='box' style="padding-top: 0; padding-bottom: 0;">
+		<van-cell title='收藏' label="你喜欢的都在这里" bindtap="toLoveList" custom-class='customStyle' label-class='labelStyle' is-link>
+			<image slot='icon' class="feedBackIMG" src='../../utils/src/love.png'></image>
+		</van-cell>
 		<van-cell title='打赏' label="如果你觉得酷的话,就请我喝瓶可乐吧!" bindtap="previewImage" custom-class='customStyle' label-class='labelStyle' is-link>
 			<image slot='icon' class="feedBackIMG" src='../../utils/src/musang.png'></image>
 		</van-cell>

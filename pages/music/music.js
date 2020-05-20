@@ -174,10 +174,10 @@ Page({
     song.src = url.songUrl + '?id=' + songInfo.id + '.mp3';
     song.play();
     song.title = songInfo.name;
-    song.epname = songInfo.al.name;
-    song.singer = songInfo.ar[0].name;
-    song.coverImgUrl = songInfo.al.picUrl
-    song.duration = songInfo.dt / 1000;
+    song.epname = songInfo.al.name||songInfo.epname;
+    song.singer = songInfo.ar[0].name||songInfo.singer;
+    song.coverImgUrl = songInfo.al.picUrl || songInfo.picUrl
+    song.duration = (songInfo.dt||songInfo.duration) / 1000;
     song.webUrl = url.songUrl + '?id=' + songInfo.id + '.mp3';
     this.setData({
       currentId: songInfo.id,
