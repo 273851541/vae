@@ -1,3 +1,5 @@
+import url from './utils/baseUrl.js'
+
 App({
   onLaunch: function () {
     wx.BaaS = requirePlugin('sdkPlugin')
@@ -12,14 +14,16 @@ App({
 
     wx.BaaS.auth.loginWithWechat().then(user => {
       // 登录成功
-      if(user.id&&user.nickname){
-        this.queryUserInfo(user.id)
-      }
+      // if(user.id&&user.nickname){
+      //   this.queryUserInfo(user.id)
+      // }
     }, err => {
       wx.showToast({
         title: "code:"+err.code+" "+err.message
       })
     })
+
+    let _this = this;
 
   },
 

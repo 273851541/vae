@@ -26,25 +26,30 @@ Page({
     blogData: [],
     swiperStatus: true,
     Oneheight: 0,
-    showPullTop:true
+    showPullTop: true
   },
   onLoad: function () {
-    if(app.globalData.userInfo){
-      this.setData({
-        showPullTop:false
-      })
+    let _this = this;
+    wx.getStorage({
+      key: 'userInfo',
+      success({
+        data
+      }) {
+        if (data && data.nickname) {
+          _this.setData({
+            showPullTop: false
+          })
+        }
+      }
+    })
+    wx.BaaS.auth.loginWithWechat().then(user => {
+      // 登录成功
       this.readyHandle();
-    }else{
-      wx.BaaS.auth.loginWithWechat().then(user => {
-        // 登录成功
-        this.readyHandle();
-      }, err => {
-        wx.showToast({
-          title: "code:"+err.code+" "+err.message
-        })
+    }, err => {
+      wx.showToast({
+        title: "code:" + err.code + " " + err.message
       })
-    }
-
+    })
 
   },
 
@@ -127,7 +132,7 @@ Page({
           ['songInfo.songName']: data.songName,
           ['songInfo.singer']: data.singer,
         })
-        this.getSearchSong(data.songName);
+        this.getSongUrl(data.songId);
       } else {
         wx.showToast({
           icon: 'none',
@@ -139,38 +144,11 @@ Page({
       // err
     })
   },
-  getSearchSong(songName) {
-    let _this = this;
-    wx.request({
-      url: url.search + '?keywords=' + songName + '&limit=5',
-      success: function (res) {
-        let data = res.data;
-        if (data.code === 200) {
-          let songs = data.result.songs;
-          let songId;
-          console.log(songs);
-          for (let i in songs) {
-            if (songs[i].artists[0].name === '许嵩' || songs[i].artists[0].name === 'Vae' || songs[i].artists[0].name === 'vae' || songs[i].artists[0].name === 'VAE' || songs[i].artists[0].name === 'V') {
-              songId = songs[i].id;
-              _this.setData({
-                'songUrl': url.songUrl + '?id=' + songId + '.mp3'
-              })
-              // InnerAudioContext.title = songs[i].name;
-              // InnerAudioContext.epname = songs[i].album.name;
-              // InnerAudioContext.singer = songs[i].artists[0].name;
-              // InnerAudioContext.duration = songs[i].duration / 1000;
-              // InnerAudioContext.webUrl = url.songUrl+'?id=' + songId + '.mp3';
-
-              _this.setData({
-                ["songInfo.singer"]: songs[i].artists[0].name,
-                ["songInfo.songName"]: songs[i].name
-              });
-              _this.getSongInfo(songId);
-            }
-          }
-        }
-      }
+  getSongUrl(songId) {
+    this.setData({
+      'songUrl': url.songUrl + '?id=' + songId + '.mp3'
     })
+    this.getSongInfo(songId)
   },
   getSongInfo(songId) {
     let _this = this;
@@ -375,7 +353,7 @@ Page({
     }).exec();
     query.select('.swiperClass').boundingClientRect(function (res) {
       that.setData({
-        Oneheight: (res.height - One - pulltopstyle - operaBox - 25) + 'px'
+        Oneheight: (res.height - One - (that.data.showPullTop?pulltopstyle:0) - operaBox - 30) + 'px'
       })
     }).exec();
   },
@@ -408,7 +386,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    console.log('onReady')
+
   },
 
   /**

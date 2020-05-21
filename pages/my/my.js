@@ -32,9 +32,13 @@ Page({
   },
 
   previewImage: function (e) {
-    wx.navigateToMiniProgram({
-      appId: 'wx18a2ac992306a5a4',
-      path: 'pages/apps/largess/detail?id=vZZA23c9Dd%2BgPc1CLmE7uw%3D%3D'
+    // wx.navigateToMiniProgram({
+    //   appId: 'wx18a2ac992306a5a4',
+    //   path: 'pages/apps/largess/detail?id=vZZA23c9Dd%2BgPc1CLmE7uw%3D%3D'
+    // })
+
+    wx.navigateTo({
+      url: '../admire/admire',
     })
   },
 

@@ -1,0 +1,12 @@
+/* pages/admire/admire.wxss */
+@import "../my/my.wxss";
+
+
+image{
+  width: 300rpx;
+  height: 340rpx;
+}
+
+text{
+  font-size: 27rpx;
+}

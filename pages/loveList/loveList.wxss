@@ -1,16 +1,3 @@
 /* pages/loveList/loveList.wxss */
 
 @import "../music/music.wxss";
-
-.currentIcon{
-  width:30rpx;
-  height:30rpx;
-  margin-right:10rpx;
-}
-
-.musicItem {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}

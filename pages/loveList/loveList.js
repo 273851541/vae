@@ -152,11 +152,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    // let userInfo = app.globalData.userInfo;
-    // if(userInfo.id&&userInfo.nickname){
-    this.queryUserInfo("178438000657972")
-    // }
+  onLoad: function () {
   },
 
   /**
@@ -169,12 +165,12 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-     // let userInfo = app.globalData.userInfo;
-    // if(userInfo.id&&userInfo.nickname){
-      this.queryUserInfo("178438000657972")
-      // }
-    this.playStatus();
+  onShow: function (options) {
+    let userInfo = app.globalData.userInfo;
+    if (userInfo&& userInfo.nickname) {
+      this.queryUserInfo(userInfo.id)
+      this.playStatus();
+    }
   },
 
   /**

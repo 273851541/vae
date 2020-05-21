@@ -1,0 +1,11 @@
+<!--pages/admire/admire.wxml-->
+<view class="container">
+  <view class='box'>
+		<text>感谢你能来到这里，对于你的支持我表示最真挚的感谢。</text>
+		<text>夏天到了，可以请我喝瓶可乐嘛！</text>
+		<text>点击下图,然后长按图片选择“识别图中二维码”</text>
+    <view style="text-align:center">
+      <image src="../../utils/src/QRCode.jpg" mode='aspectFit' bindtap="previewImage" show-menu-by-longpress="{{true}}"></image>
+    </view>
+	</view>
+</view>

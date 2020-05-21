@@ -13,7 +13,9 @@ let url = {
   search: baseUrl +'/search',
   relatedVideo: baseUrl +'/related/allvideo',
   traceList:'https://xusong.taihe.com/api/NEWS/getCalendarList.json',
-  traceContentList:'https://xusong.taihe.com/api/NEWS/getActivityDetail.json'
+  traceContentList:'https://xusong.taihe.com/api/NEWS/getActivityDetail.json',
+  loginStatus:baseUrl+"/login/status",
+  login:baseUrl+"/login"
 }
 
 export default url

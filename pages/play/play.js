@@ -100,9 +100,16 @@ Page({
         duration:songInfo.dt,
         webUrl:url.songUrl + '?id=' + songInfo.id + '.mp3'
       }
+
+      love_song.map((s,index,arr)=>{
+        if(s.id==songInfo.id){
+          arr.splice(index,1)
+        }
+      })
+
       if (this.data.isLove) {
         
-        product.remove("love_song", love_songInfo).update().then(res => {
+        product.set("love_song", love_song).update().then(res => {
           // success
           console.log(res)
           if (res.statusCode === 200) {

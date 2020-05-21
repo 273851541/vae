@@ -1,7 +1,6 @@
 import url from '../../utils/baseUrl.js'
 const backgroundAudioManager = wx.getBackgroundAudioManager();
 var app = getApp();
-
 Page({
 
   /**

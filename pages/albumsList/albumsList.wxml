@@ -1,47 +1,52 @@
 <wxs module='foo'>
-  module.exports = {
-    toString: function(dateStr) {
-      var date = getDate(dateStr);
-      var Month = date.getMonth() + 1;
-      var Day = date.getDate();
-      var Y = date.getFullYear() + '-';
-      var M = Month < 10 ? '0' + Month + '-' : Month + '-';
-      var D = Day + 1 < 10 ? '0' + Day : Day;
-      return Y + M + D;
-    }
-  }
+	module.exports = {
+		toString: function(dateStr) {
+			var date = getDate(dateStr);
+			var Month = date.getMonth() + 1;
+			var Day = date.getDate();
+			var Y = date.getFullYear() + '-';
+			var M = Month < 10 ? '0' + Month + '-' : Month + '-';
+			var D = Day + 1 < 10 ? '0' + Day : Day;
+			return Y + M + D;
+		}
+	}
 </wxs>
-
 <view class="container">
-  <view class='EPBanner'>
-    <view class='bg_color' style='background:url({{albumsDetails.picUrl}})  no-repeat center center;background-size:cover;'></view>
-    <view class='EPInfo'>
-      <view class='imgBox'>
-        <image src='{{albumsDetails.picUrl}}' class='imgs'></image>
-        <image src='../../utils/src/albums.png' class='imgs_other'></image>
-      </view>
-      <view class='EPContent'>
-        <view>
-          <text style='font-size:30rpx;font-weight:bold;color:rgba(255,255,255,1);margin-bottom:5rpx;'>{{albumsDetails.name}}{{(albumsDetails.alias[0])}}</text>
-          <text>{{albumsDetails.artist.name}}</text>
-        </view>
-        <view>
-          <text>发行时间:{{foo.toString(albumsDetails.publishTime)}}</text>
-          <view class="EPdetail" bindtap="isShowEPDetailHandle">
-            <text>专辑详情:{{albumsDetails.description}}</text>
-            <image src="../../utils/src/right.png"></image>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view>
-  <view style='position:relative;z-index:100;background:#fff;height:100%;'>
-    <view wx:for="{{albumsInfo}}" wx:key="index" class='musicItem' bindtap='toPlayerView' data-id='{{item.id}}' data-type='itemBtn'>
-      <view class='musicItem_container'>
-        <text style='margin-right:30rpx;'>{{index+1}}</text>
-        <text>{{item.name}}</text>
-      </view>
-    </view>
-  </view>
-  <van-popup show="{{ isShowEPDetail }}" custom-class='popupClass' position='bottom' round='true' bind:close="onClose" close-icon="close" closeable>{{albumsDetails.description}}</van-popup>
+	<view class='EPBanner'>
+		<view class='bg_color' style='background:url({{albumsDetails.picUrl+"?param=400y400"}})  no-repeat center center;background-size:cover;'></view>
+		<view class='EPInfo'>
+			<view class='imgBox'>
+				<image src='{{albumsDetails.picUrl+"?param=400y400"}}' class='imgs'></image>
+				<image src='../../utils/src/albums.png' class='imgs_other'></image>
+			</view>
+			<view class='EPContent'>
+				<view>
+					<text style='font-size:30rpx;font-weight:bold;color:rgba(255,255,255,1);margin-bottom:5rpx;'>{{albumsDetails.name}}{{(albumsDetails.alias[0])}}</text>
+					<text>{{albumsDetails.artist.name}}</text>
+				</view>
+				<view>
+					<text>发行时间:{{foo.toString(albumsDetails.publishTime)}}</text>
+					<view class="EPdetail" bindtap="isShowEPDetailHandle">
+						<text>专辑详情:{{albumsDetails.description}}</text>
+						<image src="../../utils/src/right.png"></image>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view style='position:relative;z-index:100;background:#fff;height:100%;'>
+		<view wx:for="{{albumsInfo}}" wx:key="index" class='musicItem' bindtap='toPlayerView' data-id='{{item.id}}' data-type='itemBtn'>
+			<view class='musicItem_container'>
+				<text style='margin-right:20rpx;'>{{index+1}}</text>
+				<text>{{item.name}}</text>
+			</view>
+		</view>
+	</view>
+	<van-popup show="{{ isShowEPDetail }}" custom-class='popupClass' position='bottom' round='true' bind:close="onClose" close-icon="close" closeable>
+		<view>发行公司:{{albumsDetails.company}}</view>
+		<view>专辑类别:{{albumsDetails.subType}}\n</view>
+		<text>
+      {{albumsDetails.description}}
+    </text>
+	</van-popup>
 </view>
