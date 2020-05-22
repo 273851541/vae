@@ -52,7 +52,7 @@
       },
       {
         "pagePath": "pages/my/my",
-        "text": "关于",
+        "text": "我的",
         "iconPath": "utils/src/my.png",
         "selectedIconPath": "utils/src/my_select.png"
       }

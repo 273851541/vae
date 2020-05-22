@@ -21,6 +21,7 @@ Page({
     let query = new wx.BaaS.Query();
     query.compare("id", "=", id)
     MyTableObject.setQuery(query).find().then(res => {
+      console.log(res)
       this.setData({
         love_song: res.data.objects[0].love_song
       })

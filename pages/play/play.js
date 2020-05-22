@@ -112,9 +112,9 @@ Page({
         product.set("love_song", love_song).update().then(res => {
           // success
           console.log(res)
-          if (res.statusCode === 200) {
+          if (res.statusCode === 200) { 
             wx.showToast({
-              title: '取消收藏',
+              title: '取消喜欢',
             })
             this.setData({
               isLove: false
@@ -132,7 +132,7 @@ Page({
           console.log(res)
           if (res.statusCode === 200) {
             wx.showToast({
-              title: '已收藏',
+              title: '已喜欢',
             })
             this.setData({
               isLove: true

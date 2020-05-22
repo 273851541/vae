@@ -42,12 +42,14 @@
   line-height: 60rpx;
 }
 
-.titleStyle,.labelStyle{
+.titleStyle,
+.labelStyle {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.customStyle{
+
+.customStyle {
   align-items: center;
 }
 
@@ -77,34 +79,42 @@
 }
 
 
-.hide{
+.hide {
   display: none
 }
 
 
-swiper,swiper-item{
-  height:100vh !important;
+swiper,
+swiper-item {
+  height: 100vh !important;
 }
 
-.pulltopstyle{
+.pulltopstyle {
   font-size: 28rpx;
   text-align: center;
   color: #ccc;
 }
 
 
-.operaBox{
+.operaBox {
   padding: 0 30rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
 }
 
-.musicPlayer{
+.musicPlayer {
   position: relative !important;
   bottom: 0 !important;
   top: 0 !important;
   right: 0 !important;
 }
 
-.music_image,.musicPlayer,.musicBtn{
+.music_image,
+.musicPlayer,
+.musicBtn {
   width: 80rpx !important;
   height: 80rpx !important;
 }
@@ -112,6 +122,65 @@ swiper,swiper-item{
 .musicBtn_img {
   width: 30rpx !important;
   height: 30rpx !important;
+}
+
+.loveStyle {
+  width: 65rpx;
+  height: 65rpx;
+  display: flex;
+  margin-left: 20rpx;
+}
+
+.operaToolBox {
+  display: flex;
+}
+
+.shareBoxStyle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  padding-top: 30rpx;
+}
+
+.shareBoxItemStyle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 25rpx;
+  position: relative;
+}
+
+.shareBoxItemStyle image {
+  width: 90rpx;
+  height: 90rpx;
+  margin-bottom: 20rpx;
+}
+
+.shareBoxStyle button {
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  border-radius: none;
+  background: none;
+  width: 100rpx;
+  height: 150rpx;
+  position: absolute;
+
+}
+
+/* #poster {
+  width: 100rpx;
+  height: 150rpx;
+  position: absolute;
+
+} */
+
+.shareBoxStyle button:after {
+  border: none;
 }
 
 @keyframes dotBricks {
@@ -167,6 +236,3 @@ swiper,swiper-item{
     box-shadow: 9991px -16px 0 0 #6ca5fe, 9991px 0 0 0 #6ca5fe, 10007px 0 0 0 #6ca5fe;
   }
 }
-
-
-

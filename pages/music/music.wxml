@@ -5,7 +5,7 @@
 	</view>
 	<swiper style='height:100%;overflow:hidden;position:relative' current="{{currentSwiperId}}" bindchange='bindchange'>
 		<swiper-item style='overflow-y:scroll'>
-			<scroll-view scroll-y="true" style="height:100%" scroll-with-animation="true" bindscroll="scroll" scroll-top="{{backTopNum}}" enable-back-to-top id='scrollView'>
+			<scroll-view scroll-y="true" style="height:100%" scroll-with-animation="true" enable-back-to-top id='scrollView'>
 				<view wx:for="{{playList}}" wx:key="index" class='musicItem' bindtap='toPlayerView' data-id='{{item.id}}' data-type='itemBtn'>
 					<view class='musicItem_container'>
 						<image src='{{item.al.picUrl+"?param=80y80"}}' wx:if="{{playList}}" lazy-load="{{true}}"></image>

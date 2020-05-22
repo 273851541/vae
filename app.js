@@ -14,16 +14,22 @@ App({
 
     wx.BaaS.auth.loginWithWechat().then(user => {
       // 登录成功
-      // if(user.id&&user.nickname){
-      //   this.queryUserInfo(user.id)
-      // }
+      let _this = this;
+      wx.getStorage({
+        key: 'userInfo',
+        success({ data }) {
+          if (data) {
+            if(user.id&&user.nickname){
+              _this.queryUserInfo(user.id)
+            }
+          }
+        }
+      })
     }, err => {
       wx.showToast({
         title: "code:"+err.code+" "+err.message
       })
     })
-
-    let _this = this;
 
   },
 
@@ -34,12 +40,6 @@ App({
     var MyTableObject = new wx.BaaS.TableObject("_userprofile");
     MyTableObject.setQuery(query).find().then(res => {
       this.globalData.userInfo = res.data.objects[0]
-      wx.setStorage({
-        data: res.data.objects[0],
-        key: 'userInfo',
-        success() {
-        }
-      })
     }, err => {
       console.log(err)// err
     });
