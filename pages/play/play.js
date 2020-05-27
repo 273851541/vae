@@ -94,7 +94,7 @@ Page({
       let love_songInfo = {
         id: songInfo.id,
         name: songInfo.name,
-        picUrl: songInfo.al.picUrl,
+        picUrl: songInfo.al.picUrl+"?param=400y400",
         epname: songInfo.al.name,
         singer: songInfo.ar[0].name,
         duration:songInfo.dt,

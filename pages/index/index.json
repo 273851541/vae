@@ -3,8 +3,8 @@
   "usingComponents": {
     "van-cell": "../../dist/cell/index",
     "van-tag": "../../dist/tag/index",
-    "poster": "../../utils/wxa-plugin-canvas/poster",
     "van-popup": "../../dist/popup/index",
-    "van-image": "../../dist/image/index"
+    "van-image": "../../dist/image/index",
+    "poster": "plugin://poster/poster"
   }
 }

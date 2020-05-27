@@ -4,7 +4,7 @@
 			<view class='title' style='margin:auto 30rpx;text-align:left'>Today</view>
 			<view class='box One' style="height:{{Oneheight}}">
 				<view class='banner'>
-					<image src="{{songInfo.imgUrl}}"></image>
+					<image src="{{songInfo.imgUrl}}" mode="aspectFill"></image>
 				</view>
 				<view class='content'>
 					<text class='today_text' style="margin-bottom: 50rpx;">{{content}}</text>
@@ -21,13 +21,10 @@
 				</view>
 				<view class="operaToolBox">
 					<view class="today_love_Box">
-						<image src="../../utils/src/today_love1.png" class="loveStyle"></image>
-						<!-- <image src="../../utils/src/today_love2.png" class="loveStyle"></image> -->
+						<image src="../../utils/src/today_love2.png" class="loveStyle"></image>
 					</view>
 					<view class="today_love_Box" bindtap="popupShowHandle">
-						<!-- <poster id="poster" config="{{posterConfig}}" bind:success="onPosterSuccess" bind:fail="onPosterFail"> -->
 						<image src="../../utils/src/share_today.png" class="loveStyle"></image>
-						<!-- </poster> -->
 					</view>
 				</view>
 			</view>
@@ -38,20 +35,21 @@
 						<image src="../../utils/src/wechat.png"></image>
 						<text>分享给好友</text>
 					</view>
-					<poster id="poster" config="{{posterConfig}}" bind:success="onPosterSuccess" bind:fail="onPosterFail">
+					<view bindtap="onPostersss">
 						<view class="shareBoxItemStyle">
 							<image src="../../utils/src/friend.png"></image>
 							<text>生成分享海报</text>
 						</view>
-					</poster>
+					</view>
 				</view>
 			</van-popup>
-			<van-popup show="{{ posterShow }}" z-index="1000" closeable close-icon="close" position="bottom" custom-style="height: 70%" close-on-click-overlay bind:close="onClose">
-				<view>
-					<image src="{{posterImage}}"></image>
+			<van-popup show="{{ posterShow }}" z-index="1000" closeable close-icon="close" position="bottom" hide-loading="{{true}}"  custom-style="height: 70%" close-on-click-overlay bind:close="onClose">
+				<view style="text-align: center;background: #eee;height: 100%;">
+					<image src="{{posterImage}}" style="width: 50%;height: 600rpx;"></image>
 				</view>
 			</van-popup>
 			<view class='pulltopstyle {{showPullTop?"":"hide"}}'>下面还有更多内容奥~~~</view>
+			<poster id="poster" config="{{posterConfig}}" bind:success="onPosterSuccess" bind:fail="onPosterFail"></poster>
 		</swiper-item>
 		<swiper-item>
 			<view class='title'>

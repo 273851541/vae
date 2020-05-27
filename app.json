@@ -22,6 +22,10 @@
     "sdkPlugin": {
       "version": "3.9.0",
       "provider": "wxc6b86e382a1e3294"
+    },
+    "poster": {
+      "version": "1.0.4",
+      "provider": "wx39b27487b6a29fcf"
     }
   },
   "requiredBackgroundModes": [

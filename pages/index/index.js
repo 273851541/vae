@@ -4,7 +4,39 @@ const app = getApp()
 const InnerAudioContext = wx.createInnerAudioContext();
 const baseUrl = 'http://118.24.128.24:3000';
 import url from '../../utils/baseUrl.js';
-var BaaS_query = new wx.BaaS.Query()
+var BaaS_query = new wx.BaaS.Query();
+var Poster = requirePlugin('poster');
+
+
+var songName = {
+  text: '',
+  x: 360,
+  y: 0,
+  fontSize: 24,
+  color: '#5e5e5e',
+  opacity: 1,
+  lineHeight: 60,
+  lineNum: 1,
+  width: 360,
+  baseLine: 'middle',
+  textAlign: 'center',
+};
+
+var titileText = {
+  text: '长按识别进入小程序',
+  x: 300,
+  y: 0,
+  fontSize: 24,
+  color: '#a8a8a8',
+  opacity: 1,
+  lineHeight: 60,
+  lineNum: 1,
+  width: 360,
+  baseLine: 'middle',
+  textAlign: 'center',
+  'zIndex': 3
+};
+
 Page({
   data: {
     calendarsList: [],
@@ -12,7 +44,7 @@ Page({
     playStatus: false,
     playImg: '../../utils/src/play.png',
     songUrl: '',
-    content: '',
+    content: '你在北方某城 很偶尔下雨\n我在天南海北 很偶尔想你\n写不来十八九岁煽情字句\n孤单喂饱了理性。',
     songInfo: {
       imgUrl: '',
       songName: '',
@@ -28,132 +60,70 @@ Page({
     Oneheight: 0,
     showPullTop: true,
     posterShow: false,
-    popupShow:true,
-    posterImage:"",
+    popupShow: false,
+    posterImage: "",
     posterConfig: {
-      width: 550,
-      height: 1000,
+      width: 720,
+      height: 1080,
       backgroundColor: '#fff',
       debug: false,
-      // blocks: [{
-      //   x: 0,
-      //   y: 10,
-      //   width: 750, // 如果内部有文字，由文字宽度和内边距决定
-      //   height: 120,
-      //   paddingLeft: 0,
-      //   paddingRight: 0,
-      //   borderWidth: 10,
-      //   borderColor: 'red',
-      //   backgroundColor: 'blue',
-      //   borderRadius: 40,
-      //   text: {
-      //     text: [{
-      //         text: '金额¥ 1.00',
-      //         fontSize: 80,
-      //         color: 'yellow',
-      //         opacity: 1,
-      //         marginLeft: 50,
-      //         marginRight: 10,
-      //       },
-      //       {
-      //         text: '金额¥ 1.00',
-      //         fontSize: 20,
-      //         color: 'yellow',
-      //         opacity: 1,
-      //         marginLeft: 10,
-      //         textDecoration: 'line-through',
-      //       },
-      //     ],
-      //     baseLine: 'middle',
-      //   },
-      // }],
-      // texts: [{
-      //     x: 0,
-      //     y: 180,
-      //     text: [{
-      //         text: '长标题长标题长标题长标题长标题长标题长标题长标题长标题',
-      //         fontSize: 40,
-      //         color: 'red',
-      //         opacity: 1,
-      //         marginLeft: 0,
-      //         marginRight: 10,
-      //         width: 200,
-      //         lineHeight: 40,
-      //         lineNum: 2,
-      //       },
-      //       {
-      //         text: '原价¥ 1.00',
-      //         fontSize: 40,
-      //         color: 'blue',
-      //         opacity: 1,
-      //         marginLeft: 10,
-      //         textDecoration: 'line-through',
-      //       },
-      //     ],
-      //     baseLine: 'middle',
-      //   },
-      //   {
-      //     x: 10,
-      //     y: 330,
-      //     text: '金额¥ 1.00',
-      //     fontSize: 80,
-      //     color: 'blue',
-      //     opacity: 1,
-      //     baseLine: 'middle',
-      //     textDecoration: 'line-through',
-      //   },
-      // ],
+      preload: true,
+      texts: [],
       images: [{
-          url: 'https://p2.music.126.net/BUFZLieG5a6E3ZVpkHP6fA==/109951163402069754.jpg',
-          width: 550,
-          height: 600,
-          y: 0,
-          x: 0,
-          // borderRadius: 150,
-          // borderWidth: 10,
-          // borderColor: 'red',
+          url: '',
+          width: 690,
+          height: 690,
+          y: 15,
+          x: 15,
         },
-        // {
-        //   url: 'http://weixin.usdotnet.com/imgage/bgk_wanjiale.jpg',
-        //   width: 100,
-        //   height: 100,
-        //   y: 450,
-        //   x: 400,
-        //   borderRadius: 100,
-        //   borderWidth: 10,
-        // },
-      ]
+        {
+          url: "https://cloud-minapp-18952.cloud.ifanrusercontent.com/1jdm091XwI1tL9Eu.jpg",
+          width: 150,
+          height: 150,
+          y: 1100,
+          x: 30,
+        },
+      ],
+      lines:[{
+        startX:15,
+        startY:1,
+        endX:705,
+        endY: 1,
+        color:'#ccc',
+        zIndex:5
+      }]
 
     }
   },
   onLoad: function () {
-    // let _this = this;
-    // wx.getStorage({
-    //   key: 'userInfo',
-    //   success({
-    //     data
-    //   }) {
-    //     if (data && data.nickname) {
-    //       _this.setData({
-    //         showPullTop: false
-    //       })
-    //     }
-    //   }
-    // })
-    // wx.BaaS.auth.loginWithWechat().then(user => {
-    //   // 登录成功
-    //   this.readyHandle();
-    // }, err => {
-    //   wx.showToast({
-    //     title: "code:" + err.code + " " + err.message
-    //   })
-    // })
-
+    let _this = this;
+    wx.getStorage({
+      key: 'userInfo',
+      success({
+        data
+      }) {
+        if (data && data.nickname) {
+          _this.setData({
+            showPullTop: false
+          })
+        }
+      }
+    })
+    wx.BaaS.auth.loginWithWechat().then(user => {
+      // 登录成功
+      this.readyHandle();
+    }, err => {
+      wx.showToast({
+        title: "code:" + err.code + " " + err.message
+      })
+    })
+    this.getTodayHeight();
   },
 
-  popupShowHandle(){
+  popupShowHandle() {
     this.setData({
-      popupShow:true
+      popupShow: true,
+      swiperStatus: false
     })
   },
 
@@ -163,10 +133,11 @@ Page({
   //   })
   // },
 
-  onClose(){
+  onClose() {
     this.setData({
-      popupShow:false,
-      posterShow:false
+      popupShow: false,
+      posterShow: false,
+      swiperStatus: true
     })
   },
 
@@ -174,15 +145,92 @@ Page({
     const {
       detail
     } = e;
-    console.log(detail)
-    this.setData({
-      posterShow:true,
-      posterImage:detail
-    })
-    // wx.previewImage({
-    //   current: detail,
-    //   urls: [detail]
+    // this.setData({
+    //   posterShow:true,
+    //   posterImage:detail
     // })
+
+    wx.showToast({
+      title: '长按保存或发送',
+      duration: 1500,
+      mask: true,
+      success: function () {
+        setTimeout(() => {
+          wx.previewImage({
+            current: detail,
+            urls: [detail]
+          })
+        }, 1500)
+      }
+    })
+  },
+
+  onPostersss() {
+    wx.showLoading({
+      mask: true,
+      title: '生成中'
+    })
+    const posterConfig = this.data.posterConfig;
+    let posterSongContent = [];
+    let songConent = this.data.content.split("\n");
+    let songNames = songName;
+    let titileTexts = titileText;
+    let lyrictexts;
+    let _this = this;
+    wx.getImageInfo({
+      src: _this.data.songInfo.imgUrl,
+      success(res) {
+
+        if (res.width === res.height) {
+          posterConfig.images[0].url = _this.data.songInfo.imgUrl + "?param=700y700";  //封面的url
+        } else {
+          posterConfig.images[0].url = _this.data.songInfo.imgUrl; //封面的url
+          posterConfig.images[0].height = res.height / (res.width / 690) //封面的高度
+        }
+
+        for (let i = 0; i < songConent.length; i++) {
+          lyrictexts = {
+            x: 30,
+            y: posterConfig.images[0].height+80,
+            text: '',
+            fontSize: 27,
+            color: '#5e5e5e',
+            opacity: 1,
+            lineHeight: 35,
+            lineNum: 5,
+            width: 600,
+          };
+
+          if (i > 0) {
+            lyrictexts.y += i * 50
+          }
+          lyrictexts.text = songConent[i];
+          posterSongContent.push(lyrictexts)
+        }
+
+        songNames.y = lyrictexts.y + 90;  //歌名的y位置
+        songNames.text = _this.data.songInfo.singer + "《" + _this.data.songInfo.songName + "》" //歌名信息
+        posterSongContent.push(songNames);
+
+        posterConfig.lines[0].startY = songNames.y+70; //横线的startY位置
+        posterConfig.lines[0].endY = posterConfig.lines[0].startY+1; //横线的endY位置
+
+        posterConfig.images[1].y = posterConfig.lines[0].endY + 30;  //二维码的y位置
+        posterConfig.height = posterConfig.images[1].y + 180;  //画布的高度
+        titileTexts.y = posterConfig.images[1].y + 75  //title的y位置
+
+
+        posterSongContent.push(titileTexts);
+
+        posterConfig.texts = posterSongContent;
+        _this.setData({
+          posterConfig
+        }, () => {
+          _this.selectComponent('#poster').onCreate(true)
+        })
+      }
+    })
+
   },
 
   onPosterFail(err) {
@@ -530,7 +578,6 @@ Page({
    */
   onShow: function () {
     // console.log("onShow")
-    // this.getTodayHeight();
   },
 
   /**
@@ -561,13 +608,14 @@ Page({
 
   },
 
-  /**
+  /***
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
     return {
       title: "Vae",
-      path: "/page/index"
+      path: "/page/index",
+      imageUrl:this.data.songInfo.imgUrl + "?param=700y700"
     }
   }
 })
