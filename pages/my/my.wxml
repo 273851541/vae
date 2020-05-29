@@ -19,4 +19,7 @@
 			</van-cell>
 		</button>
 	</view>
+	<view class='box' style="padding: 0;">
+		<ad unit-id="adunit-be916d0a4ff76d1c" ad-type="grid" grid-opacity="0.8" grid-count="8" ad-theme="white"></ad>
+	</view>
 </view>

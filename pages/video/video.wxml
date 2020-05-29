@@ -6,7 +6,7 @@
 
 	<swiper style='height:100%;overflow:hidden;' current="{{currentSwiperId}}" bindchange='bindchange'>
 		<swiper-item style='overflow-y:scroll'>
-			<scroll-view scroll-y="true" style="height:100%" scroll-with-animation="true" bindscrolltolower='scrollTolower' id='scrollView'>
+			<scroll-view scroll-y="true" style="height:100%;background: #eee;" scroll-with-animation="true" bindscrolltolower='scrollTolower' id='scrollView'>
 
 				<view class='videoBox' wx:for="{{mvList}}" wx:key="index" >
 					<ad unit-id="adunit-9db37792b4bd3e06" ad-type="video" ad-theme="white" wx:if='{{item.flag}}'></ad>
@@ -28,9 +28,9 @@
 			</scroll-view>
 		</swiper-item>
 		<swiper-item style='overflow-y:scroll'>
-			<scroll-view scroll-y="true" style="height:100%" scroll-with-animation="true" bindscrolltolower='scrollTolower' id='scrollView'>
+			<scroll-view scroll-y="true" style="height:100%;background: #eee;" scroll-with-animation="true" bindscrolltolower='scrollTolower' id='scrollView'>
 				<view class='videoBox' wx:for="{{videoList}}" wx:key="index">
-					<ad unit-id="adunit-9db37792b4bd3e06" ad-type="video" ad-theme="white" wx:if='{{item.flag}}'></ad>
+					<ad unit-id="adunit-d9efcac75e12a9f5" ad-type="video" ad-theme="white" wx:if='{{item.flag}}'></ad>
 					<view wx:else>
 						<view class='videoMask' wx:if="{{!item.videoPlayStatus}}" data-id="{{item.vid}}" style="background:url('{{item.coverUrl}}') center center;background-size:100%;" bindtap='getMVUrl'>
 							<image src='../../utils/src/playVideo.png'></image>

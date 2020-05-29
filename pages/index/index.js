@@ -6,7 +6,7 @@ const baseUrl = 'http://118.24.128.24:3000';
 import url from '../../utils/baseUrl.js';
 var BaaS_query = new wx.BaaS.Query();
 var Poster = requirePlugin('poster');
-
+var interstitialAd = null
 
 var songName = {
   text: '',
@@ -62,6 +62,7 @@ Page({
     posterShow: false,
     popupShow: false,
     posterImage: "",
+    InterstitialAd: false,
     posterConfig: {
       width: 720,
       height: 1080,
@@ -84,13 +85,13 @@ Page({
           x: 30,
         },
       ],
-      lines:[{
-        startX:15,
-        startY:1,
-        endX:705,
+      lines: [{
+        startX: 15,
+        startY: 1,
+        endX: 705,
         endY: 1,
-        color:'#ccc',
-        zIndex:5
+        color: '#ccc',
+        zIndex: 5
       }]
 
     }
@@ -118,6 +119,28 @@ Page({
       })
     })
     this.getTodayHeight();
+    this.loadAD();
+  },
+
+  loadAD() {
+    // 在页面中定义插屏广告
+
+    // 在页面onLoad回调事件中创建插屏广告实例
+    if (wx.createInterstitialAd) {
+      interstitialAd = wx.createInterstitialAd({
+        adUnitId: 'adunit-37018f515a17693e'
+      })
+      interstitialAd.onLoad(() => {
+        console.log('onLoad event emit')
+      })
+      interstitialAd.onError((err) => {})
+      interstitialAd.onClose(() => {
+        this.setData({
+          InterstitialAd: true
+        })
+        console.log(this.data.InterstitialAd)
+      })
+    }
   },
 
   popupShowHandle() {
@@ -182,7 +205,7 @@ Page({
       success(res) {
 
         if (res.width === res.height) {
-          posterConfig.images[0].url = _this.data.songInfo.imgUrl + "?param=700y700";  //封面的url
+          posterConfig.images[0].url = _this.data.songInfo.imgUrl + "?param=700y700"; //封面的url
         } else {
           posterConfig.images[0].url = _this.data.songInfo.imgUrl; //封面的url
           posterConfig.images[0].height = res.height / (res.width / 690) //封面的高度
@@ -191,7 +214,7 @@ Page({
         for (let i = 0; i < songConent.length; i++) {
           lyrictexts = {
             x: 30,
-            y: posterConfig.images[0].height+80,
+            y: posterConfig.images[0].height + 80,
             text: '',
             fontSize: 27,
             color: '#5e5e5e',
@@ -208,16 +231,16 @@ Page({
           posterSongContent.push(lyrictexts)
         }
 
-        songNames.y = lyrictexts.y + 90;  //歌名的y位置
+        songNames.y = lyrictexts.y + 90; //歌名的y位置
         songNames.text = _this.data.songInfo.singer + "《" + _this.data.songInfo.songName + "》" //歌名信息
         posterSongContent.push(songNames);
 
-        posterConfig.lines[0].startY = songNames.y+70; //横线的startY位置
-        posterConfig.lines[0].endY = posterConfig.lines[0].startY+1; //横线的endY位置
+        posterConfig.lines[0].startY = songNames.y + 70; //横线的startY位置
+        posterConfig.lines[0].endY = posterConfig.lines[0].startY + 1; //横线的endY位置
 
-        posterConfig.images[1].y = posterConfig.lines[0].endY + 30;  //二维码的y位置
-        posterConfig.height = posterConfig.images[1].y + 180;  //画布的高度
-        titileTexts.y = posterConfig.images[1].y + 75  //title的y位置
+        posterConfig.images[1].y = posterConfig.lines[0].endY + 30; //二维码的y位置
+        posterConfig.height = posterConfig.images[1].y + 180; //画布的高度
+        titileTexts.y = posterConfig.images[1].y + 75 //title的y位置
 
 
         posterSongContent.push(titileTexts);
@@ -460,6 +483,17 @@ Page({
     if (current == 1 && this.data.traceData.length === 0) {
       this.getTraceData(this.data.traceDataPage);
     }
+    if (!this.data.InterstitialAd&&current == 1) {
+      setTimeout(() => {
+
+        // 在适合的场景显示插屏广告
+        if (interstitialAd) {
+          interstitialAd.show().catch((err) => {
+            console.error(err)
+          })
+        }
+      }, 2000)
+    }
     this.setData({
       currentParentSwiperId: current
     })
@@ -615,7 +649,7 @@ Page({
     return {
       title: "Vae",
       path: "/page/index",
-      imageUrl:this.data.songInfo.imgUrl + "?param=700y700"
+      imageUrl: this.data.songInfo.imgUrl + "?param=700y700"
     }
   }
 })

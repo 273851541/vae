@@ -2,9 +2,14 @@
 
 <view class="container">
 	<view class="videoBox">
-		<video id='mvVideo-{{id}}' poster="{{imgurl16v9}}" duration="{{duration/1000}}" src='{{videoUrl}}' autoplay></video>
+		<!-- unit-id="{{unitId}}" -->
+		<video poster="{{imgurl16v9}}" bindadplay="onAdplay" bindadload="onAdload" bindadclose="onAdclose" bindaderror="onAdError" duration="{{duration/1000}}" src='{{videoUrl}}' enable-play-gesture autoplay></video>
 		<view class="videoTitle">
 			<text>{{name}}</text>
+			<view class="videoDownload" bindtap="getWritePhotosAlbum">
+				<image src="../../utils/src/download.png"></image>
+				<text>1080P</text>
+			</view>
 		</view>
 	</view>
 	<view class="relatedVideoBox">
@@ -16,4 +21,13 @@
 			<image slot='icon' class="feedBackIMG" src='{{item.coverUrl+"?param=200x200"}}'></image>
 		</van-cell>
 	</view>
+	<van-dialog id="van-dialog" />
+	<van-overlay show="{{ showOverlay }}" duration="0">
+		<view class="wrapper">
+			<view class="block">
+				<van-circle value="{{ progress }}" stroke-width="7" color="{{gradientColor}}" size="120" text="{{progress+'%'}}" />
+				<van-button round type="info" bind:click="cancelDownload" color="#6ca5fe" style="margin-top: 50rpx;">取消下载</van-button>
+			</view>
+		</view>
+	</van-overlay>
 </view>

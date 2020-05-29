@@ -34,19 +34,22 @@
 			</view>
 		</view>
 	</view>
-	<view style='position:relative;z-index:100;background:#fff;height:100%;'>
-		<view wx:for="{{albumsInfo}}" wx:key="index" class='musicItem' bindtap='toPlayerView' data-id='{{item.id}}' data-type='itemBtn'>
+	<view class="itemBox">
+		<view wx:for="{{albumsInfo}}" style="{{index===albumsInfo.length-1?'margin-bottom: 300rpx;':''}}" wx:key="index" class='musicItem' bindtap='toPlayerView' data-id='{{item.id}}' data-type='itemBtn'>
 			<view class='musicItem_container'>
 				<text style='margin-right:20rpx;'>{{index+1}}</text>
 				<text>{{item.name}}</text>
 			</view>
 		</view>
 	</view>
+	<view class="adstyle">
+		<ad unit-id="adunit-32d6caad7a3f18b5" ad-intervals="30"></ad>
+	</view>
 	<van-popup show="{{ isShowEPDetail }}" custom-class='popupClass' position='bottom' round='true' bind:close="onClose" close-icon="close" closeable>
 		<view>发行公司:{{albumsDetails.company}}</view>
 		<view>专辑类别:{{albumsDetails.subType}}\n</view>
 		<text>
-      {{albumsDetails.description}}
-    </text>
+		{{albumsDetails.description}}
+		</text>
 	</van-popup>
 </view>

@@ -1,5 +1,9 @@
 @import "../music/music.wxss";
 
+.container {
+  width: auto !important;
+}
+
 .bg_color {
   width: 100%;
   height: 500rpx;
@@ -27,7 +31,8 @@
   position: relative;
 }
 
-.imgBox, .imgs {
+.imgBox,
+.imgs {
   width: 250rpx;
   height: 250rpx;
   border-radius: 5rpx;
@@ -72,7 +77,8 @@
   width: 350rpx;
 }
 
-.EPContent text, .EPdetail {
+.EPContent text,
+.EPdetail {
   display: block;
   line-height: 40rpx;
   height: 40rpx;
@@ -97,7 +103,7 @@
   margin-top: 5rpx;
 }
 
-.popupClass{
+.popupClass {
   width: 100%;
   height: 90%;
   padding: 40rpx;
@@ -105,4 +111,26 @@
   font-size: 27rpx;
   line-height: 40rpx;
 
+}
+
+.adstyle {
+  border-radius: 20rpx;
+  overflow: hidden;
+  position: fixed;
+  bottom: 20rpx;
+  margin: 0 20rpx;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.itemBox {
+  position: relative;
+  background: #fff;
+  height: 100%;
+  padding: 0 30rpx;
+}
+
+.musicItem {
+  margin: 20rpx 0 0 0;
 }

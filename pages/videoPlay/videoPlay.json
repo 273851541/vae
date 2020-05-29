@@ -1,6 +1,10 @@
 {
   "navigationBarTitleText": "播放视频",
   "usingComponents": {
-    "van-cell": "../../dist/cell/index"
+    "van-cell": "../../dist/cell/index",
+    "van-dialog": "../../dist/dialog/index",
+    "van-overlay": "../../dist/overlay/index",
+    "van-circle": "../../dist/circle/index",
+    "van-button": "../../dist/button/index"
   }
 }

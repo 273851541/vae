@@ -1,13 +1,13 @@
 {
   "pages": [
+    "pages/video/video",
     "pages/index/index",
-    "pages/music/music",
     "pages/albumsList/albumsList",
+    "pages/music/music",
     "pages/admire/admire",
     "pages/loveList/loveList",
     "pages/my/my",
     "pages/play/play",
-    "pages/video/video",
     "pages/videoPlay/videoPlay",
     "pages/traceContont/traceContont",
     "pages/blogContont/blogContont"
