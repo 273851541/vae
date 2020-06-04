@@ -8,7 +8,7 @@
 			<text>{{name}}</text>
 			<view class="videoDownload" bindtap="getWritePhotosAlbum">
 				<image src="../../utils/src/download.png"></image>
-				<text>1080P</text>
+				<text>下载</text>
 			</view>
 		</view>
 	</view>
@@ -25,8 +25,12 @@
 	<van-overlay show="{{ showOverlay }}" duration="0">
 		<view class="wrapper">
 			<view class="block">
-				<van-circle value="{{ progress }}" stroke-width="7" color="{{gradientColor}}" size="120" text="{{progress+'%'}}" />
-				<van-button round type="info" bind:click="cancelDownload" color="#6ca5fe" style="margin-top: 50rpx;">取消下载</van-button>
+				<van-circle wx:if="{{!showLink}}" value="{{ progress }}" stroke-width="7" color="{{gradientColor}}" size="120" text="{{progress+'%'}}" />
+				<text wx:if="{{showLink}}" style="padding-left: 40px;padding-right: 40px;">视频文件大小已超过微信限制,请复制链接后到浏览器或专用工具下载</text>
+				<view style="display:flex">
+					<van-button round type="info" bind:click="cancelDownload" color="#6ca5fe" style="margin-top: 50rpx;">取消下载</van-button>
+					<van-button round type="info" bind:click="copyLink" color="#6ca5fe" style="margin-top: 50rpx;margin-left: 20px;" wx:if="{{showLink}}">复制链接</van-button>
+				</view>
 			</view>
 		</view>
 	</van-overlay>

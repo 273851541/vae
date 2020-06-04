@@ -391,6 +391,7 @@ Page({
     let _this = this;
     wx.request({
       url: url.traceList + '?pageSize=20&page=' + page,
+      method:"POST",
       success({
         data
       }) {
@@ -420,7 +421,8 @@ Page({
         }
         wx.hideLoading();
       },
-      fail() {
+      fail(res) {
+        console.log(res)
         wx.showToast({
           title: '请求失败',
           icon: 'none'

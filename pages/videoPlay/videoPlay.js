@@ -21,10 +21,11 @@ Page({
     // name:'全世界最好的你',
     relatedVideoData: [],
     unitId: "adunit-1bb66fc674971e63",
-    isLookAD: false,
-    progress: 60,
+    isLookAD: true,
+    progress: 0,
     downlaodNum: 0,
     showOverlay: false,
+    showLink:false,
     gradientColor: {
       '0%': '#74ebd5',
       '100%': '#ACB6E5',
@@ -210,8 +211,8 @@ Page({
   downloadVideo() {
     let _this = this;
     this.setData({
-      downlaodNum: this.data.downlaodNum++,
-      showOverlay: true
+      showOverlay: true,
+      downlaodNum: this.data.downlaodNum++
     })
     downloadTask = wx.downloadFile({
       url: _this.data.videoUrl,
@@ -234,6 +235,13 @@ Page({
           }
         })
         console.log("下载文件调用接口", res)
+      },
+      fail(err){
+        _this.setData({
+          showLink:true
+        })
+        downloadTask.abort();
+        console.log(err)
       }
     })
     downloadTask.onProgressUpdate((res) => {
@@ -256,6 +264,12 @@ Page({
     })
     console.log('下载已取消')
     downloadTask.abort();
+  },
+
+  copyLink(){
+    wx.setClipboardData({
+      data: this.data.videoUrl
+    })
   },
 
   formatSeconds(value) {

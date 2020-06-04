@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/video/video",
     "pages/index/index",
+    "pages/video/video",
     "pages/albumsList/albumsList",
     "pages/music/music",
     "pages/admire/admire",

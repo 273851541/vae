@@ -18,7 +18,7 @@ Page({
 
     let _this = this;
      wx.request({
-      url: 'http://122.51.124.142/blog_html/'+(id-1)+'.html',
+      url: 'https://www.vaecn.club/blog_html/'+(id-1)+'.html',
       success({data}){
         WxParse.wxParse('article', 'html', data, _this, 0);
         wx.hideLoading()
