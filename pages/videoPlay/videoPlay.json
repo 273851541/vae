@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "播放视频",
+  "navigationBarTitleText": "播放",
   "usingComponents": {
     "van-cell": "../../dist/cell/index",
     "van-dialog": "../../dist/dialog/index",

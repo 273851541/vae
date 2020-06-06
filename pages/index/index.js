@@ -78,7 +78,7 @@ Page({
           x: 15,
         },
         {
-          url: "https://cloud-minapp-18952.cloud.ifanrusercontent.com/1jdm091XwI1tL9Eu.jpg",
+          url: "https://cloud-minapp-18952.cloud.ifanrusercontent.com/1jhAMvL4m7KvIY8Z.jpg",
           width: 150,
           height: 150,
           y: 1100,
@@ -338,8 +338,11 @@ Page({
           'content': data.content,
           ['songInfo.songName']: data.songName,
           ['songInfo.singer']: data.singer,
+          ["songInfo.imgUrl"]: data.bgUrl,
+          'songUrl': url.songUrl + '?id=' + data.songId + '.mp3'
         })
-        this.getSongUrl(data.songId);
+        InnerAudioContext.coverImgUrl = data.bgUrl;
+        wx.hideLoading()
       } else {
         wx.showToast({
           icon: 'none',
@@ -349,36 +352,6 @@ Page({
 
     }, err => {
       // err
-    })
-  },
-  getSongUrl(songId) {
-    this.setData({
-      'songUrl': url.songUrl + '?id=' + songId + '.mp3'
-    })
-    this.getSongInfo(songId)
-  },
-  getSongInfo(songId) {
-    let _this = this;
-    wx.request({
-      url: url.songDetail + '?ids=' + songId,
-      success: function (res) {
-        let data = res.data;
-        if (data.code === 200) {
-          let songs = data.songs;
-          let songImgUrl = songs[0].al.picUrl;
-          InnerAudioContext.coverImgUrl = songImgUrl;
-          _this.setData({
-            ["songInfo.imgUrl"]: songImgUrl
-          })
-          wx.hideLoading()
-        }
-      },
-      fail() {
-        wx.showToast({
-          title: '请求失败',
-          icon: 'none'
-        })
-      }
     })
   },
   getTraceData(page) {

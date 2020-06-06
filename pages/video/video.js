@@ -175,7 +175,6 @@ Page({
     if (hasVideoPlayIndex < 0 || hasVideoPlayList < 0) {
       return false;
     }
-    console.log('关闭了一个视频');
     let videoUrl = mvListStr + "[" + hasVideoPlayIndex + "].videoUrl";
     let videoPlayStatus = mvListStr + "[" + hasVideoPlayIndex + "].videoPlayStatus";
     this.setData({

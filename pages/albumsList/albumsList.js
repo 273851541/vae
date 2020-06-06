@@ -78,7 +78,7 @@ Page({
     app.globalData.musicList = this.data.albumsInfo;
   },
 
-  //背景音乐赋值
+  //背景赋值
   backgroundAudioManagerHandler(songInfo) {
     let {
       song

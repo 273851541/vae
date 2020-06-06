@@ -20,9 +20,9 @@
 					</view>
 				</view>
 				<view class="operaToolBox">
-					<view class="today_love_Box">
+					<!-- <view class="today_love_Box">
 						<image src="../../utils/src/today_love2.png" class="loveStyle"></image>
-					</view>
+					</view> -->
 					<view class="today_love_Box" bindtap="popupShowHandle">
 						<image src="../../utils/src/share_today.png" class="loveStyle"></image>
 					</view>

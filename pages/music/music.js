@@ -61,7 +61,7 @@ Page({
   //   }
   // },
 
-  //音乐播放事件
+  //播放事件
   playStatus() {
     let {
       song,
@@ -209,7 +209,7 @@ Page({
     })
   },
 
-  //背景音乐赋值
+  //背景赋值
   backgroundAudioManagerHandler(songInfo) {
     let {
       song
@@ -263,7 +263,6 @@ Page({
 
   onShow() {
     this.playStatus();
-    console.log(app.globalData.musicList)
   },
 
   //swiper滑动改变current事件

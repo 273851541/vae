@@ -1,6 +1,6 @@
 <view class="container">
 	<view class='title'>
-		<text class='titile_item {{currentSwiperId==0?"title_item_action":""}}' bindtap='clickTab' data-current='0'>视频</text>
+		<text class='titile_item {{currentSwiperId==0?"title_item_action":""}}' bindtap='clickTab' data-current='0'>MV</text>
 		<text class='titile_item {{currentSwiperId==1?"title_item_action":""}}' bindtap='clickTab' data-current='1'>发现</text>
 	</view>
 

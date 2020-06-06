@@ -45,7 +45,7 @@ Page({
   },
 
 
-  //音乐播放事件
+  //播放事件
   playStatus() {
     let {
       song,
@@ -129,7 +129,7 @@ Page({
     this.backgroundAudioManagerHandler(nextItemData);
   },
 
-  //背景音乐赋值
+  //背景赋值
   backgroundAudioManagerHandler(songInfo) {
     let {
       song
